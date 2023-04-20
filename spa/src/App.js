@@ -6,7 +6,7 @@ import NoPage from "./components/nopage/NoPage";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/app">
       <Routes>
         <Route>
           <Route index element={<LoginBox />} />
