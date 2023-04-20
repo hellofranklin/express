@@ -1,0 +1,46 @@
+input[type="text"],
+button,
+label {
+  display: block;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+button {
+  background-color: #283593;
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1a237e;
+}
+
+.add-component-container {
+  position: relative;
+}
+
+.component-options {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.component-options button {
+  margin: 0.5rem 0;
+}

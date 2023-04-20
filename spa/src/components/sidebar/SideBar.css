@@ -1,0 +1,32 @@
+/* Dropdown styles */
+.dropdown {
+  display: inline-block;
+  margin-left: 15px;
+  position: sticky;
+  top: 30%;
+}
+
+.dropdown-content {
+  opacity: 0;
+  position: absolute;
+  z-index: 5;
+  overflow: visible;
+  transition: all 1s ease-out;
+}
+.dropdown-content button {
+  width: 15vw;
+}
+
+.dropdown button:hover + .dropdown-content {
+  opacity: 1;
+}
+
+.dropdown-option {
+  cursor: pointer;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.dropdown-option:hover {
+  background-color: #ddd;
+}
