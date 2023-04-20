@@ -18,7 +18,7 @@ function LoginBox() {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "text/plain;charset=utf-8");
     const response = await fetch(
-      "https://script.google.com/macros/s/AKfycbx5RfFIRzYV-82VooENNTqXynFQ4vPqh7v5yAtYkvGr2EqXD3MLa29fJXZY0SgEdih6/exec?requestType=login",
+      `${process.env.REACT_APP_BACKEND_URL}?requestType=login`,
       {
         method: "POST",
         body: JSON.stringify({ email }),
@@ -42,7 +42,7 @@ function LoginBox() {
     myHeaders.append("Content-Type", "text/plain;charset=utf-8");
     console.log(code);
     const response = await fetch(
-      "https://script.google.com/macros/s/AKfycbx5RfFIRzYV-82VooENNTqXynFQ4vPqh7v5yAtYkvGr2EqXD3MLa29fJXZY0SgEdih6/exec?requestType=verifylogin",
+      `${process.env.REACT_APP_BACKEND_URL}?requestType=verifylogin`,
       {
         method: "POST",
         body: JSON.stringify({ email, code }),
