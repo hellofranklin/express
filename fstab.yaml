@@ -1,5 +1,5 @@
 mountpoints:
-  /: https://drive.google.com/drive/folders/1uj3n3UUZVr_WwrEdJ8kiOuObiDIEUBAr
+  /static/: https://drive.google.com/drive/folders/1uj3n3UUZVr_WwrEdJ8kiOuObiDIEUBAr
   
 folders:
-  /: /spa/build/index.html
+  /app/: /spa/build/index.html
