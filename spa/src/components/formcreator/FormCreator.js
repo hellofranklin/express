@@ -1,11 +1,11 @@
 import React, { Component, useState } from "react";
 import FormBuilder from "../formbuilder/FormBuilder";
 import MyForms from "../myforms/MyForms";
-import "./MainPanel.css";
+import "./FormCreator.css";
 import SideBar from "../sidebar/SideBar";
 import TitlePanel from "../titlepanel/TitlePanel";
 
-function MainPanel() {
+function FormCreator() {
   const [tabIndex, setTabIndex] = useState(0);
 
   const [formFields, setFormFields] = useState([]);
@@ -31,4 +31,4 @@ function MainPanel() {
   );
 }
 
-export default MainPanel;
+export default FormCreator;

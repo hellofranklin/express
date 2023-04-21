@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Header from "../header/Header";
-import MainPanel from "../mainepanel/MainPanel";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
+import FormCreator from "../formcreator/FormCreator";
 
 function Home(props) {
   const email = localStorage.getItem("email");
@@ -24,13 +24,15 @@ function Home(props) {
   }, [email, code, navigate]);
 
   if (redirecting) {
-    return <div className="redirecting-message">Redirecting to login page...</div>;
+    return (
+      <div className="redirecting-message">Redirecting to login page...</div>
+    );
   }
 
   return (
     <div>
       <Header />
-      <MainPanel />
+      <FormCreator />
     </div>
   );
 }
