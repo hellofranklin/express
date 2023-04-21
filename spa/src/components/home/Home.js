@@ -16,7 +16,7 @@ function Home(props) {
       setRedirecting(true);
 
       const timeoutId = setTimeout(() => {
-        navigate("/");
+        navigate("/login");
       }, 1000);
 
       return () => clearTimeout(timeoutId);
