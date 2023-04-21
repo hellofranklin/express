@@ -1,0 +1,15 @@
+.form-container input[type='text'] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    display: block;
+  }
+
+
+  .form-container input[type='text']:focus {
+    outline: none;
+    border-color: #0077cc;
+  }

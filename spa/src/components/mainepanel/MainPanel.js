@@ -1,9 +1,9 @@
 import React, { Component, useState } from "react";
 import FormBuilder from "../formbuilder/FormBuilder";
-import WelcomePanel from "../welcomepanel/WelcomePanel";
 import MyForms from "../myforms/MyForms";
 import "./MainPanel.css";
 import SideBar from "../sidebar/SideBar";
+import TitlePanel from "../titlepanel/TitlePanel";
 
 function MainPanel() {
   const [tabIndex, setTabIndex] = useState(0);
@@ -23,7 +23,7 @@ function MainPanel() {
   return (
     <div className="form-panel">
       <div className="mainPanel">
-        <WelcomePanel />
+        <TitlePanel />
         <FormBuilder formFields={formFields} setFormFields={setFormFields} />
       </div>
       {tabIndex == 0 ? <SideBar handleAddElement={handleAddElement} /> : ""}
