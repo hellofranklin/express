@@ -68,7 +68,6 @@ function Header() {
         </div>
 
         <div className="right-navigation-container">
-          <button className="create-form-button">Create</button>
           <div className="header-menu">
             <button className="header-profile-btn" onClick={toggleMenu}>
               <div id="profileImage"> A</div>
@@ -80,24 +79,6 @@ function Header() {
               </ul>
             )}
           </div>
-        </div>
-      </div>
-      <div className="headerbar"></div>
-      <div className="tab-container">
-        <div className="tab-list">
-          {tabs.map((tab, index) => {
-            return (
-              <div
-                key={index}
-                onClick={() => handleTabChange(index)}
-                className={
-                  index === tabIndex ? "taboption active" : "taboption"
-                }
-              >
-                {tab}
-              </div>
-            );
-          })}
         </div>
       </div>
     </div>
