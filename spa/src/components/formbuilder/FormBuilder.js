@@ -1,48 +1,66 @@
-import React, { useState } from "react";
-import "./FormBuilder.css";
-import InputBox from "./../formcomponents/inputtext/InputBox";
+import React, { Component } from "react";
+import TextInput from "../formcomponents/TextInput";
+import SelectInput from "../formcomponents/SelectInput";
 
-const FormBuilder = ({ formFields, setFormFields }) => {
-  const handleDragStart = (event, element) => {
-    event.dataTransfer.setData("element", JSON.stringify(element));
+class FormBuilder extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  handleUpdateElement = (newState) => {
+    const { onUpdateElement } = this.props;
+  
+    onUpdateElement(newState);
   };
 
-  const handleDrop = (event) => {
-    const element = JSON.parse(event.dataTransfer.getData("element"));
-    setFormFields([...formFields, element]);
+  handleRemoveElement = (index) => {
+    const { formElements, onUpdateElement } = this.props;
+    const updatedElements = [
+      ...formElements.slice(0, index),
+      ...formElements.slice(index + 1),
+    ];
+    onUpdateElement(index, "remove", true);
+    updatedElements.forEach((element, index) => {
+      onUpdateElement(index, "index", index);
+    });
   };
 
-  return (
-    <div className="form-builder">
-      <div className="form-fields" onDrop={handleDrop}>
-        {formFields.length === 0 ? (
-          <div> No elements </div>
-        ) : (
-          formFields.map((field) => {
-            if (
-              field.type === "text" ||
-              field.type === "password" ||
-              field.type === "email"
-            ) {
-              return <InputBox />;
-            } else if (field.type === "checkbox") {
-              return <InputBox />;
-            } else if (field.type === "button") {
-              return <InputBox />;
-            } else if (field.type === "textarea") {
-              return <InputBox />;
-            } else if (field.type === "radio") {
-              return <InputBox />;
-            } else if (field.type === "select") {
-              return <InputBox />;
-            } else {
-              return null;
-            }
-          })
+  renderFormElement = (element, index) => {
+    switch (element.Type) {
+      case "text":
+        return (
+          <TextInput
+            key={index}
+            elementState={element}
+            onUpdate={this.handleUpdateElement}
+            onRemove={() => this.handleRemoveElement(index)}
+          />
+        );
+      case "select":
+        return (
+          <SelectInput
+            key={index}
+            elementState={element}
+            onUpdate={this.handleUpdateElement}
+            onRemove={() => this.handleRemoveElement(index)}
+          />
+        );
+      default:
+        return null;
+    }
+  };
+
+  render() {
+    const { formElements } = this.props;
+    return (
+      <div className="form-components">
+        {formElements.map((element, index) =>
+          this.renderFormElement(element, index)
         )}
+        <button onClick={this.props.createFormButtonHandler}> Create </button>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default FormBuilder;

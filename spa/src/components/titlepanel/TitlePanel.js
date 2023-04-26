@@ -4,7 +4,7 @@ import "./TitlePanel.css";
 class TitlePanel extends Component {
   render() {
     return (
-      <div className="form-container">
+      <div className="title-container">
         <input type="text" placeholder="Form Title" />
         <input type="text" placeholder="Form Description" />
       </div>
