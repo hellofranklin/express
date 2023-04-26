@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import FormBuilder from "../formbuilder/FormBuilder";
 import Header from "../header/Header";
 import SideBar from "../sidebar/SideBar";
+import withLoadingSpinner from "../spinner/WithLoadingSpinner";
 import TitlePanel from "../titlepanel/TitlePanel";
 import "./Home.css";
 
@@ -68,7 +69,7 @@ function Home(props) {
   const createFormButtonHandler = () => {
     const data = formElements.map((obj) => {
       const { ["elementId"]: value, ...rest } = obj;
-      rest['Options'] = "";
+      rest["Options"] = "";
       return rest;
     });
 
@@ -93,10 +94,17 @@ function Home(props) {
       process.env.REACT_APP_BACKEND_URL +
       `?requestType=createform&formTitle=${formTitle}&email=${userEmail}`;
 
-    fetch(encodeURI(URL), requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.log(error));
+    const { handleApiCall } = props;
+
+    const response = await handleApiCall(() =>
+      fetch(encodeURI(URL), requestOptions)
+    );
+    console.log(response);
+
+    // fetch(encodeURI(URL), requestOptions)
+    //   .then((response) => response.text())
+    //   .then((result) => console.log(result))
+    //   .catch((error) => console.log(error));
   };
 
   return (
@@ -117,4 +125,4 @@ function Home(props) {
   );
 }
 
-export default Home;
+export default withLoadingSpinner(Home);
