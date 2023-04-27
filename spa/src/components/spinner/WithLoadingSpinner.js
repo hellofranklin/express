@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Spinner from "./Spinner";
 
-const withLoadingSpinner = (WrappedComponent) => {
+const WithLoadingSpinner = (WrappedComponent) => {
   const WithLoadingSpinner = ({ ...props }) => {
     const [isLoading, setIsLoading] = useState(false);
 
@@ -25,4 +25,4 @@ const withLoadingSpinner = (WrappedComponent) => {
   return WithLoadingSpinner;
 };
 
-export default withLoadingSpinner;
+export default WithLoadingSpinner;

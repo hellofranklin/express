@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Home from "../home/Home";
 import "./Header.css";
+
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [tabs, setTabs] = useState(["New Form", "My Forms"]);
-  const [tabIndex, setTabIndex] = useState(0);
+  const navigate = useNavigate();
 
   function toggleMenu() {
     setIsMenuOpen(!isMenuOpen);
@@ -12,10 +14,6 @@ function Header() {
 
   const handleLogout = () => {
     console.log("logout clicked");
-  };
-
-  const handleTabChange = (index) => {
-    setTabIndex(index);
   };
 
   const getLogo = () => {
@@ -57,13 +55,18 @@ function Header() {
     );
   };
 
+  function handlclick() {
+    navigate("/home");
+  }
+
   return (
     <div className="header-container">
       <div className="navigation-container">
-        <div className="left-navigation-container">
-          <div className="logo">{getLogo()}</div>
-          <div className="title-name">
+        <div className="left-navigation-container" >
+          <div className="logo-container" onClick={handlclick}>
+            <div className="logo">{getLogo()}</div>
             <span>Forms Express</span>
+      
           </div>
         </div>
 

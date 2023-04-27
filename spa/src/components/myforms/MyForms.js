@@ -4,6 +4,7 @@ import formtemplates from "../../sampleform/sampledata";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Header from "../header/Header";
+import WithAuth from "../../WithAuth";
 
 const MyForms = () => {
   const [openMenus, setOpenMenus] = useState({});
@@ -33,7 +34,7 @@ const MyForms = () => {
       myHeaders.append("Content-Type", "text/plain;charset=utf-8");
       const requestOptions = {
         method: "GET",
-        headers: myHeaders
+        headers: myHeaders,
       };
       const userEmail = localStorage.getItem("email");
 
@@ -52,7 +53,7 @@ const MyForms = () => {
 
   return (
     <div>
-      <Header/>
+      <Header />
       <div className="sample-forms-container">
         {formtemplates.map((form) => (
           <div
@@ -94,4 +95,4 @@ const MyForms = () => {
   );
 };
 
-export default MyForms;
+export default WithAuth(MyForms);

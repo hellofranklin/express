@@ -1,28 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import WithAuth from "../../WithAuth";
 import FormBuilder from "../formbuilder/FormBuilder";
 import Header from "../header/Header";
 import SideBar from "../sidebar/SideBar";
+import WithLoadingSpinner from "../spinner/WithLoadingSpinner";
 import TitlePanel from "../titlepanel/TitlePanel";
 import "./Home.css";
 
 function Home(props) {
-  const email = localStorage.getItem("email");
-  const code = localStorage.getItem("code");
-  const navigate = useNavigate();
-
   const [formElements, setFormElements] = useState([]);
-  const [redirecting, setRedirecting] = useState(false);
-
-  useEffect(() => {
-    if (!email || !code) {
-      setRedirecting(true);
-      const timeoutId = setTimeout(() => {
-        navigate("/login");
-      }, 1000);
-      return () => clearTimeout(timeoutId);
-    }
-  }, [email, code, navigate]);
 
   useEffect(() => {
     setFormElements(props.formElements || []);
@@ -88,10 +75,6 @@ function Home(props) {
     return handleApiCall(() => fetch(encodeURI(URL), requestOptions));
   };
 
-  if (redirecting) {
-    return <div className="redirecting-message">Redirecting to login page...</div>;
-  }
-
   return (
     <>
       <Header />
@@ -110,4 +93,4 @@ function Home(props) {
   );
 }
 
-export default Home;
+export default WithAuth(WithLoadingSpinner(Home));
