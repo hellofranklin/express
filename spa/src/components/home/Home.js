@@ -10,6 +10,7 @@ import "./Home.css";
 
 function Home(props) {
   const [formElements, setFormElements] = useState([]);
+  const [formTitle, setFormTitle] = useState("");
 
   useEffect(() => {
     setFormElements(props.formElements || []);
@@ -49,11 +50,12 @@ function Home(props) {
       return rest;
     });
 
-    const email = "neerajadobe93@gmail.com";
-    const formTitle = "testingngform";
+    const email = localStorage.getItem("email");
     const response = await postFranklinFormData(data, email, formTitle);
-
-    console.log(response);
+    const cachedData = JSON.parse(localStorage.getItem("data"));
+    cachedData.push({title: formTitle});
+    localStorage.setItem("data", JSON.stringify(cachedData));
+    window.location.href = "/app/myforms";
   };
 
   const postFranklinFormData = async (data, userEmail, formTitle) => {
@@ -75,12 +77,16 @@ function Home(props) {
     return handleApiCall(() => fetch(encodeURI(URL), requestOptions));
   };
 
+  const updateFormTitle = (title) => {
+    setFormTitle(title);
+  };
+
   return (
     <>
       <Header />
       <div className="form-panel">
         <div className="mainPanel">
-          <TitlePanel />
+          <TitlePanel updateFormTitle={updateFormTitle}/>
           <FormBuilder
             formElements={formElements}
             onUpdateElement={updateElement}
