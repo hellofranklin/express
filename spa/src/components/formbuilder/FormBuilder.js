@@ -9,7 +9,7 @@ class FormBuilder extends Component {
 
   handleUpdateElement = (newState) => {
     const { onUpdateElement } = this.props;
-  
+
     onUpdateElement(newState);
   };
 
@@ -57,7 +57,13 @@ class FormBuilder extends Component {
         {formElements.map((element, index) =>
           this.renderFormElement(element, index)
         )}
-        <button onClick={this.props.createFormButtonHandler}> Create </button>
+        <button
+          className="createButton"
+          onClick={this.props.createFormButtonHandler}
+        >
+          {" "}
+          Create{" "}
+        </button>
       </div>
     );
   }

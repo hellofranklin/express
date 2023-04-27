@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import FormBuilder from "../formbuilder/FormBuilder";
 import Header from "../header/Header";
 import SideBar from "../sidebar/SideBar";
-import withLoadingSpinner from "../spinner/WithLoadingSpinner";
 import TitlePanel from "../titlepanel/TitlePanel";
 import "./Home.css";
 
@@ -13,102 +12,88 @@ function Home(props) {
   const navigate = useNavigate();
 
   const [formElements, setFormElements] = useState([]);
-
   const [redirecting, setRedirecting] = useState(false);
 
   useEffect(() => {
     if (!email || !code) {
       setRedirecting(true);
-
       const timeoutId = setTimeout(() => {
         navigate("/login");
       }, 1000);
-
       return () => clearTimeout(timeoutId);
     }
   }, [email, code, navigate]);
 
-  if (redirecting) {
-    return (
-      <div className="redirecting-message">Redirecting to login page...</div>
-    );
-  }
+  useEffect(() => {
+    setFormElements(props.formElements || []);
+  }, [props.formElements]);
 
   const addElement = (type) => {
-    var elementId = formElements.length;
-    var newComponent = {
-      elementId,
+    const newComponent = {
+      elementId: formElements.length,
       Name: "",
       Type: type,
-      Label: "",
+      Label: "Question",
       Mandatory: "",
       Min: "",
       Max: "",
       Options: [],
     };
-
-    const updatedFormElements = [...formElements, newComponent];
-    setFormElements(updatedFormElements);
+    setFormElements([...formElements, newComponent]);
   };
 
   const updateElement = (updatedElement) => {
-    const elementIndex = formElements.findIndex(
+    const index = formElements.findIndex(
       (element) => element.elementId === updatedElement.elementId
     );
-    if (elementIndex !== -1) {
-      const updatedFormElements = [
-        ...formElements.slice(0, elementIndex),
+    if (index !== -1) {
+      setFormElements([
+        ...formElements.slice(0, index),
         updatedElement,
-        ...formElements.slice(elementIndex + 1),
-      ];
-      setFormElements(updatedFormElements);
+        ...formElements.slice(index + 1),
+      ]);
     }
-    console.log(formElements);
   };
 
-  const createFormButtonHandler = () => {
-    const data = formElements.map((obj) => {
-      const { ["elementId"]: value, ...rest } = obj;
-      rest["Options"] = "";
+  const createFormButtonHandler = async () => {
+    const data = formElements.map(({ elementId, ...rest }) => {
+      rest.Options = "";
+      rest.Name = rest.Label;
       return rest;
     });
 
-    var email = "neerajadobe93@gmail.com";
-    var formTitle = "testingngform";
-    postFranklinFormData(data, email, formTitle);
+    const email = "neerajadobe93@gmail.com";
+    const formTitle = "testingngform";
+    const response = await postFranklinFormData(data, email, formTitle);
+
+    console.log(response);
   };
 
   const postFranklinFormData = async (data, userEmail, formTitle) => {
-    var myHeaders = new Headers();
+    const myHeaders = new Headers();
     myHeaders.append("Content-Type", "text/plain;charset=utf-8");
 
-    var requestOptions = {
+    const requestOptions = {
       method: "POST",
       headers: myHeaders,
       body: JSON.stringify(data),
-      // mode: 'no-cors',
       redirect: "follow",
     };
 
-    let URL =
+    const URL =
       process.env.REACT_APP_BACKEND_URL +
       `?requestType=createform&formTitle=${formTitle}&email=${userEmail}`;
 
     const { handleApiCall } = props;
-
-    const response = await handleApiCall(() =>
-      fetch(encodeURI(URL), requestOptions)
-    );
-    console.log(response);
-
-    // fetch(encodeURI(URL), requestOptions)
-    //   .then((response) => response.text())
-    //   .then((result) => console.log(result))
-    //   .catch((error) => console.log(error));
+    return handleApiCall(() => fetch(encodeURI(URL), requestOptions));
   };
 
+  if (redirecting) {
+    return <div className="redirecting-message">Redirecting to login page...</div>;
+  }
+
   return (
-    <div>
+    <>
       <Header />
       <div className="form-panel">
         <div className="mainPanel">
@@ -121,8 +106,8 @@ function Home(props) {
         </div>
         <SideBar onAddElement={addElement} />
       </div>
-    </div>
+    </>
   );
 }
 
-export default withLoadingSpinner(Home);
+export default Home;

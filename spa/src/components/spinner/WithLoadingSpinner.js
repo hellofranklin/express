@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import Spinner from "./Spinner";
 
 const withLoadingSpinner = (WrappedComponent) => {
-  const WithLoadingSpinner = (props) => {
+  const WithLoadingSpinner = ({ ...props }) => {
     const [isLoading, setIsLoading] = useState(false);
+
+    console.log(props);
 
     const handleApiCall = async (apiCall) => {
       setIsLoading(true);
@@ -20,7 +22,6 @@ const withLoadingSpinner = (WrappedComponent) => {
     );
   };
 
-  
   return WithLoadingSpinner;
 };
 
