@@ -19,11 +19,7 @@ class FormElement extends Component {
     this.setState({ value: event.target.value });
   };
 
-  getState = () => {
-    const { value } = this.state;
-    return { value };
-  };
-
+  g
   render() {
     return <div className="form-component">{this.renderInput()}</div>;
   }

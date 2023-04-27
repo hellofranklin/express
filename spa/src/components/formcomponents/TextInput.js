@@ -19,10 +19,10 @@ class TextInput extends FormElement {
     });
   }
 
-  handleChange = ( value ) => {
-    let updatedState = {...this.state, Label: value}
+  handleChange = (updatedData) => {
+    let updatedState = { ...this.state, ...updatedData };
     this.setState(updatedState);
-    this.props.onUpdate( this.state );
+    this.props.onUpdate(this.state);
   };
 
   renderInput() {
@@ -31,7 +31,7 @@ class TextInput extends FormElement {
         <input
           type="text"
           value={this.state.Label}
-          onChange={ (event) =>  this.handleChange(event.target.value)}
+          onChange={(event) => this.handleChange({ Label: event.target.value })}
         />
         <input type="text" value="Answer" disabled />
       </div>

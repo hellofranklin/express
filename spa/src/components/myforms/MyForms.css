@@ -1,37 +1,92 @@
-.panel {
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-    margin-top: 20px;
-  }
-  
-  .panel-body {
-    padding: 0;
-  }
-  
-  .row {
-    border: 1px solid #e5e5e5;
-    margin: 10px 0;
-    padding: 10px;
-  }
-  
-  .row:first-child {
-    margin-top: 0;
-  }
-  
-  .row:last-child {
-    margin-bottom: 0;
-  }
-  
-  .col-xs-12 {
-    margin-bottom: 5px;
-  }
-  
-  a {
-    color: #428bca;
-  }
-  
-  a:hover {
-    color: #2a6496;
-  }
-  
+.my-forms-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.my-form-card {
+  position: relative;
+  width: 350px;
+  height: 200px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  margin: 20px;
+}
+
+.my-form-card-header {
+  padding: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #3498db;
+}
+
+.my-form-card-body {
+  padding: 10px;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.my-form-card-footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 40px;
+  background-color: #fff;
+}
+
+.my-form-card-menu {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 10px;
+}
+
+.my-form-card-menu-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #e3e3e3;
+  color: #333;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.my-form-card-menu-items {
+  background-color: white;
+  border: 1px solid #e1e1e1;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem;
+}
+
+.my-form-card-menu-items ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.my-form-card-menu-items li {
+  margin: 0.5rem 0;
+}
+
+.my-form-card-menu-items-button {
+  background-color: transparent;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.my-form-card-menu-items-button:focus {
+  outline: none;
+}
+
+.my-form-card:hover .my-form-card-menu-items {
+  display: block;
+}

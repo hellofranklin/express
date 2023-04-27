@@ -20,6 +20,7 @@ const withLoadingSpinner = (WrappedComponent) => {
     );
   };
 
+  
   return WithLoadingSpinner;
 };
 
