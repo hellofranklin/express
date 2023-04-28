@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import "./MyForms.css";
-import formtemplates from "../../sampleform/sampledata";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import Header from "../header/Header";
+import { getUserForms } from "../../api";
+import formtemplates from "../../sampleform/sampledata";
 import WithAuth from "../../WithAuth";
+import Header from "../header/Header";
+import WithLoadingSpinner from "../spinner/WithLoadingSpinner";
+import "./MyForms.css";
 
-const MyForms = () => {
+const MyForms = (props) => {
   const [openMenus, setOpenMenus] = useState({});
   const [forms, setForms] = useState([]);
   const navigate = useNavigate();
@@ -30,24 +31,11 @@ const MyForms = () => {
     if (cachedData) {
       setForms(JSON.parse(cachedData));
     } else {
-      const myHeaders = new Headers();
-      myHeaders.append("Content-Type", "text/plain;charset=utf-8");
-      const requestOptions = {
-        method: "GET",
-        headers: myHeaders,
-      };
       const userEmail = localStorage.getItem("email");
-
-      const URL =
-        process.env.REACT_APP_BACKEND_URL +
-        `?requestType=userforms&email=${userEmail}`;
-
-      fetch(encodeURI(URL), requestOptions)
-        .then((response) => response.json())
-        .then((responseData) => {
-          localStorage.setItem("data", JSON.stringify(responseData.forms));
-          setForms(responseData.forms);
-        });
+      getUserForms(userEmail, props.handleApiCall).then((responseData) => {
+        localStorage.setItem("data", JSON.stringify(responseData.forms));
+        setForms(responseData.forms);
+      });
     }
   }, []);
 
@@ -95,4 +83,4 @@ const MyForms = () => {
   );
 };
 
-export default WithAuth(MyForms);
+export default WithAuth(WithLoadingSpinner(MyForms));

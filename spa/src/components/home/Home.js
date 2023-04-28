@@ -5,11 +5,13 @@ import Header from "../header/Header";
 import SideBar from "../sidebar/SideBar";
 import WithLoadingSpinner from "../spinner/WithLoadingSpinner";
 import TitlePanel from "../titlepanel/TitlePanel";
+import { createForm } from "./../../api/index";
 import "./Home.css";
 
 function Home(props) {
   const [formElements, setFormElements] = useState([]);
   const [formTitle, setFormTitle] = useState("");
+  const { handleApiCall } = props;
 
   useEffect(() => {
     setFormElements(props.formElements || []);
@@ -50,30 +52,11 @@ function Home(props) {
     });
 
     const email = localStorage.getItem("email");
-    const response = await postFranklinFormData(data, email, formTitle);
+    const response = await createForm(data, email, formTitle, handleApiCall);
     const cachedData = JSON.parse(localStorage.getItem("data"));
-    cachedData.push({title: formTitle});
+    cachedData.push({ title: formTitle });
     localStorage.setItem("data", JSON.stringify(cachedData));
     window.location.href = "/app/myforms";
-  };
-
-  const postFranklinFormData = async (data, userEmail, formTitle) => {
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "text/plain;charset=utf-8");
-
-    const requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: JSON.stringify(data),
-      redirect: "follow",
-    };
-
-    const URL =
-      process.env.REACT_APP_BACKEND_URL +
-      `?requestType=createform&formTitle=${formTitle}&email=${userEmail}`;
-
-    const { handleApiCall } = props;
-    return handleApiCall(() => fetch(encodeURI(URL), requestOptions));
   };
 
   const updateFormTitle = (title) => {
@@ -85,7 +68,7 @@ function Home(props) {
       <Header />
       <div className="form-panel">
         <div className="mainPanel">
-          <TitlePanel updateFormTitle={updateFormTitle}/>
+          <TitlePanel updateFormTitle={updateFormTitle} />
           <FormBuilder
             formElements={formElements}
             onUpdateElement={updateElement}

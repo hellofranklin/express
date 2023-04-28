@@ -1,64 +1,33 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { generateLoginCodeApi, login } from "../../api";
+import WithLoadingSpinner from "../spinner/WithLoadingSpinner";
 import "./LoginBox.css";
 
-function LoginBox() {
+function LoginBox(props) {
   const [email, setEmail] = useState("");
   const [url, setUrl] = useState("");
   const [code, setCode] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
 
-  const handleLoginClick = async () => {
-    setIsLoading(true);
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "text/plain;charset=utf-8");
-    const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_URL}?requestType=login`,
-      {
-        method: "POST",
-        body: JSON.stringify({ email }),
-        headers: myHeaders,
-        redirect: "follow",
-      }
-    );
-    const responseJson = await response.json();
-    const url = responseJson.LoginPageURL;
-    setUrl(url);
-    setIsLoading(false);
-  };
-
-  const handleCodeChange = (event) => {
-    setCode(event.target.value);
+  const generateLoginCode = async () => {
+    const responseJson = await generateLoginCodeApi(email, props.handleApiCall);
+    setUrl(responseJson.LoginPageURL);
   };
 
   const handleSubmissionClick = async () => {
-    setIsLoading(true);
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "text/plain;charset=utf-8");
-    console.log(code);
-    const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_URL}?requestType=verifylogin`,
-      {
-        method: "POST",
-        body: JSON.stringify({ email, code }),
-        headers: myHeaders,
-        redirect: "follow",
-      }
-    );
-    const { Login } = await response.json();
-    setIsLoading(false);
-    console.log(Login);
+    const responseJson = await login(email, code, props.handleApiCall);
+    const { Login } = responseJson;
     if (Login === "Success") {
       localStorage.setItem("email", email);
       localStorage.setItem("code", code);
       navigate("/home");
     } else {
-      console.log("Unauthorized Acces");
+      alert("Unauthorized Acces");
     }
   };
 
@@ -85,26 +54,21 @@ function LoginBox() {
             <input
               type="text"
               value={code}
-              onChange={handleCodeChange}
+              onChange={(evt) => {
+                setCode(evt.target.value);
+              }}
               className="code-input"
             />
             <br />
-            <button
-              onClick={handleSubmissionClick}
-              disabled={isLoading}
-              className="submit-button"
-            >
-              {isLoading ? "Submitting..." : "Submit"}
+            <button onClick={handleSubmissionClick} className="submit-button">
+              {" "}
+              Submit
             </button>
           </div>
         )}
         {!url && (
-          <button
-            onClick={handleLoginClick}
-            disabled={isLoading}
-            className="login-button"
-          >
-            {isLoading ? "Loading..." : "Login"}
+          <button onClick={generateLoginCode} className="login-button">
+            Login
           </button>
         )}
       </div>
@@ -112,4 +76,4 @@ function LoginBox() {
   );
 }
 
-export default LoginBox;
+export default WithLoadingSpinner(LoginBox);

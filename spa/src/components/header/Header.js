@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Home from "../home/Home";
+import { useNavigate } from "react-router-dom";
 import "./Header.css";
 
 

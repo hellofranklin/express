@@ -4,14 +4,12 @@ import Spinner from "./Spinner";
 const WithLoadingSpinner = (WrappedComponent) => {
   const WithLoadingSpinner = ({ ...props }) => {
     const [isLoading, setIsLoading] = useState(false);
-
-    console.log(props);
-
     const handleApiCall = async (apiCall) => {
       setIsLoading(true);
       const response = await apiCall();
+      const responseJson = await response.json();
       setIsLoading(false);
-      return response;
+      return await responseJson;
     };
 
     return (
