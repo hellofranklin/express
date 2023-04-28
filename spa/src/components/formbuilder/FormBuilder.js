@@ -57,13 +57,15 @@ class FormBuilder extends Component {
         {formElements.map((element, index) =>
           this.renderFormElement(element, index)
         )}
-        <button
-          className="createButton"
-          onClick={this.props.createFormButtonHandler}
-        >
-          {" "}
-          Create{" "}
-        </button>
+        {formElements.length > 0 && (
+          <button
+            className="createButton"
+            onClick={this.props.createFormButtonHandler}
+          >
+            {" "}
+            Create{" "}
+          </button>
+        )}
       </div>
     );
   }
