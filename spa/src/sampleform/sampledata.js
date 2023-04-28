@@ -5,7 +5,7 @@ const formtemplates = [
     description: "contact form",
     elements: [
       {
-        elementId: 1,
+        Id: 1,
         Name: "",
         Type: "text",
         Label: "",
@@ -15,7 +15,7 @@ const formtemplates = [
         Options: [],
       },
       {
-        elementId: 2,
+        Id: 2,
         Name: "",
         Type: "text",
         Label: "",

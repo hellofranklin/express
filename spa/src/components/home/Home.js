@@ -19,7 +19,7 @@ function Home(props) {
 
   const addElement = (type) => {
     const newComponent = {
-      elementId: formElements.length,
+      Id: formElements.length,
       Name: "",
       Type: type,
       Label: "Question",
@@ -33,7 +33,7 @@ function Home(props) {
 
   const updateElement = (updatedElement) => {
     const index = formElements.findIndex(
-      (element) => element.elementId === updatedElement.elementId
+      (element) => element.Id === updatedElement.Id
     );
     if (index !== -1) {
       setFormElements([
@@ -45,7 +45,7 @@ function Home(props) {
   };
 
   const createFormButtonHandler = async () => {
-    const data = formElements.map(({ elementId, ...rest }) => {
+    const data = formElements.map(({ Id, ...rest }) => {
       rest.Options = "";
       rest.Name = rest.Label;
       return rest;
@@ -75,7 +75,9 @@ function Home(props) {
             createFormButtonHandler={createFormButtonHandler}
           />
         </div>
-        <SideBar onAddElement={addElement} />
+        <div className="add-element-sidebar">
+          <SideBar onAddElement={addElement} />
+        </div>
       </div>
     </>
   );

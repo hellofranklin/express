@@ -8,7 +8,7 @@ class TextInput extends FormElement {
 
   componentDidMount() {
     this.setState({
-      elementId: this.props.elementState.elementId,
+      Id: this.props.elementState.Id,
       Name: this.props.elementState.Name,
       Type: this.props.elementState.Type,
       Label: this.props.elementState.Label,

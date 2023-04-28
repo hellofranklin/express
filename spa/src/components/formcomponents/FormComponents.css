@@ -11,3 +11,76 @@ input[type="text"] {
   width: 100%;
   box-sizing: border-box;
 }
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px rgb(87, 69, 111) solid;
+}
+
+.footer .switch {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 2px;
+  top: 10px;
+}
+
+.footer .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.footer .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.footer .slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 1px;
+  background-color: white;
+  transition: 0.4s;
+}
+
+.footer input:checked + .slider {
+  background-color: #2196f3;
+}
+
+.footer input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+.footer input:checked + .slider:before {
+  -webkit-transform: translateX(16px);
+  -ms-transform: translateX(16px);
+  transform: translateX(16px);
+}
+
+.footer .slider.round {
+  border-radius: 10px;
+}
+
+.footer .slider.round:before {
+  border-radius: 50%;
+}
+
+.right-footer {
+
+}
+
+.footer label {
+  border: 0px;
+}

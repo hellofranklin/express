@@ -1,6 +1,6 @@
 const contactFormData = [
   {
-    elementId: 1,
+    Id: 1,
     Name: "",
     Type: "text",
     Label: "",
@@ -10,7 +10,7 @@ const contactFormData = [
     Options: [],
   },
   {
-    elementId: 2,
+    Id: 2,
     Name: "",
     Type: "text",
     Label: "",
