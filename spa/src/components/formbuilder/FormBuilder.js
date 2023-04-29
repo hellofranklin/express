@@ -8,13 +8,15 @@ import SideBar from "../sidebar/SideBar";
 import WithLoadingSpinner from "../spinner/WithLoadingSpinner";
 import TitlePanel from "../titlepanel/TitlePanel";
 
+import { createForm } from "../../api/index";
+
 class FormBuilder extends Component {
   constructor(props) {
     super(props);
     this.state = {
       formElements: [],
       formTitle: this.props.formTitle,
-      formDesc: this.props.formDescription
+      formDesc: this.props.formDescription,
     };
   }
 
@@ -93,24 +95,49 @@ class FormBuilder extends Component {
       return rest;
     });
 
-    console.log(data);
+    const email = localStorage.getItem("email");
 
-    // const email = localStorage.getItem("email");
-    // const response = await createForm(data, email, formTitle, this.props.handleApiCall);
-    // const cachedData = JSON.parse(localStorage.getItem("data"));
-    // cachedData.push({ title: formTitle });
-    // localStorage.setItem("data", JSON.stringify(cachedData));
-    // window.location.href = "/app/myforms";
+    const { formTitle, formDesc } = this.state;
+
+    console.log(data);
+    console.log(formTitle)
+    console.log(formDesc);
+    if (this.validateData(data, email, formTitle, formDesc)) {
+      const response = await createForm(
+        data,
+        email,
+        formTitle,
+        formDesc,
+        this.props.handleApiCall
+      );
+      const cachedData = JSON.parse(localStorage.getItem("data"));
+      cachedData.push({ title: formTitle });
+      localStorage.setItem("data", JSON.stringify(cachedData));
+      window.location.href = "/app/myforms";
+    }
   };
 
-  updateFormTitle = (title) => {};
+  validateData = () => {
+    return false;
+  };
+
+  updateFormTitle = (title) => {
+    this.setState({ ...this.state, formTitle: title });
+  };
+
+  updateFormDescription = (desc) => {
+    this.setState({ ...this.state, formDesc: desc });
+  };
 
   render() {
     const { formElements } = this.state;
     return (
       <div className="formbuilder-container">
         <div className="form-panel">
-          <TitlePanel updateFormTitle={this.updateFormTitle} />
+          <TitlePanel
+            updateFormTitle={this.updateFormTitle}
+            updateFormDescription={this.updateFormDescription}
+          />
           <div className="form-components">
             {this.state.formElements.map((element, index) =>
               this.renderFormElement(element, index)

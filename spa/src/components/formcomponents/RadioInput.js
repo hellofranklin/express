@@ -1,56 +1,79 @@
 import React, { Component } from "react";
 import FormElement from "./FormElement";
-import "./RadioInput.css"
 
 class RadioInput extends FormElement {
   constructor(props) {
     super(props);
-    this.state = {
-      options: ["hello", "fdsfsdfsd"],
-    };
   }
 
-  handleOptionChange = (index, value) => {
-    const updatedOptions = [...this.state.options];
-    updatedOptions[index] = { ...updatedOptions[index], value };
-    this.setState({ options: updatedOptions });
-  };
+  componentDidMount() {
+    const defaultState = { Type: "select", Options: ["", ""] };
+    this.updateState(defaultState);
+  }
 
-  handleAddOption = () => {
-    const newOption = { value: "" };
+  updateState = (updatedElements) => {
     this.setState((prevState) => ({
-      options: [...prevState.options, newOption],
+      ...prevState,
+      ...updatedElements,
     }));
   };
 
-  handleOptionFocus = (index) => {
-    if (index === this.state.options.length - 1) {
-      this.handleAddOption();
-    }
+  handleOptionChange = (event) => {
+    const index = event.target.dataset.index;
+    let options = this.state.Options;
+    options[index] = event.target.value;
+    this.updateState({ Options: options });
+  };
+
+  addOption = () => {
+    let options = this.state.Options;
+    options[this.state.Options.length] = `Option ${
+      this.state.Options.length + 1
+    }`;
+
+    this.updateState({ Options: options });
+  };
+
+  deleteOption = (event) => {
+    const deletedIndex = event.target.dataset.index;
+    let options = [...this.state.Options]; // create a copy of the array
+    options.splice(deletedIndex, 1); 
+    this.updateState({ Options: options });
   };
 
   renderInput() {
+    const { Options } = this.state;
     return (
-      <div className="radio-container">
-        
-        {this.state.options.map((option, index) => (
-          <div key={index} className="radio-option">
+      <div className="radioinput-component">
+        {Options.map((option, index) => (
+          <div key={index} className="option-container">
+            <input type={"radio"} readOnly={true}></input>
             <input
-              type="radio"
-              name={this.props.name}
-              value={option.value}
-              onChange={(e) => this.handleOptionChange(index, e.target.value)}
-              onFocus={() => this.handleOptionFocus(index)}
+              type="text"
+              placeholder={`Option ${index + 1}`}
+              data-index={index}
+              onChange={this.handleOptionChange}
             />
-            <label className="radio-label">
-              <input
-                type="text"
-                value={option.value}
-                onChange={(e) => this.handleOptionChange(index, e.target.value)}
+            {index > 1 && (
+              <span
+                className="cross-btn"
+                data-index={index}
+                onClick={this.deleteOption}
               />
-            </label>
+            )}
           </div>
         ))}
+        {this.state.Options.length < 4 && (
+          <div key={this.state.Options.length} className="option-container">
+            <input
+              type="text"
+              placeholder="Add Option"
+              onFocus={this.addOption}
+              readOnly={true}
+            />
+            <span></span>
+          </div>
+        )}
       </div>
     );
   }

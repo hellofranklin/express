@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import FormElement from "./FormElement";
 
 class CheckBoxInput extends FormElement {
@@ -7,33 +7,73 @@ class CheckBoxInput extends FormElement {
   }
 
   componentDidMount() {
-    this.setState({
-      Id: this.props.elementState.Id,
-      Name: this.props.elementState.Name,
-      Type: this.props.elementState.Type,
-      Label: this.props.elementState.Label,
-      Mandatory: this.props.elementState.Mandatory,
-      Min: this.props.elementState.Min,
-      Max: this.props.elementState.Max,
-      Options: this.props.elementState.Options,
-    });
+    const defaultState = { Type: "select", Options: ["", ""] };
+    this.updateState(defaultState);
   }
 
-  handleChange = (updatedData) => {
-    let updatedState = { ...this.state, ...updatedData };
-    this.setState(updatedState);
-    this.props.onUpdate(this.state);
+  updateState = (updatedElements) => {
+    this.setState((prevState) => ({
+      ...prevState,
+      ...updatedElements,
+    }));
+  };
+
+  handleOptionChange = (event) => {
+    const index = event.target.dataset.index;
+    let options = this.state.Options;
+    options[index] = event.target.value;
+    this.updateState({ Options: options });
+  };
+
+  addOption = () => {
+    let options = this.state.Options;
+    options[this.state.Options.length] = `Option ${
+      this.state.Options.length + 1
+    }`;
+
+    this.updateState({ Options: options });
+  };
+
+  deleteOption = (event) => {
+    const deletedIndex = event.target.dataset.index;
+    let options = [...this.state.Options]; // create a copy of the array
+    options.splice(deletedIndex, 1);
+    this.updateState({ Options: options });
   };
 
   renderInput() {
+    const { Options } = this.state;
     return (
-      <div className="textinput-component">
-        <input
-          type="text"
-          value={this.state.Label}
-          onChange={(event) => this.handleChange({ Label: event.target.value })}
-        />
-        <input type="text" value="Answer" disabled />
+      <div className="checkboxinput-component">
+        {Options.map((option, index) => (
+          <div key={index} className="option-container">
+            <input type="checkbox" readOnly={true}></input>
+            <input
+              type="text"
+              placeholder={`Option ${index + 1}`}
+              data-index={index}
+              onChange={this.handleOptionChange}
+            />
+            {index > 1 && (
+              <span
+                className="cross-btn"
+                data-index={index}
+                onClick={this.deleteOption}
+              />
+            )}
+          </div>
+        ))}
+        {this.state.Options.length < 4 && (
+          <div key={this.state.Options.length} className="option-container">
+            <input
+              type="text"
+              placeholder="Add Option"
+              onFocus={this.addOption}
+              readOnly={true}
+            />
+            <span></span>
+          </div>
+        )}
       </div>
     );
   }
