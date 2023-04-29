@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Header.css";
 
 
@@ -47,8 +48,7 @@ function Header() {
             </button>
             {isMenuOpen && (
               <ul className="header-profile-menu">
-                <li className="header-profile-menu-item" onClick={handleLogout}>My Forms</li>
-                <li className="header-profile-menu-item" onClick={handleLogout}>My Profile</li>
+                <li className="header-profile-menu-item"><Link to="/myforms">My Forms</Link> </li>
                 <li className="header-profile-menu-item" onClick={handleLogout}>Logout</li>
               </ul>
             )}

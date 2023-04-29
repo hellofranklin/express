@@ -66,7 +66,9 @@ function Home(props) {
   return (
     <>
       <Header />
+    
       <div className="container form-panel">
+        
         <div className="mainPanel">
           <TitlePanel updateFormTitle={updateFormTitle} />
           <FormBuilder

@@ -1,19 +1,17 @@
 
 
-
 .formbuilder-container {
     position: absolute;
     display: flex;
     left: 50%;
     transform: translate(-40%);
     width: 60vw;
-    overflow: auto;
     height: 100%;
     text-align: center;
     height: 100vh;
-    overflow: inherit;
-    margin-top: 100px;
     justify-content: space-evenly;
+    overflow: auto;
+    
   }
   .form-panel {
     flex-grow: 0.6;
