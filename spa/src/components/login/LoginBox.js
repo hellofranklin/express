@@ -33,8 +33,9 @@ function LoginBox(props) {
 
   return (
     <div className="login-box-container">
-      <div className="login-box">
-        <h1 className="login-header">Login</h1>
+      <div className="container login-box">
+        <h1 className="login-header">Forms Express</h1>
+        
         <input
           type="email"
           placeholder="Enter your email"
