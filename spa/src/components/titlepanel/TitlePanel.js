@@ -12,7 +12,12 @@ class TitlePanel extends Component {
           onChange={(evt) => this.props.updateFormTitle(evt.target.value)}
           required={true}
         />
-        <input type="text" className="form-description" placeholder="Form description" />
+        <input
+          type="text"
+          className="form-description"
+          placeholder="Form description"
+          onChange={(evt) => this.props.updateFormDescription(evt.target.value)}
+        />
       </div>
     );
   }
