@@ -1,15 +1,25 @@
 import React, { Component } from "react";
 import TextInput from "../formcomponents/TextInput";
 import SelectInput from "../formcomponents/SelectInput";
+import CheckBoxInput from "../formcomponents/CheckBoxInput";
+import TextAreaInput from "../formcomponents/TextAreaInput";
+import RadioInput from "../formcomponents/RadioInput";
 
 class FormBuilder extends Component {
   constructor(props) {
     super(props);
   }
 
+  componentMap = {
+    Text: TextInput,
+    Select: SelectInput,
+    Checkbox: CheckBoxInput,
+    Textarea: TextAreaInput,
+    Radio: RadioInput,
+  };
+
   handleUpdateElement = (newState) => {
     const { onUpdateElement } = this.props;
-
     onUpdateElement(newState);
   };
 
@@ -26,28 +36,18 @@ class FormBuilder extends Component {
   };
 
   renderFormElement = (element, index) => {
-    switch (element.Type) {
-      case "text":
-        return (
-          <TextInput
-            key={index}
-            elementState={element}
-            onUpdate={this.handleUpdateElement}
-            onRemove={() => this.handleRemoveElement(index)}
-          />
-        );
-      case "select":
-        return (
-          <SelectInput
-            key={index}
-            elementState={element}
-            onUpdate={this.handleUpdateElement}
-            onRemove={() => this.handleRemoveElement(index)}
-          />
-        );
-      default:
-        return null;
+    const ElementComponent = this.componentMap[element.Type];
+    if (!ElementComponent) {
+      return null;
     }
+    return (
+      <ElementComponent
+        key={index}
+        elementState={element}
+        onUpdate={this.handleUpdateElement}
+        onRemove={() => this.handleRemoveElement(index)}
+      />
+    );
   };
 
   render() {
