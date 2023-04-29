@@ -5,14 +5,14 @@ class FormElement extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Id: "1",
-      Name: "",
-      Type: "",
-      Label: "",
-      Mandatory: "false",
-      Min: "",
-      Max: "",
-      Options: [],
+      Id: props.elementState.Id,
+      Name: props.elementState.Name,
+      Type: props.elementState.Type,
+      Label: props.elementState.Label,
+      Mandatory: props.elementState.Mandatory,
+      Min: props.elementState.Min,
+      Max: props.elementState.Max,
+      Options: props.elementState.Options,
     };
   }
 
@@ -20,13 +20,20 @@ class FormElement extends Component {
     this.setState({ value: event.target.value });
   };
 
-  changeMandStatus = (event) => {
-    this.setState({ ...this.state, Mandatory: event.target.checked });
+  handleChange = (updatedData) => {
+    let updatedState = { ...this.state, ...updatedData };
+    this.setState(updatedState);
+    this.props.onUpdate(updatedState);
   };
 
   render() {
     return (
       <div className="form-component">
+        <input
+          type="text"
+          value={this.state.Label}
+          onChange={(event) => this.handleChange({ Label: event.target.value })}
+        />
         {this.renderInput()}
         <div className="footer">
           <div className="left-footer"> </div>
@@ -34,7 +41,7 @@ class FormElement extends Component {
             <label className="switch">
               <input
                 type="checkbox"
-                onChange={(event) => this.changeMandStatus(event)}
+                onChange={(event) => this.handleChange({Mandatory: event.target.checked})}
               />
               <span className="slider round"></span>
             </label>

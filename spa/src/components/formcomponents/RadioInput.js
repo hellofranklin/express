@@ -32,6 +32,7 @@ class RadioInput extends FormElement {
   renderInput() {
     return (
       <div className="radio-container">
+        
         {this.state.options.map((option, index) => (
           <div key={index} className="radio-option">
             <input
