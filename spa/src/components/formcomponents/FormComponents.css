@@ -7,7 +7,7 @@
   margin-top: 20px;
 }
 
-input[type="text"] {
+input[type="text"] , textarea{
   width: 100%;
   box-sizing: border-box;
 }
@@ -15,6 +15,7 @@ input[type="text"] {
 .footer {
   display: flex;
   justify-content: space-between;
+  margin-top: 20px;
   border-top: 1px rgb(87, 69, 111) solid;
 }
 
