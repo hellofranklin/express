@@ -41,7 +41,6 @@ const MyForms = (props) => {
     }
   }, []);
 
-  const templatesDataJson = formtemplates;
   return (
     <div>
       <Header />
@@ -52,39 +51,19 @@ const MyForms = (props) => {
       </div>
 
       <div class="form-cards-list">
-        {formtemplates.map((form) => (<Card formdata={form}/>))}
+       {/*
+       { formtemplates.map((form) => (<Card formdata={form}/>))}
+       */}  
       </div>
       </div>
      
       <div className="container my-forms">
         <div className="container-heading">
-          <h3> Form Templates</h3>
+        <h3> My Forms</h3>
         </div>
 
-        <div className="form-cards-list">
-          {Object.entries(templatesDataJson).map(([key, template]) => (
-            <div
-              className="form-card"
-              key={key}
-              onClick={() => clickchandler(template.elements)}
-            >
-              <div className="form-card-image">
-                <SVGUtils width="200" height="200" />
-              </div>
-              <div className="form-card-header">{template.title}</div>
-              <div className="form-card-body">{template.description}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="container my-forms">
-        <div className="container-heading">
-          <h3> My Forms</h3>
-        </div>
-
-        <div className="form-cards">
-          {forms.map((form) => (
+      <div className="form-cards">
+        {forms.map((form) => (
             <div className="form-card" key={form.id}>
               <div className="form-card-header">{form.title}</div>
               <div className="form-card-body">{form.description}</div>
@@ -106,7 +85,7 @@ const MyForms = (props) => {
               </div>
             </div>
           ))}
-        </div>
+      </div>
       </div>
     </div>
   );
