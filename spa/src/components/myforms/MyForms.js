@@ -47,7 +47,7 @@ const MyForms = (props) => {
        <h3> Form Templates</h3>
       </div>
 
-      <div class="form-cards-list">
+      <div className="form-cards-list">
       
         {formtemplates.map((form) => (
           <div

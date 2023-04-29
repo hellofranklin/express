@@ -1,14 +1,14 @@
-const formtemplates = [
-  {
+const Formtemplates = {
+  contact: {
     id: 1,
     title: "Contact Form",
     description: "A regular contact form for capturing basic details",
     elements: [
       {
         Id: 1,
-        Name: "",
-        Type: "text",
-        Label: "",
+        Name: "FirstName",
+        Type: "Text",
+        Label: "First Name",
         Mandatory: "",
         Min: "",
         Max: "",
@@ -16,9 +16,9 @@ const formtemplates = [
       },
       {
         Id: 2,
-        Name: "",
-        Type: "text",
-        Label: "",
+        Name: "LastName",
+        Type: "Text",
+        Label: "Last Name",
         Mandatory: "",
         Min: "",
         Max: "",
@@ -26,7 +26,7 @@ const formtemplates = [
       },
     ],
   },
-  {
+  feedback: {
     id: 2,
     title: "Feedback Form",
     description: "A regular feedback form for capturing event details",
@@ -34,7 +34,7 @@ const formtemplates = [
       {
         Id: 1,
         Name: "",
-        Type: "text",
+        Type: "Text",
         Label: "",
         Mandatory: "",
         Min: "",
@@ -44,7 +44,7 @@ const formtemplates = [
       {
         Id: 2,
         Name: "",
-        Type: "text",
+        Type: "Text",
         Label: "",
         Mandatory: "",
         Min: "",
@@ -53,6 +53,6 @@ const formtemplates = [
       },
     ],
   },
-];
+};
 
-export default formtemplates;
+export default Formtemplates;

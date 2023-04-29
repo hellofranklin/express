@@ -1,3 +1,5 @@
+import { getGmailUserId } from "../utils/AppUtils";
+
 export const createForm = async (data, email, title, handleApiCall) => {
   const requestType = "createform";
   const myHeaders = new Headers();
@@ -50,7 +52,7 @@ export const login = async (email, code, handleApiCall) => {
   return handleApiCall(() => fetch(encodeURI(URL), requestOptions));
 };
 
-export const getUserForms = async (userEmail , handleApiCall) => {
+export const getUserForms = async (userEmail, handleApiCall) => {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "text/plain;charset=utf-8");
   const requestOptions = {
@@ -61,6 +63,25 @@ export const getUserForms = async (userEmail , handleApiCall) => {
   const URL =
     process.env.REACT_APP_BACKEND_URL +
     `?requestType=userforms&email=${userEmail}`;
+
+  return handleApiCall(() => fetch(encodeURI(URL), requestOptions));
+};
+
+export const getFranklinFormDataJson = async (title, email, handleApiCall) => {
+  const expirationTime = new Date(Date.now() + 3600000);
+  const myHeaders = new Headers();
+  const requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+  };
+
+  const gmailUserId = getGmailUserId(email);
+
+  const host = window.location.host.includes("localhost")
+    ? "https://main--express--hellofranklin.hlx.page"
+    : window.location.host;
+
+  const URL = `${host}/forms/${gmailUserId}/${title}/form.json`;
 
   return handleApiCall(() => fetch(encodeURI(URL), requestOptions));
 };

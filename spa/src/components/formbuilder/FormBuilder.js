@@ -7,16 +7,40 @@ import RadioInput from "../formcomponents/RadioInput";
 import SideBar from "../sidebar/SideBar";
 import WithLoadingSpinner from "../spinner/WithLoadingSpinner";
 import TitlePanel from "../titlepanel/TitlePanel";
+import { createForm, getFranklinFormDataJson } from "../../api/index";
 
-import { createForm } from "../../api/index";
+import Formtemplates from "../../sampleform/sampledata";
 
 class FormBuilder extends Component {
   constructor(props) {
     super(props);
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const updatedElement = {};
+    const formAction =
+      urlParams.get("action") === undefined
+        ? "Create"
+        : urlParams.get("action");
+    updatedElement["formAction"] = formAction;
+    let formElements = [];
+    let title = urlParams.get("title");
+    let description = "";
+    if (formAction === "create") {
+      let formSample = urlParams.get("sample");
+      let formTemplates = Formtemplates;
+      if (formSample == "contact") {
+        formElements = formTemplates["contact"].elements;
+        title = formTemplates["contact"].title;
+        description = formTemplates["contact"].description;
+      }
+    }
+    const email = localStorage.getItem("email");
     this.state = {
-      formElements: [],
-      formTitle: this.props.formTitle,
-      formDesc: this.props.formDescription,
+      formElements: formElements,
+      formTitle: title,
+      formDesc: description,
+      formAction: formAction,
+      email: email,
     };
   }
 
@@ -26,6 +50,24 @@ class FormBuilder extends Component {
     Checkbox: CheckBoxInput,
     Textarea: TextAreaInput,
     Radio: RadioInput,
+  };
+
+  componentDidMount = () => {
+    if (this.state.formAction === "update" && this.state.formTitle !== undefined) {
+      getFranklinFormDataJson(
+        this.state.formTitle,
+        this.state.email,
+        this.props.handleApiCall
+      ).then((response) => {
+        console.log(response);
+        this.updateFormBuilderState({ formElements: response.data });
+      });
+    }
+  };
+
+  updateFormBuilderState = (element) => {
+    const updateState = { ...this.state, ...element };
+    this.setState(updateState);
   };
 
   handleUpdateElement = (updatedElement) => {
@@ -88,24 +130,22 @@ class FormBuilder extends Component {
     });
   };
 
-  createFormButtonHandler = async () => {
+  formCreatorBtnHandler = async () => {
     const data = this.state.formElements.map(({ Id, ...rest }) => {
       rest.Options = "";
       rest.Name = rest.Label;
       return rest;
     });
 
-    const email = localStorage.getItem("email");
-
     const { formTitle, formDesc } = this.state;
 
     console.log(data);
-    console.log(formTitle)
+    console.log(formTitle);
     console.log(formDesc);
-    if (this.validateData(data, email, formTitle, formDesc)) {
+    if (this.validateData(data, this.state.email, formTitle, formDesc)) {
       const response = await createForm(
         data,
-        email,
+        this.state.email,
         formTitle,
         formDesc,
         this.props.handleApiCall
@@ -121,23 +161,13 @@ class FormBuilder extends Component {
     return false;
   };
 
-  updateFormTitle = (title) => {
-    this.setState({ ...this.state, formTitle: title });
-  };
-
-  updateFormDescription = (desc) => {
-    this.setState({ ...this.state, formDesc: desc });
-  };
-
   render() {
     const { formElements } = this.state;
+
     return (
       <div className="container formbuilder-container">
         <div className="form-panel">
-          <TitlePanel
-            updateFormTitle={this.updateFormTitle}
-            updateFormDescription={this.updateFormDescription}
-          />
+          <TitlePanel updateFormBuilderState={this.updateFormBuilderState} />
           <div className="form-components">
             {this.state.formElements.map((element, index) =>
               this.renderFormElement(element, index)
@@ -145,9 +175,9 @@ class FormBuilder extends Component {
             {formElements.length > 0 && (
               <button
                 className="createButton"
-                onClick={this.createFormButtonHandler}
+                onClick={this.formCreatorBtnHandler}
               >
-                Create
+                {this.state.formAction}
               </button>
             )}
           </div>
