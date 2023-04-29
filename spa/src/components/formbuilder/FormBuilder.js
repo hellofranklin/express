@@ -132,7 +132,7 @@ class FormBuilder extends Component {
   render() {
     const { formElements } = this.state;
     return (
-      <div className="formbuilder-container">
+      <div className="container formbuilder-container">
         <div className="form-panel">
           <TitlePanel
             updateFormTitle={this.updateFormTitle}

@@ -1,42 +1,43 @@
-.sample-forms-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 20px;
+.container{
+  
+  margin: 20px;
+  padding:20px;
+  background: white;
 }
 
-.my-forms-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 20px;
-}
 
-.my-form-card {
+.form-card {
   position: relative;
-  width: 350px;
-  height: 200px;
-  border-radius: 10px;
+  width: 250px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   margin: 20px;
+  text-align: center;
+  display: inline-block;
+
+
 }
 
-.my-form-card-header {
-  padding: 10px;
-  font-size: 1.5rem;
+.form-card-image{
+  border: 1px solid #eee;
+  margin: 2px;
+
+}
+
+.form-card-header {
+  padding: 5px;
+  font-size: 1rem;
   font-weight: bold;
-  color: #fff;
-  background-color: #3498db;
+
 }
 
-.my-form-card-body {
+.form-card-body {
   padding: 10px;
-  font-size: 1.2rem;
+  font-size: .8rem;
   color: #333;
 }
 
-.my-form-card-footer {
+.form-card-footer {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -45,14 +46,14 @@
   background-color: #fff;
 }
 
-.my-form-card-menu {
+.form-card-menu {
   position: absolute;
   bottom: 0;
   right: 0;
   padding: 10px;
 }
 
-.my-form-card-menu-dots {
+.form-card-menu-dots {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -65,35 +66,51 @@
   cursor: pointer;
 }
 
-.my-form-card-menu-items {
+.form-card-menu-items {
   background-color: white;
   border: 1px solid #e1e1e1;
   border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
   padding: 0.5rem;
 }
 
-.my-form-card-menu-items ul {
+.form-card-menu-items ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.my-form-card-menu-items li {
+.form-card-menu-items li {
   margin: 0.5rem 0;
 }
 
-.my-form-card-menu-items-button {
+.form-card-menu-items-button {
   background-color: transparent;
   border: none;
   font-size: 1rem;
   cursor: pointer;
 }
 
-.my-form-card-menu-items-button:focus {
+.form-card-menu-items-button:focus {
   outline: none;
 }
 
-.my-form-card:hover .my-form-card-menu-items {
+.form-card:hover .form-card-menu-items {
   display: block;
+}
+
+.createButton{
+  margin-top:10px;
+  background-color: rgb(0, 94, 255);
+  color:#fff;
+  border: none;
+  height: 40px;
+  float: right;
+}
+
+.createButton:hover{
+
+  color: rgb(0, 94, 255);
+  border: 1px solid rgb(0, 94, 255);
+
 }
