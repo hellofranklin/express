@@ -1,6 +1,7 @@
 {
   "files": {
 <<<<<<< HEAD
+<<<<<<< HEAD
     "main.css": "/spa/build/static/css/main.a12fe474.css",
     "main.js": "/spa/build/static/js/main.38d49978.js",
     "static/js/787.bc9ecdee.chunk.js": "/spa/build/static/js/787.bc9ecdee.chunk.js",
@@ -15,15 +16,24 @@
 =======
     "main.css": "/spa/build/static/css/main.5d0582b1.css",
     "main.js": "/spa/build/static/js/main.7a75d872.js",
+=======
+    "main.css": "/spa/build/static/css/main.a12fe474.css",
+    "main.js": "/spa/build/static/js/main.38d49978.js",
+>>>>>>> d625085 (update)
     "static/js/787.bc9ecdee.chunk.js": "/spa/build/static/js/787.bc9ecdee.chunk.js",
     "index.html": "/spa/build/index.html",
-    "main.5d0582b1.css.map": "/spa/build/static/css/main.5d0582b1.css.map",
-    "main.7a75d872.js.map": "/spa/build/static/js/main.7a75d872.js.map",
+    "main.a12fe474.css.map": "/spa/build/static/css/main.a12fe474.css.map",
+    "main.38d49978.js.map": "/spa/build/static/js/main.38d49978.js.map",
     "787.bc9ecdee.chunk.js.map": "/spa/build/static/js/787.bc9ecdee.chunk.js.map"
   },
   "entrypoints": [
+<<<<<<< HEAD
     "static/css/main.5d0582b1.css",
     "static/js/main.7a75d872.js"
 >>>>>>> 8e52db4 (code refactorimg)
+=======
+    "static/css/main.a12fe474.css",
+    "static/js/main.38d49978.js"
+>>>>>>> d625085 (update)
   ]
 }
