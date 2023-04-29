@@ -17,39 +17,9 @@ function Header() {
 
   const getLogo = () => {
     return (
-      <svg
-        version="1.1"
-        id="Layer_1"
-        xmlns="http://www.w3.org/2000/svg"
-        x="0px"
-        y="0px"
-        viewBox="0 0 40 40"
-      >
-        <rect
-          x="-4"
-          y="-4"
-          className="st0"
-          fill="none"
-          width="48"
-          height="48"
-        ></rect>
-        <g>
-          <polygon
-            className="st1"
-            fill="#56368A"
-            points="24.5,10 30,11 34.5,10 24.5,0 23.2,4.7"
-          ></polygon>
-          <path
-            className="st2"
-            fill="#7248B9"
-            d="M24.5,10V0H8.2C6.7,0,5.5,1.2,5.5,2.7v34.5c0,1.5,1.2,2.7,2.7,2.7h23.6c1.5,0,2.7-1.2,2.7-2.7V10H24.5z"
-          ></path>
-          <path
-            className="st3"
-            fill="#FFFFF3"
-            d="M13.2,28.9c-0.8,0-1.4-0.6-1.4-1.4c0-0.8,0.6-1.4,1.4-1.4c0.8,0,1.4,0.6,1.4,1.4 C14.5,28.2,13.9,28.9,13.2,28.9z M13.2,23.4c-0.8,0-1.4-0.6-1.4-1.4s0.6-1.4,1.4-1.4c0.8,0,1.4,0.6,1.4,1.4S13.9,23.4,13.2,23.4z M13.2,17.9c-0.8,0-1.4-0.6-1.4-1.4c0-0.8,0.6-1.4,1.4-1.4c0.8,0,1.4,0.6,1.4,1.4C14.5,17.3,13.9,17.9,13.2,17.9z M28.2,28.6H16.8 v-2.3h11.4V28.6z M28.2,23.2H16.8v-2.3h11.4V23.2z M28.2,17.7H16.8v-2.3h11.4V17.7z"
-          ></path>
-        </g>
+      <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="-5 -5 250 244" width="40" height="40">
+        <rect height="240" rx="42.5" width="240" fill="#fa0f00"/>
+        <path d="M186.617 175.95h-28.506a6.243 6.243 0 0 1-5.847-3.769l-30.947-72.359a1.364 1.364 0 0 0-2.611-.034L99.42 145.731a1.635 1.635 0 0 0 1.506 2.269h21.2a3.27 3.27 0 0 1 3.01 1.994l9.281 20.655a3.812 3.812 0 0 1-3.507 5.301H53.734a3.518 3.518 0 0 1-3.213-4.904l49.09-116.902A6.639 6.639 0 0 1 105.843 50h28.314a6.628 6.628 0 0 1 6.232 4.144l49.43 116.902a3.517 3.517 0 0 1-3.202 4.904z" data-name="256" fill="#fff"/>
       </svg>
     );
   };
@@ -64,7 +34,7 @@ function Header() {
         <div className="left-navigation-container" >
           <div className="logo-container" onClick={handlclick}>
             <div className="logo">{getLogo()}</div>
-            <span>Forms Express</span>
+            <div className="sitetitle">Forms Express</div> 
       
           </div>
         </div>
@@ -77,7 +47,9 @@ function Header() {
             </button>
             {isMenuOpen && (
               <ul className="header-profile-menu">
-                <li onClick={handleLogout}>Logout</li>
+                <li className="header-profile-menu-item" onClick={handleLogout}>My Forms</li>
+                <li className="header-profile-menu-item" onClick={handleLogout}>My Profile</li>
+                <li className="header-profile-menu-item" onClick={handleLogout}>Logout</li>
               </ul>
             )}
           </div>

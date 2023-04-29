@@ -2,20 +2,16 @@
   background-color: #fff;
   border-bottom: 1px solid #dadce0;
   width: 100%;
-  position: fixed;
   top: 0%;
   z-index: 1;
 }
 
 .navigation-container {
   display: flex;
-  padding-top: 6px;
-  max-height: 80px;
 }
 
 .left-navigation-container {
-  box-align: center;
-  align-items: center;
+
   display: flex;
   box-flex: 1;
   flex-grow: 1;
@@ -24,14 +20,15 @@
 }
 
 .logo {
-  height: 40px;
   margin-right: 10px;
-  width: 40px;
+  float: left;
+}
+
+.sitetitle{
+  font-weight: bold;
 }
 
 .right-navigation-container {
-  box-align: center;
-  align-items: center;
   display: flex;
   padding-right: 2px;
 }
@@ -85,6 +82,10 @@
   z-index: 1;
 }
 
+.header-profile-menu-item:hover{
+  color:  rgb(0, 94, 255);
+}
+
 .header-profile-menu li {
   margin-bottom: 10px;
   cursor: pointer;
@@ -103,15 +104,13 @@
 }
 
 #profileImage {
-  width: 40px;
-  height: 40px;
   border-radius: 50%;
   background: #512da8;
   font-size: 20px;
   color: #fff;
-  text-align: center;
-  line-height: 40px;
-  margin: 20px 0;
+  padding:5px;
+
+
 }
 
 /*  Header bar */
@@ -148,3 +147,4 @@
   color: #292222;
   border-bottom: 3px solid #f76a3f;
 }
+
