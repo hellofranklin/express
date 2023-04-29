@@ -7,51 +7,72 @@ class SelectInput extends FormElement {
   }
 
   componentDidMount() {
-    this.setState((prevState) => ({
-      ...prevState,
-      Type: "select",
-      Options: ["option1", "option2"],
-    }));
+    const defaultState = { Type: "select", Options: ["", ""] };
+    this.updateState(defaultState);
   }
 
-  handleChange = (event) => {
-    this.setState({ value: event.target.value });
+  updateState = (updatedElements) => {
+    this.setState((prevState) => ({
+      ...prevState,
+      ...updatedElements,
+    }));
   };
 
   handleOptionChange = (event) => {
-    const { options } = this.state;
-    const index = parseInt(event.target.dataset.index);
+    const index = event.target.dataset.index;
+    let options = this.state.Options;
     options[index] = event.target.value;
-    this.setState({ options });
+    this.updateState({ Options: options });
   };
 
   addOption = () => {
-    const { options } = this.state;
-    this.setState({ options: [...options, ""] });
+    let options = this.state.Options;
+    options[this.state.Options.length] = `Option ${
+      this.state.Options.length + 1
+    }`;
+
+    this.updateState({ Options: options });
+  };
+
+  deleteOption = (event) => {
+    const deletedIndex = event.target.dataset.index;
+    let options = [...this.state.Options]; // create a copy of the array
+    options.splice(deletedIndex, 1); 
+    this.updateState({ Options: options });
   };
 
   renderInput() {
-    const { value, Options } = this.state;
+    const { Options } = this.state;
     return (
       <div className="selectinput-component">
-        <select value={value} onChange={this.handleChange}>
-          {Options.map((option, index) => (
-            <option key={index} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-        <button onClick={this.addOption}>Add Option</button>
         {Options.map((option, index) => (
-          <div key={index}>
+          <div key={index} className="option-container">
             <input
               type="text"
-              value={option}
+              placeholder={`Option ${index + 1}`}
               data-index={index}
               onChange={this.handleOptionChange}
             />
+            {index > 1 && (
+              <span
+                className="cross-btn"
+                data-index={index}
+                onClick={this.deleteOption}
+              />
+            )}
           </div>
         ))}
+        {this.state.Options.length < 4 && (
+          <div key={this.state.Options.length} className="option-container">
+            <input
+              type="text"
+              placeholder="Add Option"
+              onFocus={this.addOption}
+              readOnly={true}
+            />
+            <span></span>
+          </div>
+        )}
       </div>
     );
   }

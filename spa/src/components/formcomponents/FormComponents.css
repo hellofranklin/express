@@ -78,9 +78,40 @@ input[type="text"] {
 }
 
 .right-footer {
-
 }
 
 .footer label {
   border: 0px;
+}
+
+/**  select input */
+
+.option-container {
+  display: flex;
+}
+
+.cross-btn {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+
+.cross-btn:before,
+.cross-btn:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: black;
+}
+
+.cross-btn:before {
+  transform: rotate(45deg);
+}
+
+.cross-btn:after {
+  transform: rotate(-45deg);
 }
