@@ -6,12 +6,8 @@ import WithAuth from "../../WithAuth";
 import Header from "../header/Header";
 import WithLoadingSpinner from "../spinner/WithLoadingSpinner";
 import "./MyForms.css";
-<<<<<<< HEAD
-import { ReactComponent as MySvg } from "../../static/card-image.svg";
-=======
 import Card from "../card/card";
 import SVGUtils from "../card/svgbox";
->>>>>>> 94970f7 (modular card)
 
 const MyForms = (props) => {
   const [openMenus, setOpenMenus] = useState({});
