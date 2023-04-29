@@ -69,7 +69,7 @@ const MyForms = (props) => {
               onClick={() => clickchandler(template.elements)}
             >
               <div className="form-card-image">
-                <MySvg width="200" height="200" />
+                <SVGUtils width="200" height="200" />
               </div>
               <div className="form-card-header">{template.title}</div>
               <div className="form-card-body">{template.description}</div>
