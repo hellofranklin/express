@@ -1,7 +1,7 @@
 import { getGmailUserId } from "../utils/AppUtils";
 
-export const createForm = async (data, email, title, handleApiCall) => {
-  const requestType = "createform";
+export const createForm = async (data, email, title, description, handleApiCall, formAction) => {
+  const requestType = formAction === 'create' ? "createform": "updateform";
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "text/plain;charset=utf-8");
 

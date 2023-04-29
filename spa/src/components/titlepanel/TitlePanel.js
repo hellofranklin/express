@@ -10,7 +10,7 @@ class TitlePanel extends Component {
           className="form-title"
           placeholder="Untitled Form"
           onChange={(evt) =>
-            this.props.updateTitlePanelState({ formTitle: evt.target.value })
+            this.props.updateFormBuilderState({ formTitle: evt.target.value })
           }
           required={true}
         />
@@ -19,7 +19,7 @@ class TitlePanel extends Component {
           className="form-description"
           placeholder="Form description"
           onChange={(evt) =>
-            this.props.updateTitlePanelState({ formDesc: evt.target.value })
+            this.props.updateFormBuilderState({ formDesc: evt.target.value })
           }
         />
       </div>

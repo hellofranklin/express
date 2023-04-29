@@ -14,11 +14,10 @@ import Formtemplates from "../../sampleform/sampledata";
 class FormBuilder extends Component {
   constructor(props) {
     super(props);
-
     const urlParams = new URLSearchParams(window.location.search);
     const updatedElement = {};
     const formAction =
-      urlParams.get("action") === undefined
+      urlParams.get("action") === null
         ? "Create"
         : urlParams.get("action");
     updatedElement["formAction"] = formAction;
@@ -132,7 +131,7 @@ class FormBuilder extends Component {
 
   formCreatorBtnHandler = async () => {
     const data = this.state.formElements.map(({ Id, ...rest }) => {
-      rest.Options = "";
+      rest.Options = rest.Options.join(',');
       rest.Name = rest.Label;
       return rest;
     });
@@ -148,7 +147,8 @@ class FormBuilder extends Component {
         this.state.email,
         formTitle,
         formDesc,
-        this.props.handleApiCall
+        this.props.handleApiCall,
+        this.state.formAction
       );
       const cachedData = JSON.parse(localStorage.getItem("data"));
       cachedData.push({ title: formTitle });
@@ -158,7 +158,7 @@ class FormBuilder extends Component {
   };
 
   validateData = () => {
-    return false;
+    return true;
   };
 
   render() {
