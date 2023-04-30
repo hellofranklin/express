@@ -55,4 +55,4 @@ const Formtemplates = {
   },
 };
 
-export default Formtemplates;
+export default  Formtemplates;

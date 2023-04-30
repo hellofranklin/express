@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getUserForms } from "../../api";
-import formtemplates from "../../sampleform/sampledata";
+import  Formtemplates from "../../sampleform/sampledata";
 import WithAuth from "../../WithAuth";
 import Header from "../header/Header";
 import WithLoadingSpinner from "../spinner/WithLoadingSpinner";
@@ -50,10 +50,14 @@ const MyForms = (props) => {
        <h3> Form Templates</h3>
       </div>
 
+   
       <div class="form-cards-list">
-       {/*
-       { formtemplates.map((form) => (<Card formdata={form}/>))}
-       */}  
+      {Object.values(Formtemplates).map((form, index) => {
+        return (
+          <Card formdata={form}/>
+        );
+      })}
+       
       </div>
       </div>
      
@@ -63,6 +67,9 @@ const MyForms = (props) => {
         </div>
 
       <div className="form-cards">
+      
+ 
+
         {forms.map((form) => (
             <div className="form-card" key={form.id}>
               <div className="form-card-header">{form.title}</div>
