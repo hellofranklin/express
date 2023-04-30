@@ -67,10 +67,10 @@ const MyForms = (props) => {
         </div>
 
       <div className="form-cards">
-      
- 
 
-        {forms.map((form) => (
+        {forms.length <= 0
+        ? <p> No Forms Found </p>
+        :forms.map((form) => (
             <div className="form-card" key={form.id}>
               <div className="form-card-header">{form.title}</div>
               <div className="form-card-body">{form.description}</div>
