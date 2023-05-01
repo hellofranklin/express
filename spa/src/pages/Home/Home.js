@@ -3,6 +3,8 @@ import Header from "../../components/header/Header";
 import FormBuilder from "../../components/formbuilder/FormBuilder";
 import "./Home.css";
 
+import WithAuth from '../../WithAuth'
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -18,4 +20,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default WithAuth(Home);

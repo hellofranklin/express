@@ -1,7 +1,14 @@
 import { getGmailUserId } from "../utils/AppUtils";
 
-export const createForm = async (data, email, title, description, handleApiCall, formAction) => {
-  const requestType = formAction === 'create' ? "createform": "updateform";
+export const createForm = async (
+  data,
+  email,
+  title,
+  description,
+  handleApiCall,
+  formAction
+) => {
+  const requestType = formAction === "create" ? "createform" : "updateform";
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "text/plain;charset=utf-8");
 
@@ -20,18 +27,18 @@ export const createForm = async (data, email, title, description, handleApiCall,
 };
 
 export const generateLoginCodeApi = async (email, handleApiCall) => {
-  const requestType = "login";
+  const requestType = "getlogincode";
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "text/plain;charset=utf-8");
-
   const requestOptions = {
     method: "POST",
     headers: myHeaders,
-    body: JSON.stringify({ email }),
     redirect: "follow",
   };
 
-  const URL = process.env.REACT_APP_BACKEND_URL + `?requestType=${requestType}`;
+  const URL =
+    process.env.REACT_APP_BACKEND_URL +
+    `?requestType=${requestType}&email=${email}`;
 
   return handleApiCall(() => fetch(encodeURI(URL), requestOptions));
 };
@@ -43,16 +50,18 @@ export const login = async (email, code, handleApiCall) => {
 
   const requestOptions = {
     method: "POST",
-    body: JSON.stringify({ email, code }),
     headers: myHeaders,
     redirect: "follow",
   };
-  const URL = process.env.REACT_APP_BACKEND_URL + `?requestType=${requestType}`;
+  const URL =
+    process.env.REACT_APP_BACKEND_URL +
+    `?requestType=${requestType}&email=${email}&code=${code}`;
 
   return handleApiCall(() => fetch(encodeURI(URL), requestOptions));
 };
 
-export const getUserForms = async (userEmail, handleApiCall) => {
+export const getUserForms = async (email, handleApiCall) => {
+  const requestType = "userforms";
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "text/plain;charset=utf-8");
   const requestOptions = {
@@ -62,7 +71,7 @@ export const getUserForms = async (userEmail, handleApiCall) => {
 
   const URL =
     process.env.REACT_APP_BACKEND_URL +
-    `?requestType=userforms&email=${userEmail}`;
+    `?requestType=${requestType}&email=${email}`;
 
   return handleApiCall(() => fetch(encodeURI(URL), requestOptions));
 };

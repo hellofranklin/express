@@ -16,13 +16,14 @@ function LoginBox(props) {
 
   const generateLoginCode = async () => {
     const responseJson = await generateLoginCodeApi(email, props.handleApiCall);
+    console.log(responseJson);
     setUrl(responseJson.LoginPageURL);
   };
 
   const handleSubmissionClick = async () => {
     const responseJson = await login(email, code, props.handleApiCall);
-    const { Login } = responseJson;
-    if (Login === "Success") {
+    const { loginStatus } = responseJson;
+    if (loginStatus === "Success") {
       localStorage.setItem("email", email);
       localStorage.setItem("code", code);
       navigate("/home");

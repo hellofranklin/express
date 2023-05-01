@@ -18,7 +18,7 @@ class FormBuilder extends Component {
     const updatedElement = {};
     const formAction =
       urlParams.get("action") === null
-        ? "Create"
+        ? "create"
         : urlParams.get("action");
     updatedElement["formAction"] = formAction;
     let formElements = [];
