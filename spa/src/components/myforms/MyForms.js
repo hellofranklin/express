@@ -28,7 +28,7 @@ const MyForms = (props) => {
   return (
     <div>
       <Header />
-
+      <div className="main-container">
       <div className="container sample-forms">
         <div className="container-heading">
           <h3> Form Templates</h3>
@@ -55,6 +55,7 @@ const MyForms = (props) => {
             forms.map((form) => <Card formdata={form} />)
           )}
         </div>
+      </div>
       </div>
     </div>
   );
