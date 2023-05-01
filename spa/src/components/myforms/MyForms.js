@@ -1,31 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { getUserForms } from "../../api";
 import Formtemplates from "../../sampleform/sampledata";
 import WithAuth from "../../WithAuth";
 import Card from "../card/card";
 import Header from "../header/Header";
 import WithLoadingSpinner from "../spinner/WithLoadingSpinner";
+
 import "./MyForms.css";
 
 const MyForms = (props) => {
-  const [openMenus, setOpenMenus] = useState({});
+
   const [forms, setForms] = useState([]);
-  const navigate = useNavigate();
-
-  const toggleMenu = (formId) => {
-    setOpenMenus((prevState) => ({
-      ...prevState,
-      [formId]: !prevState[formId],
-    }));
-  };
-
-  const clickchandler = (formelements) => {
-    navigate({
-      pathname: "/home",
-      state: { formelements },
-    });
-  };
 
   useEffect(() => {
     const cachedData = localStorage.getItem("data");
@@ -50,6 +35,8 @@ const MyForms = (props) => {
         </div>
 
         <div class="form-cards-list">
+
+
           {Object.values(Formtemplates).map((form, index) => {
             return <Card formdata={form} />;
           })}
@@ -65,28 +52,7 @@ const MyForms = (props) => {
           {forms.length <= 0 ? (
             <p> No Forms Found </p>
           ) : (
-            forms.map((form) => (
-              <div className="form-card" key={form.id}>
-                <div className="form-card-header">{form.title}</div>
-                <div className="form-card-body">{form.description}</div>
-                <div className="form-card-footer">
-                  <div
-                    className="form-card-menu"
-                    onClick={() => toggleMenu(form.id)}
-                  >
-                    <div className="form-card-menu-dots">
-                      &#8226;&#8226;&#8226;
-                    </div>
-                    {openMenus[form.id] && (
-                      <div className="form-card-menu-items">
-                        <div className="form-card-menu-item">Edit</div>
-                        <div className="form-card-menu-item">Delete</div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))
+            forms.map((form) => <Card formdata={form} />)
           )}
         </div>
       </div>
