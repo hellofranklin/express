@@ -15,7 +15,7 @@ const Card = (props)=> {
 
     return(
        <div className="form-card" onClick={() => clickchandler(props.formdata.elements)} >
-            <div className="form-card-image"> <SVGUtils type="basic"/></div>
+            <div className="form-card-image"> <SVGUtils name="card"/></div>
             <div className="form-card-header">{props.formdata.title}</div>
             <div className="form-card-body">{props.formdata.description}</div>
         </div>
