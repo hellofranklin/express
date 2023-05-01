@@ -10,8 +10,8 @@
     text-align: center;
     height: 100vh;
     justify-content: space-evenly;
-    overflow: auto;
-    
+    overflow: hidden;
+
   }
   .form-panel {
     flex-grow: 0.6;

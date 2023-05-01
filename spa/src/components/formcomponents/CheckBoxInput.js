@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import FormElement from "./FormElement";
 
 class CheckBoxInput extends FormElement {
@@ -7,7 +7,7 @@ class CheckBoxInput extends FormElement {
   }
 
   componentDidMount() {
-    const defaultState = { Type: "select", Options: ["", ""] };
+    const defaultState = { Type: "Checkbox", Options: ["", ""] };
     this.updateState(defaultState);
   }
 
@@ -22,7 +22,7 @@ class CheckBoxInput extends FormElement {
     const index = event.target.dataset.index;
     let options = this.state.Options;
     options[index] = event.target.value;
-    this.updateState({ Options: options });
+    this.handleChange({ Options: options });
   };
 
   addOption = () => {
@@ -31,14 +31,14 @@ class CheckBoxInput extends FormElement {
       this.state.Options.length + 1
     }`;
 
-    this.updateState({ Options: options });
+    this.handleChange({ Options: options });
   };
 
   deleteOption = (event) => {
     const deletedIndex = event.target.dataset.index;
     let options = [...this.state.Options]; // create a copy of the array
     options.splice(deletedIndex, 1);
-    this.updateState({ Options: options });
+    this.handleChange({ Options: options });
   };
 
   renderInput() {

@@ -7,6 +7,7 @@ import "./Header.css";
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const email = localStorage.getItem("email");
 
   function toggleMenu() {
     setIsMenuOpen(!isMenuOpen);
@@ -27,7 +28,7 @@ function Header() {
         <div className="left-navigation-container">
           <div className="logo-container" onClick={handleLogoClick}>
             <div className="logo">
-              <SVGUtils name="logo"/>
+              <SVGUtils name="logo" />
             </div>
             <div className="sitetitle">Forms Express</div>
           </div>
@@ -35,20 +36,25 @@ function Header() {
 
         <div className="right-navigation-container">
           <div className="header-menu">
-            <button className="header-profile-btn" onClick={toggleMenu}>
-              <div id="profileImage"> A</div>
-              <span className="header-profile-arrow">&#9660;</span>
-            </button>
-            {isMenuOpen && (
-              <ul className="header-profile-menu">
-                <li className="header-profile-menu-item">
-                  <Link to="/myforms">My Forms</Link>{" "}
-                </li>
-                <li className="header-profile-menu-item" onClick={handleLogout}>
-                  Logout
-                </li>
-              </ul>
-            )}
+            <div className="profile-icon-container" onClick={toggleMenu}>
+              <button className="header-profile-btn" >
+                <div id="profileImage"> {email.charAt(0).toUpperCase()} </div>
+                <span className="header-profile-arrow">&#9660;</span>
+              </button>
+              {isMenuOpen && (
+                <ul className="header-profile-menu">
+                  <li className="header-profile-menu-item">
+                    <Link to="/myforms">My Forms</Link>{" "}
+                  </li>
+                  <li
+                    className="header-profile-menu-item"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </li>
+                </ul>
+              )}
+            </div>
           </div>
         </div>
       </div>

@@ -114,7 +114,7 @@ class FormBuilder extends Component {
 
   addElement = (type) => {
     const newComponent = {
-      Id: this.state.formElements.length,
+      Id: this.state.formElements.length + 1,
       Name: "",
       Type: type,
       Label: "Question",
@@ -129,7 +129,10 @@ class FormBuilder extends Component {
     });
   };
 
+
+  
   formCreatorBtnHandler = async () => {
+    console.log(this.state.formElements);
     const data = this.state.formElements.map(({ Id, ...rest }) => {
       rest.Options = rest.Options.join(',');
       rest.Name = rest.Label;
@@ -158,7 +161,7 @@ class FormBuilder extends Component {
   };
 
   validateData = () => {
-    return true;
+    return false;
   };
 
   render() {

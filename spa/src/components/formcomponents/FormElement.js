@@ -16,10 +16,6 @@ class FormElement extends Component {
     };
   }
 
-  handleChange = (event) => {
-    this.setState({ value: event.target.value });
-  };
-
   handleChange = (updatedData) => {
     let updatedState = { ...this.state, ...updatedData };
     this.setState(updatedState);
@@ -41,7 +37,9 @@ class FormElement extends Component {
             <label className="switch">
               <input
                 type="checkbox"
-                onChange={(event) => this.handleChange({Mandatory: event.target.checked})}
+                onChange={(event) =>
+                  this.handleChange({ Mandatory: event.target.checked })
+                }
               />
               <span className="slider round"></span>
             </label>

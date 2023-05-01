@@ -7,7 +7,7 @@ class RadioInput extends FormElement {
   }
 
   componentDidMount() {
-    const defaultState = { Type: "select", Options: ["", ""] };
+    const defaultState = { Type: "Radio", Options: ["", ""] };
     this.updateState(defaultState);
   }
 
@@ -22,7 +22,7 @@ class RadioInput extends FormElement {
     const index = event.target.dataset.index;
     let options = this.state.Options;
     options[index] = event.target.value;
-    this.updateState({ Options: options });
+    this.handleChange({ Options: options });
   };
 
   addOption = () => {
@@ -31,14 +31,14 @@ class RadioInput extends FormElement {
       this.state.Options.length + 1
     }`;
 
-    this.updateState({ Options: options });
+    this.handleChange({ Options: options });
   };
 
   deleteOption = (event) => {
     const deletedIndex = event.target.dataset.index;
     let options = [...this.state.Options]; // create a copy of the array
     options.splice(deletedIndex, 1); 
-    this.updateState({ Options: options });
+    this.handleChange({ Options: options });
   };
 
   renderInput() {
