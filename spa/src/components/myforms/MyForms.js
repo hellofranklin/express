@@ -6,7 +6,6 @@ import Card from "../card/card";
 import Header from "../header/Header";
 import WithLoadingSpinner from "../spinner/WithLoadingSpinner";
 
-import "./MyForms.css";
 
 const MyForms = (props) => {
   const [forms, setForms] = useState([]);

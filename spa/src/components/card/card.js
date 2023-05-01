@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SVGUtils from "../../utils/SVGUtils";
+import "./card.css";
 
 const Card = (props) => {
   const navigate = useNavigate();
@@ -26,11 +27,11 @@ const Card = (props) => {
         <SVGUtils name={props.formdata.svg ? props.formdata.svg : "card"} />
       </div>
       <div className="form-card-header">{props.formdata.title}</div>
-      <div className="form-card-body">{props.formdata.description}</div>
+      
 
       <div className="form-card-footer">
         <div className="form-card-menu" onClick={() => toggleMenu(props.formdata.id)}>
-          <div className="form-card-menu-dots"> &#8226;&#8226;&#8226;</div>
+          <div className="form-card-menu-dots"> &#8942;</div>
           {openMenus[props.formdata.id] && (
             <div className="form-card-menu-items">
               <div className="form-card-menu-item">Edit</div>
