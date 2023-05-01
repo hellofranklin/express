@@ -9,7 +9,7 @@ const Card = (props) => {
 
   const clickchandler = (formelements) => {
     navigate({
-      pathname: "/home",
+      pathname: "/create",
       state: { formelements },
     });
   };
@@ -49,16 +49,15 @@ const Card = (props) => {
     );
   } else {
     return (
-      <div
-        className="form-card"
-        key={props.formdata.id}
-        onClick={() => clickchandler(props.formdata.elements)}
-      >
+      <div className="form-card"
+          key={props.formdata.id}
+          onClick={() => clickchandler(props.formdata.elements)}>
+       
         <div className="form-card-image">
-          {" "}
           <SVGUtils name={props.formdata.svg ? props.formdata.svg : "myform"} />
         </div>
         <div className="form-card-header">{props.formdata.title}</div>
+       
       </div>
     );
   }

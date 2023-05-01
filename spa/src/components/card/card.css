@@ -10,6 +10,11 @@
 
 }
 
+.form-card:hover{
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+
+}
+
 .form-card-image {
     border: 1px solid #eee;
     margin: 2px;
