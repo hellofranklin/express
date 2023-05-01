@@ -97,6 +97,7 @@ class FormBuilder extends Component {
 
   onElementClickHandler = (focusedElementIndex) => {
     if (
+      !isNaN(focusedElementIndex) &&
       focusedElementIndex !== undefined &&
       focusedElementIndex !== this.state.focusedElementIndex
     ) {
@@ -201,9 +202,8 @@ class FormBuilder extends Component {
             )}
           </div>
         </div>
-        <div className="add-element-sidebar">
-          <SideBar onAddElement={this.addElement} />
-        </div>
+
+        <SideBar onAddElement={this.addElement} />
       </div>
     );
   }
