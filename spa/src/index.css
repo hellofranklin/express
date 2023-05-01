@@ -58,6 +58,10 @@ button:hover {
   margin: 0.5rem 0;
 }
 
+.main-container{
+  width: 80%;
+  margin: auto;
+}
 .container {
   margin: 20px;
   padding: 20px;

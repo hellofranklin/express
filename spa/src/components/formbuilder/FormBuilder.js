@@ -96,7 +96,10 @@ class FormBuilder extends Component {
   };
 
   onElementClickHandler = (focusedElementIndex) => {
-    if (focusedElementIndex !== this.state.focusedElementIndex) {
+    if (
+      focusedElementIndex !== undefined &&
+      focusedElementIndex !== this.state.focusedElementIndex
+    ) {
       this.updateFormBuilderState({ focusedElementIndex: focusedElementIndex });
     }
   };
