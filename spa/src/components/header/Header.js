@@ -44,7 +44,7 @@ function Header() {
               {isMenuOpen && (
                 <ul className="header-profile-menu">
                   <li className="header-profile-menu-item">
-                    <Link to="/myforms">My Forms</Link>{" "}
+                    <Link to="/">My Forms</Link>{" "}
                   </li>
                   <li
                     className="header-profile-menu-item"

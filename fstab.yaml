@@ -2,4 +2,4 @@ mountpoints:
   /: https://drive.google.com/drive/folders/1uj3n3UUZVr_WwrEdJ8kiOuObiDIEUBAr
   
 folders:
-  /app/: /spa/build/index.html
+  /form-authoring/: /spa/build/index.html
