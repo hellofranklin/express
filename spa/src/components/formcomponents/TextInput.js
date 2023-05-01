@@ -1,11 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import FormElement from "./FormElement";
 
 class TextInput extends FormElement {
-  constructor(props) {
-    super(props);
-  }
-
+  
   renderInput() {
     return (
       <div className="textinput-component">

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import FormElement from "./FormElement";
 
 class CheckboxInput extends FormElement {

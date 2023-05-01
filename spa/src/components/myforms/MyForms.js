@@ -35,7 +35,7 @@ const MyForms = (props) => {
             <div className="form-list">
         
             {Object.values(Formtemplates).map((form, index) => {
-              return <Card formdata={form} type="sample"/>;
+              return <Card formdata={form} type="sample" id={index} key={index}/>;
             })}
         </div>
         </div>
@@ -47,7 +47,7 @@ const MyForms = (props) => {
           <div className="form-cards">
             {forms.length <= 0 
               ? (<p> No Forms Found </p>) 
-              : (forms.map((form) => <Card formdata={form} type="userform"/>))
+              : (forms.map((form , index) => <Card formdata={form} type="userform" id={index} key={index}/>))
             }
           </div>
         </div>

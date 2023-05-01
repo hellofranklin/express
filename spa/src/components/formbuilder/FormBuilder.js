@@ -25,10 +25,10 @@ class FormBuilder extends Component {
     if (formAction === "create") {
       let formSample = urlParams.get("sample");
       let formTemplates = Formtemplates;
-      if (formSample == "contact") {
-        formElements = formTemplates["contact"].elements;
-        title = formTemplates["contact"].title;
-        description = formTemplates["contact"].description;
+      if (formTemplates.hasOwnProperty(formSample)) {
+        formElements = formTemplates[formSample]?.elements;
+        title = formTemplates[formSample]?.title;
+        description = formTemplates[formSample]?.description;
       }
     }
     const email = localStorage.getItem("email");
@@ -61,7 +61,18 @@ class FormBuilder extends Component {
         this.props.handleApiCall
       ).then((response) => {
         console.log(response);
-        this.updateFormBuilderState({ formElements: response.data });
+
+        let updatedData = response.data.map((item, index) => ({
+          ...item,
+          Id: index + 1,
+          Options: item.Options.split(","),
+        }));
+
+        updatedData = updatedData.filter((item) => {
+          return item.Type != "submit";
+        });
+
+        this.updateFormBuilderState({ formElements: updatedData });
       });
     }
   };
@@ -164,9 +175,12 @@ class FormBuilder extends Component {
         this.props.handleApiCall,
         this.state.formAction
       );
-      const cachedData = JSON.parse(localStorage.getItem("data"));
-      cachedData.push({ title: formTitle });
-      localStorage.setItem("data", JSON.stringify(cachedData));
+      console.log(response);
+      if (this.state.formAction === "create") {
+        const cachedData = JSON.parse(localStorage.getItem("data"));
+        cachedData.push({ title: formTitle });
+        localStorage.setItem("data", JSON.stringify(cachedData));
+      }
       window.location.href = "/form-authoring/";
     }
   };
@@ -187,7 +201,11 @@ class FormBuilder extends Component {
     return (
       <div className="container formbuilder-container">
         <div className="form-panel">
-          <TitlePanel updateFormBuilderState={this.updateFormBuilderState} />
+          <TitlePanel
+            updateFormBuilderState={this.updateFormBuilderState}
+            formTitle={this.state.formTitle}
+            formDesc={this.state.formDesc}
+          />
           <div className="form-components">
             {this.state.formElements.map((element, index) =>
               this.renderFormElement(element, index + 1)

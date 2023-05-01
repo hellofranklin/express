@@ -5,10 +5,6 @@ import "./Home.css";
 import WithAuth from "../../WithAuth";
 
 class Home extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <>

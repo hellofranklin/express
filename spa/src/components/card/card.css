@@ -1,3 +1,6 @@
+.sample-card {
+  cursor: pointer;
+}
 .form-card {
     position: relative;
     width: 180px;
@@ -53,6 +56,8 @@
     cursor: pointer;
     font-size: 12px;
     padding: 2px;
+    display: block;
+    z-index: 1;
 }
 
 .form-card-menu-item:hover {

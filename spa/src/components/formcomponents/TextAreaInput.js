@@ -1,11 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import FormElement from "./FormElement";
 
 class TextAreaInput extends FormElement {
-  constructor(props) {
-    super(props);
-  }
-
   renderInput() {
     return (
       <div className="textareainput-component">
