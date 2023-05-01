@@ -98,7 +98,7 @@ textarea {
 .option-container input[type="text"]{
   width: 80%;
   display: inline-block;
-
+  background-color: #ebebeb;
 }
 
 .cross-btn {

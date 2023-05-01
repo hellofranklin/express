@@ -152,11 +152,17 @@ class FormBuilder extends Component {
       cachedData.push({ title: formTitle });
       localStorage.setItem("data", JSON.stringify(cachedData));
       window.location.href = "/app/myforms";
-    }
+    } 
   };
 
-  validateData = () => {
-    return false;
+  validateData = (data, email, formTitle, formDesc) => {
+    if (!data || !email || !formTitle) {
+      alert("Check if formtitle is not empty");
+      return false; // one of the required values is empty or undefined
+    }
+    
+    // validation successful
+    return true;
   };
 
   render() {
