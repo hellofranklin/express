@@ -12,3 +12,7 @@
 .title-container .form-description {
   font-size: 11pt;
 }
+.title-container {
+  background: white;
+  padding: 20px;
+}

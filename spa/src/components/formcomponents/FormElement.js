@@ -25,34 +25,56 @@ class FormElement extends Component {
 
   deleteElementHandler = () => {
     this.props.onRemove(this.state.Id);
-  }
+  };
+
+  elementClickHandler = (event) => {
+    if (event.target.dataset.index === undefined) {
+      this.props.onElementClickHandler(
+        parseInt(event.target.parentElement.dataset.index)
+      );
+    } else {
+      this.props.onElementClickHandler(parseInt(event.target.dataset.index));
+    }
+  };
 
   render() {
     return (
-      <div className={`form-component ${this.state.Type}-component`}>
+      <div
+        className={`form-component ${this.state.Type}-component`}
+        data-index={this.state.Id}
+        onClick={this.elementClickHandler}
+        focused= {this.props.isFocused ? "true": "false"}
+        abc ="fds"
+      >
         <input
           type="text"
           value={this.state.Label}
           onChange={(event) => this.handleChange({ Label: event.target.value })}
         />
         {this.renderInput()}
-        <div className="footer">
-          <div className="left-footer"> </div>
-          <div className="right-footer">
-            <div className="delete-icon" onClick={this.deleteElementHandler}>
-              <SVGUtils name="delete" />
+        {this.props.isFocused && (
+          <div className="footer">
+            <div className="left-footer"> </div>
+            <div className="right-footer">
+              <div
+                className="delete-icon"
+                onClick={this.deleteElementHandler}
+                title="Delete"
+              >
+                <SVGUtils name="delete" />
+              </div>
+              <label className="switch" title="Required">
+                <input
+                  type="checkbox"
+                  onChange={(event) =>
+                    this.handleChange({ Mandatory: event.target.checked })
+                  }
+                />
+                <span className="slider round"></span>
+              </label>
             </div>
-            <label className="switch">
-              <input
-                type="checkbox"
-                onChange={(event) =>
-                  this.handleChange({ Mandatory: event.target.checked })
-                }
-              />
-              <span className="slider round"></span>
-            </label>
           </div>
-        </div>
+        )}
       </div>
     );
   }

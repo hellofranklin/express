@@ -38,6 +38,7 @@ class FormBuilder extends Component {
       formDesc: description,
       formAction: formAction,
       email: email,
+      focusedElementIndex: -1,
     };
   }
 
@@ -91,7 +92,13 @@ class FormBuilder extends Component {
     const updatedElements = formElements
       .filter((item, index) => index !== deletedIndex)
       .map((item, index) => ({ ...item, Id: index + 1 }));
-    this.setState({ formElements: updatedElements });
+    this.updateFormBuilderState({ formElements: updatedElements });
+  };
+
+  onElementClickHandler = (focusedElementIndex) => {
+    if (focusedElementIndex !== this.state.focusedElementIndex) {
+      this.updateFormBuilderState({ focusedElementIndex: focusedElementIndex });
+    }
   };
 
   renderFormElement = (element, index) => {
@@ -103,8 +110,12 @@ class FormBuilder extends Component {
       <ElementComponent
         key={index}
         elementState={element}
-        onUpdate={this.handleUpdateElement}
-        onRemove={() => this.handleRemoveFormElement(index)}
+        isFocused={this.state.focusedElementIndex === index}
+        onUpdate={(updatedElemnt) => this.handleUpdateElement(updatedElemnt)}
+        onRemove={(elemIndex) => this.handleRemoveFormElement(elemIndex)}
+        onElementClickHandler={(elemIndex) =>
+          this.onElementClickHandler(elemIndex)
+        }
       />
     );
   };
@@ -120,9 +131,10 @@ class FormBuilder extends Component {
       Max: "",
       Options: [],
     };
-    this.setState({
-      ...this.state,
+
+    this.updateFormBuilderState({
       formElements: [...this.state.formElements, newComponent],
+      focusedElementIndex: this.state.formElements.length + 1,
     });
   };
 
@@ -152,7 +164,7 @@ class FormBuilder extends Component {
       cachedData.push({ title: formTitle });
       localStorage.setItem("data", JSON.stringify(cachedData));
       window.location.href = "/app/myforms";
-    } 
+    }
   };
 
   validateData = (data, email, formTitle, formDesc) => {
@@ -160,7 +172,7 @@ class FormBuilder extends Component {
       alert("Check if formtitle is not empty");
       return false; // one of the required values is empty or undefined
     }
-    
+
     // validation successful
     return true;
   };
@@ -174,7 +186,7 @@ class FormBuilder extends Component {
           <TitlePanel updateFormBuilderState={this.updateFormBuilderState} />
           <div className="form-components">
             {this.state.formElements.map((element, index) =>
-              this.renderFormElement(element, index)
+              this.renderFormElement(element, index + 1)
             )}
             {formElements.length > 0 && (
               <button
