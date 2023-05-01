@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SVGUtils from "../../utils/SVGUtils";
 import "./card.css";
@@ -20,7 +20,7 @@ const Card = (props) => {
     }));
   };
 
-  if (props.type == "userform") {
+  if (props.type === "userform") {
     return (
       <div className="form-card" key={props.formdata.id}>
         <div className="form-card-image">

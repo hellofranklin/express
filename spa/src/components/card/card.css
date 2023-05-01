@@ -45,6 +45,10 @@
     border: 1px solid #e1e1e1;
     border-radius: 4px;
     padding: 0.2rem;
+    bottom: 50px;
+    right: 20px;
+    position: absolute;
+    opacity: 0.8;
 }
 
 
@@ -57,6 +61,7 @@
 
 .form-card-menu-item:hover {
    color: rgb(0, 94, 255);
+   background-color: #eee;
 }
 
 .createButton {
