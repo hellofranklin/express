@@ -19,7 +19,7 @@ const SVGUtils = (props) => {
         return <Contact />;
     case "feedback":
         return <Feedback />;
-    case "feedback":
+    case "myform":
         return <MyForm />;
     case "delete":
       return <DeleteBoxIcon />;

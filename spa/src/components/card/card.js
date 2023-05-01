@@ -24,7 +24,7 @@ const Card = (props) => {
     <div className="form-card" key={props.formdata.id}>
       <div className="form-card-image">
         {" "}
-        <SVGUtils name={props.formdata.svg ? props.formdata.svg : "card"} />
+        <SVGUtils name={props.formdata.svg ? props.formdata.svg : "myform"} />
       </div>
       <div className="form-card-header">{props.formdata.title}</div>
       
