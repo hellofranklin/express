@@ -13,12 +13,30 @@ const Card = (props) => {
       state: { formelements },
     });
   };
+  
   const toggleMenu = (formId) => {
     setOpenMenus((prevState) => ({
       ...prevState,
       [formId]: !prevState[formId],
     }));
   };
+
+  const editForm = (formId) => {
+   alert("Edit Form" + formId);
+   console.log(formId);
+  };
+
+  const previewForm = (formId) => {
+    alert("Preview Form" + formId);;
+   };
+
+   const publishForm = (formId) => {
+    alert("Publish Form" + formId);
+   };
+
+   const deleteForm = (formId) => {
+    alert("Delete Form" + formId);
+   };
 
   if (props.type === "userform") {
     return (
@@ -37,10 +55,10 @@ const Card = (props) => {
             <div className="form-card-menu-dots"> &#8942;</div>
             {openMenus[props.formdata.id] && (
               <div className="form-card-menu-items">
-                <div className="form-card-menu-item">Edit</div>
-                <div className="form-card-menu-item">Preview</div>
-                <div className="form-card-menu-item">Publish</div>
-                <div className="form-card-menu-item">Delete</div>
+                <div className="form-card-menu-item" onClick={() => editForm(props.formdata.id)}>Edit</div>
+                <div className="form-card-menu-item" onClick={() => previewForm(props.formdata.id)}>Preview</div>
+                <div className="form-card-menu-item" onClick={() => publishForm(props.formdata.id)}>Publish</div>
+                <div className="form-card-menu-item" onClick={() => deleteForm(props.formdata.id)}>Delete</div>
               </div>
             )}
           </div>
