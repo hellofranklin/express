@@ -9,7 +9,6 @@ import WithLoadingSpinner from "../spinner/WithLoadingSpinner";
 import "./MyForms.css";
 
 const MyForms = (props) => {
-
   const [forms, setForms] = useState([]);
 
   useEffect(() => {
@@ -29,33 +28,30 @@ const MyForms = (props) => {
     <div>
       <Header />
       <div className="main-container">
-      <div className="container sample-forms">
-        <div className="container-heading">
-          <h3> Form Templates</h3>
+        <div className="container sample-forms">
+          <div className="container-heading">
+            <h3> Form Templates</h3>
+          </div>
+
+        
+            {Object.values(Formtemplates).map((form, index) => {
+              return <Card formdata={form} />;
+            })}
+        
         </div>
 
-        <div class="form-cards-list">
-
-
-          {Object.values(Formtemplates).map((form, index) => {
-            return <Card formdata={form} />;
-          })}
-        </div>
-      </div>
-
-      <div className="container my-forms">
-        <div className="container-heading">
-          <h3> My Forms</h3>
+        <div className="container my-forms">
+          <div className="container-heading">
+              <h3> My Forms</h3>
+          </div>
+          <div className="form-cards">
+            {forms.length <= 0 
+              ? (<p> No Forms Found </p>) 
+              : (forms.map((form) => <Card formdata={form} />))
+            }
+          </div>
         </div>
 
-        <div className="form-cards">
-          {forms.length <= 0 ? (
-            <p> No Forms Found </p>
-          ) : (
-            forms.map((form) => <Card formdata={form} />)
-          )}
-        </div>
-      </div>
       </div>
     </div>
   );
