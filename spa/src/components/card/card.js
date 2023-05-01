@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import SVGUtils from "./svgbox";
+import SVGUtils from "../../utils/SVGUtils";
 
 const Card = (props)=> {
 

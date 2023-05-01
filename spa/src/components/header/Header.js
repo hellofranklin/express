@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import SVGUtils from "../card/svgbox";
+import SVGUtils from "../../utils/SVGUtils";
 import "./Header.css";
 
 function Header() {

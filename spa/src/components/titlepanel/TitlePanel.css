@@ -3,13 +3,7 @@
   padding: 10px;
   box-shadow: 0 2px 1px -1px rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.141),
 }
-.title-container input[type="text"] {
-  padding: 10px;
-  border: 0px;
-  font-weight: 400;
-  border-bottom: 0.8px solid rgb(208, 189, 189);
-  transition: border-color 0.2s ease-in-out;
-}
+
 
 .title-container .form-title {
   font-size: 24pt;
@@ -17,12 +11,4 @@
 
 .title-container .form-description {
   font-size: 11pt;
-}
-
-.title-container input[type="text"]:focus {
-  border-color: #3498db;
-  border: 0px;
-  border-bottom:  1px solid rgb(118, 96, 164);
-  outline: none;
-  transition: border-color 0.2s ease-in-out;
 }

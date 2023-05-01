@@ -17,9 +17,7 @@ class FormBuilder extends Component {
     const urlParams = new URLSearchParams(window.location.search);
     const updatedElement = {};
     const formAction =
-      urlParams.get("action") === null
-        ? "create"
-        : urlParams.get("action");
+      urlParams.get("action") === null ? "create" : urlParams.get("action");
     updatedElement["formAction"] = formAction;
     let formElements = [];
     let title = urlParams.get("title");
@@ -52,7 +50,10 @@ class FormBuilder extends Component {
   };
 
   componentDidMount = () => {
-    if (this.state.formAction === "update" && this.state.formTitle !== undefined) {
+    if (
+      this.state.formAction === "update" &&
+      this.state.formTitle !== undefined
+    ) {
       getFranklinFormDataJson(
         this.state.formTitle,
         this.state.email,
@@ -85,16 +86,12 @@ class FormBuilder extends Component {
     }
   };
 
-  handleRemoveElement = (index) => {
-    const { formElements, onUpdateElement } = this.props;
-    const updatedElements = [
-      ...formElements.slice(0, index),
-      ...formElements.slice(index + 1),
-    ];
-    onUpdateElement(index, "remove", true);
-    updatedElements.forEach((element, index) => {
-      onUpdateElement(index, "index", index);
-    });
+  handleRemoveFormElement = (deletedIndex) => {
+    const { formElements } = this.state;
+    const updatedElements = formElements
+      .filter((item, index) => index !== deletedIndex)
+      .map((item, index) => ({ ...item, Id: index + 1 }));
+    this.setState({ formElements: updatedElements });
   };
 
   renderFormElement = (element, index) => {
@@ -107,7 +104,7 @@ class FormBuilder extends Component {
         key={index}
         elementState={element}
         onUpdate={this.handleUpdateElement}
-        onRemove={() => this.handleRemoveElement(index)}
+        onRemove={() => this.handleRemoveFormElement(index)}
       />
     );
   };
@@ -129,12 +126,10 @@ class FormBuilder extends Component {
     });
   };
 
-
-  
   formCreatorBtnHandler = async () => {
     console.log(this.state.formElements);
     const data = this.state.formElements.map(({ Id, ...rest }) => {
-      rest.Options = rest.Options.join(',');
+      rest.Options = rest.Options.join(",");
       rest.Name = rest.Label;
       return rest;
     });

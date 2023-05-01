@@ -1,7 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
 import FormElement from "./FormElement";
 
-class CheckBoxInput extends FormElement {
+class CheckboxInput extends FormElement {
   constructor(props) {
     super(props);
   }
@@ -44,39 +44,41 @@ class CheckBoxInput extends FormElement {
   renderInput() {
     const { Options } = this.state;
     return (
-      <div className="checkboxinput-component">
-        {Options.map((option, index) => (
-          <div key={index} className="option-container">
-            <input type="checkbox" readOnly={true}></input>
-            <input
-              type="text"
-              placeholder={`Option ${index + 1}`}
-              data-index={index}
-              onChange={this.handleOptionChange}
-            />
-            {index > 1 && (
-              <span
-                className="cross-btn"
+      <>
+        <div className="option-container">
+          {Options.map((option, index) => (
+            <div key={index} className="option">
+              <input type={"checkbox"} readOnly={true}></input>
+              <input
+                type="text"
+                placeholder={`Option ${index + 1}`}
                 data-index={index}
-                onClick={this.deleteOption}
+                onChange={this.handleOptionChange}
               />
-            )}
-          </div>
-        ))}
-        {this.state.Options.length < 4 && (
-          <div key={this.state.Options.length} className="option-container">
-            <input
-              type="text"
-              placeholder="Add Option"
-              onFocus={this.addOption}
-              readOnly={true}
-            />
-            <span></span>
-          </div>
-        )}
-      </div>
+              {Options.length > 2 && (
+                <span
+                  className="cross-btn"
+                  data-index={index}
+                  onClick={this.deleteOption}
+                />
+              )}
+            </div>
+          ))}
+
+          {this.state.Options.length < 4 && (
+            <div key={this.state.Options.length} className="option">
+              <input
+                type="text"
+                placeholder="Add Option"
+                onFocus={this.addOption}
+                readOnly={true}
+              />
+            </div>
+          )}
+        </div>
+      </>
     );
   }
 }
 
-export default CheckBoxInput;
+export default CheckboxInput;

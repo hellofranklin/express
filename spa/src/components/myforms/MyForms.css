@@ -1,10 +1,7 @@
-.container{
-  
+.container {
   margin: 20px;
-  padding:20px;
-  background: white;
+  padding: 20px;
 }
-
 
 .form-card {
   position: relative;
@@ -14,26 +11,22 @@
   margin: 20px;
   text-align: center;
   display: inline-block;
-
-
 }
 
-.form-card-image{
+.form-card-image {
   border: 1px solid #eee;
   margin: 2px;
-
 }
 
 .form-card-header {
   padding: 5px;
   font-size: 1rem;
   font-weight: bold;
-
 }
 
 .form-card-body {
   padding: 10px;
-  font-size: .8rem;
+  font-size: 0.8rem;
   color: #333;
 }
 
@@ -99,18 +92,16 @@
   display: block;
 }
 
-.createButton{
-  margin-top:10px;
+.createButton {
+  margin-top: 10px;
   background-color: rgb(0, 94, 255);
-  color:#fff;
+  color: #fff;
   border: none;
   height: 40px;
   float: right;
 }
 
-.createButton:hover{
-
+.createButton:hover {
   color: rgb(0, 94, 255);
   border: 1px solid rgb(0, 94, 255);
-
 }

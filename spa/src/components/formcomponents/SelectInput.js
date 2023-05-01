@@ -37,43 +37,45 @@ class SelectInput extends FormElement {
   deleteOption = (event) => {
     const deletedIndex = event.target.dataset.index;
     let options = [...this.state.Options]; // create a copy of the array
-    options.splice(deletedIndex, 1); 
+    options.splice(deletedIndex, 1);
     this.handleChange({ Options: options });
   };
 
   renderInput() {
     const { Options } = this.state;
     return (
-      <div className="selectinput-component">
-        {Options.map((option, index) => (
-          <div key={index} className="option-container">
-            <input
-              type="text"
-              placeholder={`Option ${index + 1}`}
-              data-index={index}
-              onChange={this.handleOptionChange}
-            />
-            {index > 1 && (
-              <span
-                className="cross-btn"
+      <>
+        <div className="option-container">
+          {Options.map((option, index) => (
+            <div key={index} className="option" data-index={index} >
+              <input
+                type="text"
+                placeholder={`Option ${index + 1}`}
                 data-index={index}
-                onClick={this.deleteOption}
+                onChange={this.handleOptionChange}
               />
-            )}
-          </div>
-        ))}
-        {this.state.Options.length < 4 && (
-          <div key={this.state.Options.length} className="option-container">
-            <input
-              type="text"
-              placeholder="Add Option"
-              onFocus={this.addOption}
-              readOnly={true}
-            />
-            <span></span>
-          </div>
-        )}
-      </div>
+              {Options.length > 2 && (
+                <span
+                  className="cross-btn"
+                  data-index={index}
+                  onClick={this.deleteOption}
+                />
+              )}
+            </div>
+          ))}
+
+          {this.state.Options.length < 4 && (
+            <div key={this.state.Options.length} className="option">
+              <input
+                type="text"
+                placeholder="Add Option"
+                onFocus={this.addOption}
+                readOnly={true}
+              />
+            </div>
+          )}
+        </div>
+      </>
     );
   }
 }

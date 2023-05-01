@@ -7,7 +7,8 @@
   margin-top: 20px;
 }
 
-input[type="text"] , textarea{
+input[type="text"],
+textarea {
   width: 100%;
   box-sizing: border-box;
 }
@@ -85,22 +86,39 @@ input[type="text"] , textarea{
   border: 0px;
 }
 
+.right-footer .delete-icon {
+  display: inline-block;
+  margin-right: 5px;
+  position: relative;
+  top: 5px;
+}
+
 /**  select input */
 
-.option-container {
-  display: flex;
+.option-container input[type="text"]{
+  width: 80%;
+  display: inline-block;
+
 }
 
 .cross-btn {
-  display: inline-block;
+  display: none;
   width: 20px;
   height: 20px;
   position: relative;
+  top: 10px;
+  left: 10px;
 }
+
+
+.option:hover .cross-btn {
+  display: inline-block;
+}
+
 
 .cross-btn:before,
 .cross-btn:after {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 0;
@@ -116,3 +134,5 @@ input[type="text"] , textarea{
 .cross-btn:after {
   transform: rotate(-45deg);
 }
+
+
