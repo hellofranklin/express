@@ -167,7 +167,7 @@ class FormBuilder extends Component {
       const cachedData = JSON.parse(localStorage.getItem("data"));
       cachedData.push({ title: formTitle });
       localStorage.setItem("data", JSON.stringify(cachedData));
-      window.location.href = "/app/myforms";
+      window.location.href = "/form-authoring/";
     }
   };
 
