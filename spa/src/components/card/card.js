@@ -11,11 +11,29 @@ const Card = (props) => {
     let urlParams = formdata.svg === "add" ? "" : `?sample=${formdata.svg}`;
     navigate(`/create${urlParams}`);
   };
+
   const toggleMenu = (formId) => {
     setOpenMenus((prevState) => ({
       ...prevState,
       [formId]: !prevState[formId],
     }));
+  };
+
+  const editForm = (formId) => {
+    alert("Edit Form" + formId);
+    console.log(formId);
+  };
+
+  const previewForm = (formId) => {
+    alert("Preview Form" + formId);
+  };
+
+  const publishForm = (formId) => {
+    alert("Publish Form" + formId);
+  };
+
+  const deleteForm = (formId) => {
+    alert("Delete Form" + formId);
   };
 
   if (props.type === "userform") {
@@ -54,7 +72,6 @@ const Card = (props) => {
         onClick={() => clickchandler(props.formdata)}
       >
         <div className="form-card-image">
-          {" "}
           <SVGUtils name={props.formdata.svg ? props.formdata.svg : "myform"} />
         </div>
         <div className="form-card-header">{props.formdata.title}</div>
