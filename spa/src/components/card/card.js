@@ -13,16 +13,13 @@ const Card = (props) => {
   };
 
   const toggleMenu = (formId) => {
+
     setOpenMenus((prevState) => ({
       ...prevState,
       [formId]: !prevState[formId],
     }));
   };
 
-  const editForm = (formId) => {
-    alert("Edit Form" + formId);
-    console.log(formId);
-  };
 
   const previewForm = (formId) => {
     alert("Preview Form" + formId);
@@ -32,9 +29,6 @@ const Card = (props) => {
     alert("Publish Form" + formId);
   };
 
-  const deleteForm = (formId) => {
-    alert("Delete Form" + formId);
-  };
 
   if (props.type === "userform") {
     return (
@@ -44,20 +38,18 @@ const Card = (props) => {
         </div>
         <div className="form-card-header">{props.formdata.title}</div>
 
+        {console.log(props)}
+
         <div className="form-card-footer">
-          <div className="form-card-menu" onClick={() => toggleMenu(props.id)}>
-            <div className="form-card-menu-dots"> &#8942;</div>
+          <div className="form-card-menu"   >
+            <div className="form-card-menu-dots"  onClick={()=>toggleMenu(props.id)}  > &#8942;</div>
             {openMenus[props.id] && (
-              <div className="form-card-menu-items">
-                <a
-                  className="form-card-menu-item"
-                  href={`/authoring/create?action=update&title=${props.formdata.title}`}
-                >
-                  Edit
-                </a>
-                <a className="form-card-menu-item">Preview</a>
-                <a className="form-card-menu-item">Publish</a>
-                <a className="form-card-menu-item">Delete</a>
+              <div className="form-card-menu-items" >
+                <a className="form-card-menu-item" href={`/authoring/create?action=update&title=${props.formdata.title}`}>  Edit </a>
+                <a className="form-card-menu-item" href={`/authoring/create?action=update&title=${props.formdata.title}`}>  Activate Preview </a>
+                <a className="form-card-menu-item" href={`/authoring/create?action=update&title=${props.formdata.title}`}>  Preview URL  </a>
+                <a className="form-card-menu-item" href={`/authoring/create?action=update&title=${props.formdata.title}`}> Publish </a>
+                <a className="form-card-menu-item" href={`/authoring/create?action=update&title=${props.formdata.title}`}> Published URL </a>
               </div>
             )}
           </div>

@@ -5,7 +5,6 @@
     position: relative;
     width: 180px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
     margin: 20px;
     text-align: center;
     display: inline-block;
@@ -56,10 +55,12 @@
     border: 1px solid #e1e1e1;
     border-radius: 4px;
     padding: 0.2rem;
-    bottom: 50px;
-    right: 20px;
+    bottom: -50px;
+    right: -130px;
     position: absolute;
-    opacity: 0.8;
+    z-index: 1;
+   
+   
 }
 
 
@@ -69,12 +70,21 @@
     font-size: 12px;
     padding: 2px;
     display: block;
-    z-index: 1;
+   
 }
 
 .form-card-menu-item:hover {
-   color: rgb(0, 94, 255);
+   color: #3eabff;
    background-color: #eee;
+   
+}
+
+a.form-card-menu-item  {
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+    padding-bottom: 5px;
+    font-weight: 500;
 }
 
 .createButton {
