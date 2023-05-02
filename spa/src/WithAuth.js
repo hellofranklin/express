@@ -15,7 +15,7 @@ const WithAuth = (WrappedComponent) => {
       if (!email || !code) {
         this.setState({ redirecting: true });
         setTimeout(() => {
-          window.location.href = "/form-authoring/login";
+          window.location.href = "/authoring/login";
         }, 500); // redirect after 1 second
       }
     }

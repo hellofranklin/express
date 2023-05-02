@@ -51,7 +51,7 @@ const Card = (props) => {
               <div className="form-card-menu-items">
                 <a
                   className="form-card-menu-item"
-                  href={`/form-authoring/create?action=update&title=${props.formdata.title}`}
+                  href={`/authoring/create?action=update&title=${props.formdata.title}`}
                 >
                   Edit
                 </a>

@@ -181,7 +181,7 @@ class FormBuilder extends Component {
         cachedData.push({ title: formTitle });
         localStorage.setItem("data", JSON.stringify(cachedData));
       }
-      window.location.href = "/form-authoring/";
+      window.location.href = "/authoring/";
     }
   };
 

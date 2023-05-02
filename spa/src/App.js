@@ -8,7 +8,7 @@ import NoPage from "./pages/NoPage/NoPage";
 
 function App() {
   return (
-    <BrowserRouter basename="/form-authoring">
+    <BrowserRouter basename="/authoring">
       <Routes>
         <Route>
           <Route index element={<MyForms />} />
