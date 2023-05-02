@@ -28,13 +28,9 @@ class FormElement extends Component {
   };
 
   elementClickHandler = (event) => {
-    if (event.target.dataset.index === undefined) {
-      this.props.onElementClickHandler(
-        parseInt(event.target.parentElement.dataset.index)
-      );
-    } else {
-      this.props.onElementClickHandler(parseInt(event.target.dataset.index));
-    }
+    this.props.onElementClickHandler(
+      parseInt(event.target.closest(".form-component").dataset.index)
+    );
   };
 
   render() {

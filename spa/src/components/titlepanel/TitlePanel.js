@@ -4,10 +4,6 @@ import "./TitlePanel.css";
 class TitlePanel extends Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   formTitle: ( this.props.formTitle === undefined || this.props.formTitle === null ) ? "" : this.props.formTitle,
-    //   formDesc: ( this.props.formDesc === undefined || this.props.formDesc === null ) ? "" : this.props.formDesc,
-    // };
   }
 
   render() {
@@ -31,6 +27,8 @@ class TitlePanel extends Component {
           }
           value={formTitle}
           required={true}
+          readOnly={this.props.isUpdate}
+          title ={this.props.isUpdate ? "Title can't be updated": "Form Title" }
         />
         <input
           type="text"

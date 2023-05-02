@@ -22,7 +22,7 @@ function Header() {
     navigate("/home");
   }
   let profileCharacter =
-    email === undefined || email === null ? "N" : email.charAt(0).toLowerCase();
+    email === undefined || email === null ? "N" : email.charAt(0).toUpperCase();
   return (
     <div className="header-container">
       <div className="navigation-container">

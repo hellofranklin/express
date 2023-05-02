@@ -205,6 +205,7 @@ class FormBuilder extends Component {
             updateFormBuilderState={this.updateFormBuilderState}
             formTitle={this.state.formTitle}
             formDesc={this.state.formDesc}
+            isUpdate={this.state.formAction === "update"}
           />
           <div className="form-components">
             {this.state.formElements.map((element, index) =>
