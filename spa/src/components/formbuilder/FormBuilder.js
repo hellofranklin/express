@@ -128,6 +128,9 @@ class FormBuilder extends Component {
         isFocused={this.state.focusedElementIndex === index}
         onUpdate={(updatedElemnt) => this.handleUpdateElement(updatedElemnt)}
         onRemove={(elemIndex) => this.handleRemoveFormElement(elemIndex)}
+        rearrangeFormElements={(dragIndex, targetIndex) =>
+          this.rearrangeFormElements(dragIndex, targetIndex)
+        }
         onElementClickHandler={(elemIndex) =>
           this.onElementClickHandler(elemIndex)
         }
@@ -194,6 +197,22 @@ class FormBuilder extends Component {
     // validation successful
     return true;
   };
+
+  rearrangeFormElements(dragIndex, targetIndex) {
+    const newFormElements = [...this.state.formElements];
+    const dragObj = newFormElements.find((obj) => obj.Id === dragIndex);
+    // Remove the object from its current position in the array
+    newFormElements.splice(dragIndex - 1, 1);
+
+    // Insert the object at the new position in the array
+    newFormElements.splice(targetIndex - 1, 0, dragObj);
+
+    // Update the IDs of the objects in the array to reflect their new positions
+    newFormElements.forEach((obj, index) => {
+      obj.Id = index + 1;
+    });
+    this.updateFormBuilderState({ formElements: newFormElements });
+  }
 
   render() {
     const { formElements } = this.state;

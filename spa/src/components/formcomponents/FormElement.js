@@ -33,6 +33,23 @@ class FormElement extends Component {
     );
   };
 
+  handleDragStart = (e, index) => {
+
+    e.dataTransfer.setData("index", index);
+  };
+
+  handleDragOver = (e) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = "move";
+  };
+
+  handleDrop = (e, index) => {
+    e.preventDefault();
+    const dragIndex = e.dataTransfer.getData("index");
+    const targetIndex = e.target.closest(".form-component").dataset.index;
+    this.props.rearrangeFormElements(parseInt(dragIndex), parseInt(targetIndex));
+  };
+
   render() {
     return (
       <div
@@ -40,6 +57,10 @@ class FormElement extends Component {
         data-index={this.state.Id}
         onClick={this.elementClickHandler}
         focused={this.props.isFocused ? "true" : "false"}
+        draggable={true}
+        onDragStart={(e) => this.handleDragStart(e, this.state.Id)}
+        onDragOver={this.handleDragOver}
+        onDrop={this.handleDrop}
       >
         <input
           type="text"
