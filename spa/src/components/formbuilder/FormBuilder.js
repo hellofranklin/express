@@ -148,6 +148,7 @@ class FormBuilder extends Component {
       Min: "",
       Max: "",
       Options: [],
+      Fieldset: "datapanel",
     };
 
     this.updateFormBuilderState({
@@ -166,9 +167,6 @@ class FormBuilder extends Component {
 
     const { formTitle, formDesc } = this.state;
 
-    console.log(data);
-    console.log(formTitle);
-    console.log(formDesc);
     if (this.validateData(data, this.state.email, formTitle, formDesc)) {
       const response = await createForm(
         data,

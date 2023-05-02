@@ -15,6 +15,7 @@ const Formtemplates = {
         Min: "",
         Max: "",
         Options: [],
+        Fieldset: 'datapanel'
       },
       {
         Id: 2,
@@ -25,6 +26,7 @@ const Formtemplates = {
         Min: "",
         Max: "",
         Options: [],
+        Fieldset: 'datapanel'
       },
     ],
 
@@ -45,6 +47,7 @@ const Formtemplates = {
         Min: "",
         Max: "",
         Options: [],
+        Fieldset: 'datapanel'
       },
       {
         Id: 2,
@@ -55,6 +58,7 @@ const Formtemplates = {
         Min: "",
         Max: "",
         Options: [],
+        Fieldset: 'datapanel'
       },
       {
         Id: 3,
@@ -65,6 +69,7 @@ const Formtemplates = {
         Min: "",
         Max: "",
         Options: [],
+        Fieldset: 'datapanel'
       },
       {
         Id: 4,
@@ -75,6 +80,7 @@ const Formtemplates = {
         Min: "",
         Max: "",
         Options: ["male","female"],
+        Fieldset: 'datapanel'
       },
     ],
   },
@@ -93,6 +99,7 @@ const Formtemplates = {
         Min: "",
         Max: "",
         Options: [],
+        Fieldset: 'datapanel'
       },
       {
         Id: 2,
@@ -103,6 +110,7 @@ const Formtemplates = {
         Min: "",
         Max: "",
         Options: [],
+        Fieldset: 'datapanel'
       },
     ],
   },

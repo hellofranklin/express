@@ -1,4 +1,5 @@
-import { getGmailUserId } from "../utils/AppUtils";
+import { getFooterRows, getGmailUserId } from "../utils/AppUtils";
+import { getHeaderRows } from "../utils/AppUtils";
 
 export const createForm = async (
   data,
@@ -8,14 +9,20 @@ export const createForm = async (
   handleApiCall,
   formAction
 ) => {
+  const headerRows = getHeaderRows();
+  const footerRows = getFooterRows();
+  const helixDefaultJson = headerRows.concat(data).concat(footerRows);
+
   const requestType = formAction === "create" ? "createform" : "updateform";
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "text/plain;charset=utf-8");
 
+  console.log(helixDefaultJson);
+
   const requestOptions = {
     method: "POST",
     headers: myHeaders,
-    body: JSON.stringify(data),
+    body: JSON.stringify(helixDefaultJson),
     redirect: "follow",
   };
 

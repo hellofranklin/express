@@ -14,6 +14,7 @@ class FormElement extends Component {
       Min: props.elementState.Min,
       Max: props.elementState.Max,
       Options: props.elementState.Options,
+      Fieldset: 'datapanel'
     };
   }
 
