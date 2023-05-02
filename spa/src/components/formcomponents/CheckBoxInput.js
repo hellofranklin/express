@@ -7,7 +7,10 @@ class CheckboxInput extends FormElement {
   }
 
   componentDidMount() {
-    const defaultState = { Type: "Checkbox", Options: ["", ""] };
+    const defaultState = { Type: "Checkbox" };
+    if ( this.state.Options.length == 0) {
+      defaultState["Options"] = ["",""];
+    }
     this.updateState(defaultState);
   }
 
@@ -53,6 +56,7 @@ class CheckboxInput extends FormElement {
                 type="text"
                 placeholder={`Option ${index + 1}`}
                 data-index={index}
+                value={Option[index]}
                 onChange={this.handleOptionChange}
               />
               {Options.length > 2 && (

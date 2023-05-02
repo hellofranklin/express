@@ -43,15 +43,14 @@ class FormElement extends Component {
         className={`form-component ${this.state.Type}-component`}
         data-index={this.state.Id}
         onClick={this.elementClickHandler}
-        focused= {this.props.isFocused ? "true": "false"}
-        abc ="fds"
+        focused={this.props.isFocused ? "true" : "false"}
       >
         <input
           type="text"
           value={this.state.Label}
           onChange={(event) => this.handleChange({ Label: event.target.value })}
         />
-        {this.renderInput()}
+        {this.renderInput(this.props.isFocused)}
         {this.props.isFocused && (
           <div className="footer">
             <div className="left-footer"> </div>

@@ -77,7 +77,6 @@ export const getUserForms = async (email, handleApiCall) => {
 };
 
 export const getFranklinFormDataJson = async (title, email, handleApiCall) => {
-  const expirationTime = new Date(Date.now() + 3600000);
   const myHeaders = new Headers();
   const requestOptions = {
     method: "GET",
@@ -91,6 +90,38 @@ export const getFranklinFormDataJson = async (title, email, handleApiCall) => {
     : window.location.host;
 
   const URL = `${host}/forms/${gmailUserId}/${title}/form.json`;
+
+  return handleApiCall(() => fetch(encodeURI(URL), requestOptions));
+};
+
+export const stageFranklinForm = async (title, email, handleApiCall) => {
+  const requestType = "stageform";
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "text/plain;charset=utf-8");
+  const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+  };
+
+  const URL =
+    process.env.REACT_APP_BACKEND_URL +
+    `?requestType=${requestType}&email=${email}`;
+
+  return handleApiCall(() => fetch(encodeURI(URL), requestOptions));
+};
+
+export const publishFranklinForm = async (title, email, handleApiCall) => {
+  const requestType = "publishform";
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "text/plain;charset=utf-8");
+  const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+  };
+
+  const URL =
+    process.env.REACT_APP_BACKEND_URL +
+    `?requestType=${requestType}&email=${email}`;
 
   return handleApiCall(() => fetch(encodeURI(URL), requestOptions));
 };

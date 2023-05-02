@@ -29,7 +29,7 @@ const MyForms = (props) => {
       <div className="main-container">
         <div className="container sample-forms">
           <div className="container-heading">
-            <h3> Form Templates</h3>
+            <h3> Create Your Form</h3>
           </div>
 
             <div className="form-list">

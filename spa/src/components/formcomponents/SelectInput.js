@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import FormElement from "./FormElement";
 
 class SelectInput extends FormElement {
@@ -7,7 +7,10 @@ class SelectInput extends FormElement {
   }
 
   componentDidMount() {
-    const defaultState = { Type: "Select", Options: ["", ""] };
+    const defaultState = { Type: "Select" };
+    if (this.state.Options.length == 0) {
+      defaultState["Options"] = ["", ""];
+    }
     this.updateState(defaultState);
   }
 
@@ -41,17 +44,17 @@ class SelectInput extends FormElement {
     this.handleChange({ Options: options });
   };
 
-  renderInput() {
-    const { Options } = this.state;
+  renderOptionContainer = (Options) => {
     return (
       <>
         <div className="option-container">
           {Options.map((option, index) => (
-            <div key={index} className="option" data-index={index} >
+            <div key={index} className="option" data-index={index}>
               <input
                 type="text"
                 placeholder={`Option ${index + 1}`}
                 data-index={index}
+                value={Options[index]}
                 onChange={this.handleOptionChange}
               />
               {Options.length > 2 && (
@@ -75,6 +78,34 @@ class SelectInput extends FormElement {
             </div>
           )}
         </div>
+      </>
+    );
+  };
+
+  renderSelectContainer = (Options) => {
+    return (
+      <>
+        <div className="select-wrapper">
+          <select readOnly={true}>
+            <option value="">Select an option</option>
+            {Options.map((option, index) => (
+              <option key={index} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </div>
+      </>
+    );
+  };
+
+  renderInput(isFocused) {
+    const { Options } = this.state;
+    return (
+      <>
+        {isFocused
+          ? this.renderOptionContainer(Options)
+          : this.renderSelectContainer(Options)}
       </>
     );
   }

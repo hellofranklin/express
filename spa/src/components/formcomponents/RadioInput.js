@@ -5,9 +5,11 @@ class RadioInput extends FormElement {
   constructor(props) {
     super(props);
   }
-
   componentDidMount() {
-    const defaultState = { Type: "Radio", Options: ["", ""] };
+    const defaultState = { Type: "Radio" };
+    if (this.state.Options.length == 0) {
+      defaultState["Options"] = ["", ""];
+    }
     this.updateState(defaultState);
   }
 
@@ -52,6 +54,7 @@ class RadioInput extends FormElement {
               <input
                 type="text"
                 placeholder={`Option ${index + 1}`}
+                value={Options[index]}
                 data-index={index}
                 onChange={this.handleOptionChange}
               />
