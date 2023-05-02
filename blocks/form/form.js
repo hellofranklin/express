@@ -161,7 +161,7 @@ function createLegend(fd) {
 function createFieldSet(fd) {
   const wrapper = createFieldWrapper(fd, "fieldset");
   wrapper.name = fd.Name;
-  wrapper.replaceChildren(createLegend(fd));
+//   wrapper.replaceChildren(createLegend(fd));
   return wrapper;
 }
 
