@@ -2,7 +2,7 @@ export const getGmailUserId = (gmail) => {
   return gmail.split("@")[0];
 };
 
-export const getHeaderRows = () => {
+export const getHeaderRows = (title, description) => {
   return [
     {
       Name: "titlepanel",
@@ -17,7 +17,7 @@ export const getHeaderRows = () => {
     {
       Name: "title",
       Type: "plaintext",
-      Label: "Title",
+      Label: title,
       Mandatory: "",
       Min: "",
       Max: "",
@@ -27,7 +27,7 @@ export const getHeaderRows = () => {
     {
       Name: "description",
       Type: "plaintext",
-      Label: "Description",
+      Label: description,
       Mandatory: "",
       Min: "",
       Max: "",

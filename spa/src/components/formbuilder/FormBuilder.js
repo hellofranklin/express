@@ -51,7 +51,6 @@ class FormBuilder extends Component {
   };
 
   componentDidMount = () => {
-
     if (
       this.state.formAction === "update" &&
       this.state.formTitle !== undefined
@@ -68,7 +67,7 @@ class FormBuilder extends Component {
         this.state.email,
         this.props.handleApiCall
       ).then((response) => {
-        console.log(response);
+        let updateStatePairs = {};
 
         let updatedData = response.data.map((item, index) => ({
           ...item,
@@ -76,11 +75,21 @@ class FormBuilder extends Component {
           Options: item.Options.split(","),
         }));
 
+        const objWithTitle = updatedData.find((obj) => obj.Name === "title");
+        updateStatePairs["formTitle"] = objWithTitle.Label;
+
+        const objWithDesc = updatedData.find(
+          (obj) => obj.Name === "description"
+        );
+        updateStatePairs["formDesc"] = objWithDesc.Label;
+
         updatedData = updatedData.filter((item) => {
           return notAllowedEntries.indexOf(item.Name) === -1;
         });
 
-        this.updateFormBuilderState({ formElements: updatedData });
+        updateStatePairs["formElements"] = updatedData;
+
+        this.updateFormBuilderState(updateStatePairs);
       });
     }
   };

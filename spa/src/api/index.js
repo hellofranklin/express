@@ -9,7 +9,7 @@ export const createForm = async (
   handleApiCall,
   formAction
 ) => {
-  const headerRows = getHeaderRows();
+  const headerRows = getHeaderRows(title, description);
   const footerRows = getFooterRows();
   const helixDefaultJson = headerRows.concat(data).concat(footerRows);
 
