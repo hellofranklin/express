@@ -21,7 +21,8 @@ function Header() {
   function handleLogoClick() {
     navigate("/home");
   }
-
+  let profileCharacter =
+    email === undefined ? "N" : email.charAt(0).toLowerCase();
   return (
     <div className="header-container">
       <div className="navigation-container">
@@ -37,8 +38,8 @@ function Header() {
         <div className="right-navigation-container">
           <div className="header-menu">
             <div className="profile-icon-container" onClick={toggleMenu}>
-              <button className="header-profile-btn" >
-                <div id="profileImage"> {email.charAt(0).toUpperCase()} </div>
+              <button className="header-profile-btn">
+                <div id="profileImage"> {profileCharacter} </div>
                 <span className="header-profile-arrow">&#9660;</span>
               </button>
               {isMenuOpen && (
