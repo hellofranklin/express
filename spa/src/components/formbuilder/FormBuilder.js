@@ -51,10 +51,18 @@ class FormBuilder extends Component {
   };
 
   componentDidMount = () => {
+
     if (
       this.state.formAction === "update" &&
       this.state.formTitle !== undefined
     ) {
+      const notAllowedEntries = [
+        "titlepanel",
+        "title",
+        "description",
+        "datapanel",
+        "submit",
+      ];
       getFranklinFormDataJson(
         this.state.formTitle,
         this.state.email,
@@ -69,7 +77,7 @@ class FormBuilder extends Component {
         }));
 
         updatedData = updatedData.filter((item) => {
-          return item.Type != "submit";
+          return notAllowedEntries.indexOf(item.Name) === -1;
         });
 
         this.updateFormBuilderState({ formElements: updatedData });
