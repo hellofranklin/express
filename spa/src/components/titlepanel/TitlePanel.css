@@ -15,4 +15,7 @@
 .title-container {
   background: white;
   padding: 20px;
+  box-shadow: 0 3.2px 7.2px 0 rgb(0 0 0 / 13%), 0 0.6px 1.8px 0 rgb(0 0 0 / 11%);
 }
+
+

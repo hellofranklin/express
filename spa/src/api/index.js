@@ -112,7 +112,7 @@ export const stageFranklinForm = async (title, email, handleApiCall) => {
 
   const URL =
     process.env.REACT_APP_BACKEND_URL +
-    `?requestType=${requestType}&email=${email}`;
+    `?requestType=${requestType}&email=${email}&formTitle=${title}`;
 
   return handleApiCall(() => fetch(encodeURI(URL), requestOptions));
 };
@@ -128,7 +128,7 @@ export const publishFranklinForm = async (title, email, handleApiCall) => {
 
   const URL =
     process.env.REACT_APP_BACKEND_URL +
-    `?requestType=${requestType}&email=${email}`;
+    `?requestType=${requestType}&email=${email}&formTitle=${title}`;
 
   return handleApiCall(() => fetch(encodeURI(URL), requestOptions));
 };

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SVGUtils from "../../utils/SVGUtils";
 import "./card.css";
+import WithLoadingSpinner from "../spinner/WithLoadingSpinner";
+import { publishFranklinForm, stageFranklinForm } from "../../api";
 
 const Card = (props) => {
   const navigate = useNavigate();
@@ -13,22 +15,27 @@ const Card = (props) => {
   };
 
   const toggleMenu = (formId) => {
-
     setOpenMenus((prevState) => ({
       ...prevState,
       [formId]: !prevState[formId],
     }));
   };
 
-
-  const previewForm = (formId) => {
-    alert("Preview Form" + formId);
+  const handlPreviewFormAction = (formtitle) => {
+    stageFranklinForm(
+      formtitle,
+      localStorage.getItem("email"),
+      props.handleApiCall
+    );
   };
 
-  const publishForm = (formId) => {
-    alert("Publish Form" + formId);
+  const handlPublishFormAction = (formtitle) => {
+    publishFranklinForm(
+      formtitle,
+      localStorage.getItem("email"),
+      props.handleApiCall
+    );
   };
-
 
   if (props.type === "userform") {
     return (
@@ -38,20 +45,62 @@ const Card = (props) => {
         </div>
         <div className="form-card-header">{props.formdata.title}</div>
 
-        {console.log(props)}
-
         <div className="form-card-footer">
-          <div className="form-card-menu"   >
-            <div className="form-card-menu-dots"  onClick={()=>toggleMenu(props.id)}  > &#8942;</div>
-            {openMenus[props.id] && (
-              <div className="form-card-menu-items" >
-                <a className="form-card-menu-item" href={`/authoring/create?action=update&title=${props.formdata.title}`}>  Edit </a>
-                <a className="form-card-menu-item" href={`/authoring/create?action=update&title=${props.formdata.title}`}>  Activate Preview </a>
-                <a className="form-card-menu-item" href={`/authoring/create?action=update&title=${props.formdata.title}`}>  Preview URL  </a>
-                <a className="form-card-menu-item" href={`/authoring/create?action=update&title=${props.formdata.title}`}> Publish </a>
-                <a className="form-card-menu-item" href={`/authoring/create?action=update&title=${props.formdata.title}`}> Published URL </a>
+          <div className="form-card-menu">
+            <div
+              className="form-card-menu-dots"
+              onClick={() => toggleMenu(props.id)}
+            >
+              &#8942;
+            </div>
+            {
+              <div
+                className={`form-card-menu-items ${
+                  openMenus[props.id] ? "show" : ""
+                }`}
+              >
+                <a
+                  className="form-card-menu-item"
+                  href={props.formdata.publishUrl.replace("live", "page")}
+                  target="_blank"
+                >
+                  Open Preview Page
+                </a>
+                <a
+                  className="form-card-menu-item"
+                  href={props.formdata.publishUrl}
+                  target="_blank"
+                >
+                  Open Live Page
+                </a>
+                <a
+                  className="form-card-menu-item"
+                  href={props.formdata.resultSheetUrl}
+                >
+                  Result Sheet
+                </a>
+                <a
+                  className="form-card-menu-item"
+                  href={props.formdata.folderUrl}
+                >
+                  Forms Folder
+                </a>
+                <a
+                  className="form-card-menu-item"
+                  href="#"
+                  onClick={() => handlPreviewFormAction(props.formdata.title)}
+                >
+                  Preview Form data
+                </a>
+                <a
+                  className="form-card-menu-item"
+                  href="#"
+                  onClick={() => handlPublishFormAction(props.formdata.title)}
+                >
+                  Publish Form data
+                </a>
               </div>
-            )}
+            }
           </div>
         </div>
       </div>
@@ -72,4 +121,4 @@ const Card = (props) => {
   }
 };
 
-export default Card;
+export default WithLoadingSpinner(Card);

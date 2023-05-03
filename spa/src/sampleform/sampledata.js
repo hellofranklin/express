@@ -1,35 +1,9 @@
 const Formtemplates = {
-
-  blank:{
+  blank: {
     id: 1,
     title: "Blank Form",
     description: "Create a new form from scratch",
     svg: "add",
-    elements: [
-      {
-        Id: 1,
-        Name: "FirstName",
-        Type: "Text",
-        Label: "First Name",
-        Mandatory: "",
-        Min: "",
-        Max: "",
-        Options: [],
-        Fieldset: 'datapanel'
-      },
-      {
-        Id: 2,
-        Name: "LastName",
-        Type: "Text",
-        Label: "Last Name",
-        Mandatory: "",
-        Min: "",
-        Max: "",
-        Options: [],
-        Fieldset: 'datapanel'
-      },
-    ],
-
   },
 
   contact: {
@@ -47,7 +21,7 @@ const Formtemplates = {
         Min: "",
         Max: "",
         Options: [],
-        Fieldset: 'datapanel'
+        Fieldset: "datapanel",
       },
       {
         Id: 2,
@@ -58,18 +32,18 @@ const Formtemplates = {
         Min: "",
         Max: "",
         Options: [],
-        Fieldset: 'datapanel'
+        Fieldset: "datapanel",
       },
       {
         Id: 3,
         Name: "Email",
-        Type: "Email",
-        Label: "Last Name",
+        Type: "Text",
+        Label: "Email",
         Mandatory: "TRUE",
         Min: "",
         Max: "",
         Options: [],
-        Fieldset: 'datapanel'
+        Fieldset: "datapanel",
       },
       {
         Id: 4,
@@ -79,9 +53,20 @@ const Formtemplates = {
         Mandatory: "TRUE",
         Min: "",
         Max: "",
-        Options: ["male","female"],
-        Fieldset: 'datapanel'
+        Options: ["male", "female"],
+        Fieldset: "datapanel",
       },
+      {
+        Id: 5,
+        Name: "About Yourself",
+        Type: "Textarea",
+        Label: "About Yourself",
+        Mandatory: "TRUE",
+        Min: "",
+        Max: "",
+        Options: [],
+        Fieldset: "datapanel",
+      }
     ],
   },
   feedback: {
@@ -99,7 +84,7 @@ const Formtemplates = {
         Min: "",
         Max: "",
         Options: [],
-        Fieldset: 'datapanel'
+        Fieldset: "datapanel",
       },
       {
         Id: 2,
@@ -110,10 +95,10 @@ const Formtemplates = {
         Min: "",
         Max: "",
         Options: [],
-        Fieldset: 'datapanel'
+        Fieldset: "datapanel",
       },
     ],
   },
 };
 
-export default  Formtemplates;
+export default Formtemplates;

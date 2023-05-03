@@ -210,7 +210,12 @@ class FormBuilder extends Component {
       console.log(response);
       if (this.state.formAction === "create") {
         const cachedData = JSON.parse(localStorage.getItem("data"));
-        cachedData.push({ title: formTitle });
+        cachedData.push({
+          title: formTitle,
+          folderURL: response.folderURL,
+          publishUrl: response.formPublishURL,
+          resultSheetUrl: response.resultSheetUrl,
+        });
         localStorage.setItem("data", JSON.stringify(cachedData));
       }
       window.location.href = "/authoring/";
@@ -260,12 +265,14 @@ class FormBuilder extends Component {
               this.renderFormElement(element, index + 1)
             )}
             {formElements.length > 0 && (
-              <button
-                className="createButton"
-                onClick={this.formCreatorBtnHandler}
-              >
-                {this.state.formAction}
-              </button>
+              <div className="createbutton-container">
+                <button
+                  className="createButton"
+                  onClick={this.formCreatorBtnHandler}
+                >
+                  {this.state.formAction}
+                </button>
+              </div>
             )}
           </div>
         </div>
