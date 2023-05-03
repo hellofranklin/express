@@ -39,15 +39,19 @@
   --form-submit-width: 100%;
 }
 
+body {
+  background-color: #f5f5f5;
+}
+
 main .form-container {
-  background-color: var(--mt-background-color-primary);
   padding: var(--form-padding);
+  height: 70vh;
+  overflow: scroll;
 }
 
 main .form {
   background-color: var(--form-background-color);
 }
-
 
 main .form form fieldset {
   border: var(--form-fieldset-border);
@@ -132,6 +136,16 @@ main .form form .field-wrapper {
   color: var(--form-label-color);
 }
 
+fieldset > .field-wrapper {
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  padding: 24px;
+  color: rgb(32, 33, 36);
+}
+
 main .form form p {
   font-size: var(--form-paragraph-font-size);
   font-style: var(--form-paragraph-font-style);
@@ -170,13 +184,21 @@ input::file-selector-button {
 }
 
 main .form button {
-  color: var(--form-button-color);
-
-
-  padding: var(--form-button-padding);
-  font-size: var(--form-button-font-size);
-  font-weight: var(--mt-font-weight-bold);
-  border-radius: unset;
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  padding: 0 25px;
+  background-color: #fff;
+  border-radius: 0.25rem;
+  border: 1px solid #0070d2;
+  color: #0070d2;
+  font-size: 13px;
+  line-height: 40px;
+  font-weight: 400;
+  text-align: center;
+}
+main .form button:hover {
+  background-color: #f4f6f9;
 }
 
 main .form button:hover {
@@ -185,6 +207,7 @@ main .form button:hover {
 
 main .form-submit-wrapper {
   width: var(--form-submit-width);
+  text-align: center;
 }
 
 main
@@ -458,4 +481,14 @@ main .form form .form-message {
     border-radius: 3px;
     margin-top: 36px 0;
   }
+}
+
+
+.form-title {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.form-description {
+  font-size: large;
 }

@@ -58,16 +58,17 @@ input[type="text"]:focus {
   transition: border-color 0.2s ease-in-out;
 }
 
-@media screen and (min-width: 768px) {
-  .formbuilder-container {
-    max-width: 740px;
-    margin: 0 auto 10px;
-  }
-}
 
 @media screen and (min-width: 576px) {
   .formbuilder-container {
     max-width: 540px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .formbuilder-container {
+    max-width: 740px;
+    margin: 0 auto 10px;
   }
 }
 
