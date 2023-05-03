@@ -1,9 +1,5 @@
 .formbuilder-container {
-  position: absolute;
   display: flex;
-  left: 50%;
-  transform: translate(-40%);
-  width: 60vw;
   justify-content: space-evenly;
 }
 .form-panel {
@@ -61,3 +57,19 @@ input[type="text"]:focus {
   outline: none;
   transition: border-color 0.2s ease-in-out;
 }
+
+@media screen and (min-width: 768px) {
+  .formbuilder-container {
+    max-width: 740px;
+    margin: 0 auto 10px;
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .formbuilder-container {
+    max-width: 540px;
+  }
+}
+
+
+
