@@ -30,7 +30,7 @@ class TitlePanel extends Component {
           readOnly={this.props.isUpdate}
           title ={this.props.isUpdate ? "Title can't be updated": "Form Title" }
         />
-        <input
+      <input
           type="text"
           className="form-description"
           placeholder="Form description"

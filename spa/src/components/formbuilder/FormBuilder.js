@@ -50,8 +50,22 @@ class FormBuilder extends Component {
     Radio: RadioInput,
   };
 
+  componentWillUnmount() {
+    localStorage.removeItem("formElements");
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem(
+      "formElements",
+      JSON.stringify(this.state.formElements)
+    );
+  }
+
   componentDidMount = () => {
-    if (
+    if (localStorage.getItem("formElements") !== null) {
+      const formElements = JSON.parse(localStorage.getItem("formElements"));
+      this.updateFormBuilderState({ formElements: formElements });
+    } else if (
       this.state.formAction === "update" &&
       this.state.formTitle !== undefined
     ) {
@@ -118,7 +132,7 @@ class FormBuilder extends Component {
   handleRemoveFormElement = (deletedIndex) => {
     const { formElements } = this.state;
     const updatedElements = formElements
-      .filter((item, index) => index !== deletedIndex)
+      .filter((item, index) => item.Id !== deletedIndex)
       .map((item, index) => ({ ...item, Id: index + 1 }));
     this.updateFormBuilderState({ formElements: updatedElements });
   };
