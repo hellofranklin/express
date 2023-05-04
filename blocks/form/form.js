@@ -208,7 +208,7 @@ const fieldRenderers = {
 };
 
 function renderField(fd) {
-  const renderer = fieldRenderers[fd.Type];
+  const renderer = fieldRenderers[fd.Type.toLowerCase()];
   let field;
   if (typeof renderer === "function") {
     field = renderer(fd);
