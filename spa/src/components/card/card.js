@@ -37,6 +37,10 @@ const Card = (props) => {
     );
   };
 
+  const handleEditButton = (formtitle) => {
+    navigate(`/create?action=update&title=${formtitle}`);
+  }
+
   if (props.type === "userform") {
     return (
       <div className="form-card" key={props.id}>
@@ -59,6 +63,13 @@ const Card = (props) => {
                   openMenus[props.id] ? "show" : ""
                 }`}
               >
+                <a
+                  className="form-card-menu-item"
+                  href="#"
+                  onClick={() => handleEditButton(props.formdata.title)}
+                >
+                  Edit Form
+                </a>
                 <a
                   className="form-card-menu-item"
                   href={props.formdata.publishUrl.replace("live", "page")}

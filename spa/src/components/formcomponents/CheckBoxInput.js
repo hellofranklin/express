@@ -7,7 +7,7 @@ class CheckboxInput extends FormElement {
   }
 
   componentDidMount() {
-    const defaultState = { Type: "Checkbox" };
+    const defaultState = { Type: "checkbox" };
     if ( this.state.Options.length == 0) {
       defaultState["Options"] = ["",""];
     }

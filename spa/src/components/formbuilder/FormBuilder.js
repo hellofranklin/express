@@ -43,11 +43,11 @@ class FormBuilder extends Component {
   }
 
   componentMap = {
-    Text: TextInput,
-    Select: SelectInput,
-    Checkbox: CheckBoxInput,
-    Textarea: TextAreaInput,
-    Radio: RadioInput,
+    text: TextInput,
+    select: SelectInput,
+    checkbox: CheckBoxInput,
+    textarea: TextAreaInput,
+    radio: RadioInput,
   };
 
   componentWillUnmount() {

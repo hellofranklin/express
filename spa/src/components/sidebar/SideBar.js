@@ -10,7 +10,7 @@ function SideBar({ onAddElement }) {
         <div className="dropdown-content">
           {elements.map((element, index) => {
             return (
-              <button key={index} onClick={() => onAddElement(element)}>
+              <button key={index} onClick={() => onAddElement(element.toLowerCase())}>
                 {element}
               </button>
             );

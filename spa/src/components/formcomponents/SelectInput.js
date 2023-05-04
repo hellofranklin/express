@@ -7,7 +7,7 @@ class SelectInput extends FormElement {
   }
 
   componentDidMount() {
-    const defaultState = { Type: "Select" };
+    const defaultState = { Type: "select" };
     if (this.state.Options.length == 0) {
       defaultState["Options"] = ["", ""];
     }

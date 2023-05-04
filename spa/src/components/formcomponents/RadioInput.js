@@ -6,7 +6,7 @@ class RadioInput extends FormElement {
     super(props);
   }
   componentDidMount() {
-    const defaultState = { Type: "Radio" };
+    const defaultState = { Type: "radio" };
     if (this.state.Options.length == 0) {
       defaultState["Options"] = ["", ""];
     }

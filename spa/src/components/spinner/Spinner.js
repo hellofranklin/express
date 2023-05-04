@@ -1,13 +1,17 @@
-import React from 'react';
-import './Spinner.css';
+import React from "react";
+import "./Spinner.css";
 
-const Spinner = () => {
+const Spinner = (props) => {
+  const spinnerMsg =
+    props.spinnerMsg === undefined ? "Loading data..." : props.spinnerMsg;
   return (
-    <div className="spinner-overlay">
-      <div className="spinner-container">
-        <div className="spinner"></div>
+    <>
+      <div className="spinner-overlay">
+        <div className="spinner-container">
+          <div className="msg">{spinnerMsg}</div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
