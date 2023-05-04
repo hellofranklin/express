@@ -45,8 +45,6 @@ body {
 
 main .form-container {
   padding: var(--form-padding);
-  height: 70vh;
-  overflow: scroll;
 }
 
 main .form {
@@ -491,4 +489,9 @@ main .form form .form-message {
 
 .form-description {
   font-size: large;
+}
+
+
+footer {
+  display: none;
 }

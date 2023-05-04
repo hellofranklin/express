@@ -76,12 +76,14 @@ const Card = (props) => {
                 <a
                   className="form-card-menu-item"
                   href={props.formdata.resultSheetUrl}
+                  target="_blank"
                 >
                   Result Sheet
                 </a>
                 <a
                   className="form-card-menu-item"
                   href={props.formdata.folderUrl}
+                  target="_blank"
                 >
                   Forms Folder
                 </a>

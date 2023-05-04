@@ -6,11 +6,17 @@ import Card from "../card/card";
 import Header from "../header/Header";
 import WithLoadingSpinner from "../spinner/WithLoadingSpinner";
 
-
 const MyForms = (props) => {
   const [forms, setForms] = useState([]);
 
   useEffect(() => {
+    window.onbeforeunload = () => {
+      localStorage.removeItem("data");
+    };
+
+    window.onload = () => {
+      localStorage.removeItem("data");
+    };
     const cachedData = localStorage.getItem("data");
     if (cachedData) {
       setForms(JSON.parse(cachedData));
@@ -32,26 +38,29 @@ const MyForms = (props) => {
             <h3> Create Your Form</h3>
           </div>
 
-            <div className="form-list">
-        
+          <div className="form-list">
             {Object.values(Formtemplates).map((form, index) => {
-              return <Card formdata={form} type="sample" id={index} key={index}/>;
+              return (
+                <Card formdata={form} type="sample" id={index} key={index} />
+              );
             })}
-        </div>
+          </div>
         </div>
 
         <div className="container my-forms">
           <div className="container-heading">
-              <h3> My Forms</h3>
+            <h3> My Forms</h3>
           </div>
           <div className="form-cards">
-            {forms.length <= 0 
-              ? (<p> No Forms Found </p>) 
-              : (forms.map((form , index) => <Card formdata={form} type="userform" id={index} key={index}/>))
-            }
+            {forms.length <= 0 ? (
+              <p> No Forms Found </p>
+            ) : (
+              forms.map((form, index) => (
+                <Card formdata={form} type="userform" id={index} key={index} />
+              ))
+            )}
           </div>
         </div>
-
       </div>
     </div>
   );
