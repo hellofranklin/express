@@ -495,3 +495,7 @@ main .form form .form-message {
 footer {
   display: none;
 }
+
+header {
+  display: none;
+}
