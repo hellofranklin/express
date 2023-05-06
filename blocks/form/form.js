@@ -290,7 +290,9 @@ async function createForm(formURL) {
     if (input) {
       input.id = fd.Id;
       input.name = fd.Name;
-      input.value = fd.Value;
+      //TOFIX
+      // input.value = fd.Value;
+      input.value = fd.Label;
       if (fd.Description) {
         input.setAttribute("aria-describedby", `${fd.Id}-description`);
       }
