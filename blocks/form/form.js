@@ -164,7 +164,9 @@ function createHidden(fd) {
   input.type = "hidden";
   input.id = fd.Id;
   input.name = fd.Name;
-  input.value = fd.Value;
+  //TODO: fix this
+  // input.value = fd.Value;
+  input.value = fd.Label;
   return input;
 }
 
