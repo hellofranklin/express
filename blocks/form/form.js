@@ -1,12 +1,17 @@
 function constructPayload(form) {
   const payload = {};
   [...form.elements].forEach((fe) => {
-    if (fe.type === 'radio') {
-      if (fe.checked) payload[fe.name] = fe.value;
-    } else if (fe.type === 'checkbox') {
-      if (fe.checked) payload[fe.name] = payload[fe.name] ? `${payload[fe.name]},${fe.value}` : fe.value;
-    } else if (fe.name) {
-      payload[fe.name] = fe.value;
+    if (fe.type !== "fieldset" && fe.name) {
+      if (fe.type === "radio") {
+        if (fe.checked) payload[fe.name] = fe.value;
+      } else if (fe.type === "checkbox") {
+        if (fe.checked)
+          payload[fe.name] = payload[fe.name]
+            ? `${payload[fe.name]},${fe.value}`
+            : fe.value;
+      } else {
+        payload[fe.name] = fe.value;
+      }
     }
   });
   return payload;
@@ -59,6 +64,13 @@ function createLabel(fd, tagName = "label") {
   if (fd.Tooltip) {
     label.title = fd.Tooltip;
   }
+  if (fd.Mandatory && fd.Mandatory.toLowerCase() === "true") {
+    const requiredTextSpan = document.createElement("span");
+    requiredTextSpan.className = "required-text";
+    requiredTextSpan.textContent = "  *";
+    label.append(requiredTextSpan);
+  }
+
   return label;
 }
 
@@ -163,7 +175,7 @@ function createLegend(fd) {
 function createFieldSet(fd) {
   const wrapper = createFieldWrapper(fd, "fieldset");
   wrapper.name = fd.Name;
-//   wrapper.replaceChildren(createLegend(fd));
+  //   wrapper.replaceChildren(createLegend(fd));
   return wrapper;
 }
 
@@ -174,6 +186,9 @@ function groupFieldsByFieldSet(form) {
     fields?.forEach((field) => {
       fieldset.append(field);
     });
+    if (fieldset.getAttribute("required") !== null) {
+      fieldset.append(createErrorText(fieldset));
+    }
   });
 }
 
@@ -224,6 +239,17 @@ function renderField(fd) {
   return field;
 }
 
+function createErrorText(fd) {
+  const div = document.createElement("div");
+  div.className = "field-required-error";
+  div.innerText =
+    fd.Type === "submit"
+      ? "Fill the required fields"
+      : "This field is required";
+  div.id = `${fd.Id}-error-text`;
+  return div;
+}
+
 async function fetchData(url) {
   const resp = await fetch(url);
   const json = await resp.json();
@@ -244,11 +270,20 @@ async function createForm(formURL) {
   const { pathname } = new URL(formURL);
   const data = await fetchForm(pathname);
   const form = document.createElement("form");
+  form.noValidate = true;
   data.forEach((fd) => {
     const el = renderField(fd);
     const input = el.querySelector("input,textarea,select");
+    if (fd.Type === "submit") {
+      el.append(createErrorText(fd));
+    }
     if (fd.Mandatory && fd.Mandatory.toLowerCase() === "true") {
-      input.setAttribute("required", "required");
+      if (input !== null) {
+        input.setAttribute("required", "required");
+        el.append(createErrorText(fd));
+      } else {
+        el.setAttribute("required", "required");
+      }
     }
     if (input) {
       input.id = fd.Id;
@@ -263,12 +298,58 @@ async function createForm(formURL) {
   groupFieldsByFieldSet(form);
   // eslint-disable-next-line prefer-destructuring
   form.dataset.action = pathname.split(".json")[0];
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
+  form.addEventListener("submit", (event) =>
+    formsubmissionHandler(form, event)
+  );
+  return form;
+}
+
+function formsubmissionHandler(form, e) {
+  e.preventDefault();
+  if (validateFormElements(form)) {
     e.submitter.setAttribute("disabled", "");
     handleSubmit(form, e.submitter.dataset?.redirect);
+  } else {
+    const submitField = document.querySelector("button[type=submit]");
+    submitField.parentElement.lastElementChild.style.display = "block";
+    setTimeout(() => {
+      document
+        .querySelectorAll(".field-required-error")
+        .forEach((errorElement) => {
+          errorElement.style.display = "none";
+        });
+    }, 5000);
+  }
+}
+
+function validateFormElements(form) {
+  let validate = true;
+  [...form.elements].forEach((fe) => {
+    let isRequired = fe.getAttribute("required") === "required";
+    if (isRequired) {
+      if (fe.type === "fieldset") {
+        let inputElements = fe.querySelectorAll("input");
+        let isEmp = true;
+        for (let ele of inputElements) {
+          if (ele.checked === true) {
+            isEmp = false;
+            break;
+          }
+        }
+        if (isEmp) {
+          fe.lastElementChild.style.display = "block";
+          validate = false;
+        }
+      } else if (fe.value.trim() === "") {
+        fe.parentElement.lastElementChild.style.display = "block";
+        validate = false;
+      }
+    }
   });
-  return form;
+
+  console.log(constructPayload(form));
+
+  return false;
 }
 
 export default async function decorate(block) {

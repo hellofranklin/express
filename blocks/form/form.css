@@ -8,7 +8,7 @@
   --form-field-gap: 20px 0 0 0;
   --form-invalid-border-color: var(--mt-global-color-orange);
   --form-input-padding: 0.75rem 0.6rem;
-  --form-input-font-size: var(--mt-font-size-100);
+  --form-input-font-size: 15px;
   --form-input-disable-color: var(--mt-global-color-silver);
   --form-input-border-size: 1px;
   --form-input-border-color: var(--mt-global-color-oslo-gray);
@@ -58,7 +58,7 @@ main .form form fieldset {
 }
 
 main .form form fieldset fieldset {
-  padding: 0;
+  padding: 20;
 }
 
 main .form .field-description {
@@ -134,13 +134,14 @@ main .form form .field-wrapper {
   color: var(--form-label-color);
 }
 
+/**  custom*/
 fieldset > .field-wrapper {
   padding: 20px;
   background-color: #fff;
-  border: 1px solid #dadce0;
+  /* border: 1px solid #dadce0; */
   border-radius: 8px;
   margin-bottom: 12px;
-  padding: 24px;
+  padding: 15px;
   color: rgb(32, 33, 36);
 }
 
@@ -481,7 +482,6 @@ main .form form .form-message {
   }
 }
 
-
 .form-title {
   font-size: 32px;
   font-weight: 700;
@@ -491,11 +491,50 @@ main .form form .form-message {
   font-size: large;
 }
 
-
 footer {
   display: none;
 }
 
 header {
   display: none;
+}
+
+/**  custom */
+
+.field-required-error {
+  color: #bc2f32;
+  font-size: 0.823rem;
+  display: none;
+}
+
+main form fieldset.form-fieldset-wrapper > label:first-child {
+  position: relative;
+  left: 15px;
+  top: 15px;
+  font-weight: var(--form-label-font-weight);
+  font-size: var(--form-label-font-size);
+}
+
+.required-text {
+  color: #bc2f32;
+}
+
+.field-required-error {
+  position: relative;
+  left: 10px;
+  display: block;
+}
+
+main .form form fieldset[name='titlepanel'] {
+  background-color: white;
+  margin: auto;
+ }
+
+ main .form form fieldset[name='titlepanel'] .form-title {
+  font-size: 2rem;
+}
+
+
+main .form form fieldset[name='titlepanel'] .form-description {
+  font-size: 1.2rem;
 }
