@@ -83,6 +83,7 @@ class FormElement extends Component {
               <label className="switch" title="Required">
                 <input
                   type="checkbox"
+                  checked={this.state.Mandatory === 'true'}
                   onChange={(event) =>
                     this.handleChange({ Mandatory: event.target.checked })
                   }

@@ -10,6 +10,10 @@ import TitlePanel from "../titlepanel/TitlePanel";
 import { createForm, getFranklinFormDataJson } from "../../api/index";
 
 import Formtemplates from "../../sampleform/sampledata";
+import {
+  builderStateToFormJson,
+  formJsonToBuilderState,
+} from "../../utils/AppUtils";
 
 class FormBuilder extends Component {
   constructor(props) {
@@ -69,40 +73,12 @@ class FormBuilder extends Component {
       this.state.formAction === "update" &&
       this.state.formTitle !== undefined
     ) {
-      const notAllowedEntries = [
-        "titlepanel",
-        "title",
-        "description",
-        "datapanel",
-        "submit",
-      ];
       getFranklinFormDataJson(
         this.state.formTitle,
         this.state.email,
         this.props.handleApiCall
-      ).then((response) => {
-        let updateStatePairs = {};
-
-        let updatedData = response.data.map((item, index) => ({
-          ...item,
-          Id: index + 1,
-          Options: item.Options.split(","),
-        }));
-
-        const objWithTitle = updatedData.find((obj) => obj.Name === "title");
-        updateStatePairs["formTitle"] = objWithTitle.Label;
-
-        const objWithDesc = updatedData.find(
-          (obj) => obj.Name === "description"
-        );
-        updateStatePairs["formDesc"] = objWithDesc.Label;
-
-        updatedData = updatedData.filter((item) => {
-          return notAllowedEntries.indexOf(item.Name) === -1;
-        });
-
-        updateStatePairs["formElements"] = updatedData;
-
+      ).then((responseJson) => {
+        const updateStatePairs = formJsonToBuilderState(responseJson.data);
         this.updateFormBuilderState(updateStatePairs);
       });
     }
@@ -189,21 +165,14 @@ class FormBuilder extends Component {
   };
 
   formCreatorBtnHandler = async () => {
-    console.log(this.state.formElements);
-    const data = this.state.formElements.map(({ Id, ...rest }) => {
-      rest.Options = rest.Options.join(",");
-      rest.Name = rest.Label;
-      return rest;
-    });
-
-    const { formTitle, formDesc } = this.state;
-
-    if (this.validateData(data, this.state.email, formTitle, formDesc)) {
+    const { formTitle, formDesc, formElements } = this.state;
+    if (this.validateData(formElements, this.state.email, formTitle, formDesc)) {
+      const data = builderStateToFormJson(formElements, formTitle, formDesc);
+      console.log(data);
       const response = await createForm(
         data,
         this.state.email,
         formTitle,
-        formDesc,
         this.props.handleApiCall,
         this.state.formAction
       );
