@@ -35,7 +35,7 @@ async function handleSubmit(form, redirectTo) {
   if (form.getAttribute("data-submitting") !== "true") {
     form.setAttribute("data-submitting", "true");
     await submitForm(form);
-    window.location.href = redirectTo || "thankyou";
+    window.location.href = redirectTo || "/forms/thankyou";
   }
 }
 
