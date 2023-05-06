@@ -58,7 +58,7 @@ main .form form fieldset {
 }
 
 main .form form fieldset fieldset {
-  padding: 20;
+  padding: 0;
 }
 
 main .form .field-description {
@@ -521,7 +521,7 @@ main form fieldset.form-fieldset-wrapper > label:first-child {
 
 .field-required-error {
   position: relative;
-  left: 10px;
+  left: 20px;
 }
 
 main .form form fieldset[name="titlepanel"] {
