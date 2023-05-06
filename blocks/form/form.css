@@ -522,19 +522,17 @@ main form fieldset.form-fieldset-wrapper > label:first-child {
 .field-required-error {
   position: relative;
   left: 10px;
-  display: block;
 }
 
-main .form form fieldset[name='titlepanel'] {
+main .form form fieldset[name="titlepanel"] {
   background-color: white;
   margin: auto;
- }
+}
 
- main .form form fieldset[name='titlepanel'] .form-title {
+main .form form fieldset[name="titlepanel"] .form-title {
   font-size: 2rem;
 }
 
-
-main .form form fieldset[name='titlepanel'] .form-description {
+main .form form fieldset[name="titlepanel"] .form-description {
   font-size: 1.2rem;
 }
