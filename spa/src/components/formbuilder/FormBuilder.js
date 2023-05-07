@@ -181,15 +181,16 @@ class FormBuilder extends Component {
       console.log(response);
       if (this.state.formAction === "create") {
         const cachedData = JSON.parse(localStorage.getItem("data"));
+        const form = {
+          title: formTitle,
+          folderURL: response.folderURL,
+          publishUrl: response.formPublishURL,
+          resultSheetUrl: response.resultSheetUrl,
+        }
         if (cachedData === null) {
-          localStorage.setItem("data", JSON.stringify([cachedData]));
+          localStorage.setItem("data", JSON.stringify([{...form}]));
         } else {
-          cachedData.push({
-            title: formTitle,
-            folderURL: response.folderURL,
-            publishUrl: response.formPublishURL,
-            resultSheetUrl: response.resultSheetUrl,
-          });
+          cachedData.push(form);
         }
         localStorage.setItem("data", JSON.stringify(cachedData));
       }
