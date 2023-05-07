@@ -166,7 +166,9 @@ class FormBuilder extends Component {
 
   formCreatorBtnHandler = async () => {
     const { formTitle, formDesc, formElements } = this.state;
-    if (this.validateData(formElements, this.state.email, formTitle, formDesc)) {
+    if (
+      this.validateData(formElements, this.state.email, formTitle, formDesc)
+    ) {
       const data = builderStateToFormJson(formElements, formTitle, formDesc);
       console.log(data);
       const response = await createForm(
@@ -179,12 +181,16 @@ class FormBuilder extends Component {
       console.log(response);
       if (this.state.formAction === "create") {
         const cachedData = JSON.parse(localStorage.getItem("data"));
-        cachedData.push({
-          title: formTitle,
-          folderURL: response.folderURL,
-          publishUrl: response.formPublishURL,
-          resultSheetUrl: response.resultSheetUrl,
-        });
+        if (cachedData === null) {
+          localStorage.setItem("data", JSON.stringify([cachedData]));
+        } else {
+          cachedData.push({
+            title: formTitle,
+            folderURL: response.folderURL,
+            publishUrl: response.formPublishURL,
+            resultSheetUrl: response.resultSheetUrl,
+          });
+        }
         localStorage.setItem("data", JSON.stringify(cachedData));
       }
       window.location.href = "/authoring/";
