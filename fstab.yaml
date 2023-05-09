@@ -3,3 +3,6 @@ mountpoints:
   
 folders:
   /authoring/: /spa/build/index.html
+  
+  
+  
