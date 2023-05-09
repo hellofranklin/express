@@ -2,7 +2,7 @@ import React from "react";
 import "./SideBar.css";
 
 function SideBar({ onAddElement }) {
-  const elements = ["Text", "Select", "Textarea", "Radio", "Checkbox"];
+  const elements = ["Text", "Email", "Select", "Textarea", "Radio", "Checkbox" ];
   return (
     <div className="sidebar-container">
       <div className="dropdown">

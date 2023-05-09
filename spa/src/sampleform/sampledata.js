@@ -1,21 +1,21 @@
 const Formtemplates = {
   blank: {
     id: 1,
-    title: "Blank Form",
+    title: "BlankForm",
     description: "Create a new form from scratch",
     svg: "add",
   },
 
   contact: {
     id: 2,
-    title: "Contact Form",
+    title: "ContactForm",
     description: "A regular contact form for capturing basic details",
     svg: "contact",
     elements: [
       {
         Id: 1,
         Name: "FirstName",
-        Type: "Text",
+        Type: "text",
         Label: "First Name",
         Mandatory: "",
         Min: "",
@@ -26,7 +26,7 @@ const Formtemplates = {
       {
         Id: 2,
         Name: "LastName",
-        Type: "Text",
+        Type: "text",
         Label: "Last Name",
         Mandatory: "",
         Min: "",
@@ -37,7 +37,7 @@ const Formtemplates = {
       {
         Id: 3,
         Name: "Email",
-        Type: "Text",
+        Type: "text",
         Label: "Email",
         Mandatory: "TRUE",
         Min: "",
@@ -48,7 +48,7 @@ const Formtemplates = {
       {
         Id: 4,
         Name: "Gender",
-        Type: "Select",
+        Type: "select",
         Label: "Gender",
         Mandatory: "TRUE",
         Min: "",
@@ -59,7 +59,7 @@ const Formtemplates = {
       {
         Id: 5,
         Name: "About Yourself",
-        Type: "Textarea",
+        Type: "textarea",
         Label: "About Yourself",
         Mandatory: "TRUE",
         Min: "",
@@ -78,7 +78,7 @@ const Formtemplates = {
       {
         Id: 1,
         Name: "",
-        Type: "Text",
+        Type: "text",
         Label: "",
         Mandatory: "",
         Min: "",
@@ -89,7 +89,7 @@ const Formtemplates = {
       {
         Id: 2,
         Name: "",
-        Type: "Text",
+        Type: "text",
         Label: "",
         Mandatory: "",
         Min: "",

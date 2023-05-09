@@ -66,6 +66,7 @@ class FormElement extends Component {
         <input
           type="text"
           value={this.state.Label}
+          placeholder="Enter Your Question Here"
           onChange={(event) => this.handleChange({ Label: event.target.value })}
         />
         {this.renderInput(this.props.isFocused)}

@@ -52,6 +52,7 @@ class FormBuilder extends Component {
     checkbox: CheckBoxInput,
     textarea: TextAreaInput,
     radio: RadioInput,
+    email: TextInput,
   };
 
   componentWillUnmount() {
@@ -150,7 +151,7 @@ class FormBuilder extends Component {
       Id: this.state.formElements.length + 1,
       Name: "",
       Type: type,
-      Label: "Question",
+      Label: "",
       Mandatory: false,
       Min: "",
       Max: "",
@@ -170,7 +171,6 @@ class FormBuilder extends Component {
       this.validateData(formElements, this.state.email, formTitle, formDesc)
     ) {
       const data = builderStateToFormJson(formElements, formTitle, formDesc);
-      console.log(data);
       const response = await createForm(
         data,
         this.state.email,
@@ -178,7 +178,6 @@ class FormBuilder extends Component {
         this.props.handleApiCall,
         this.state.formAction
       );
-      console.log(response);
       if (this.state.formAction === "create") {
         const cachedData = JSON.parse(localStorage.getItem("data"));
         const form = {
@@ -186,9 +185,9 @@ class FormBuilder extends Component {
           folderURL: response.folderURL,
           publishUrl: response.formPublishURL,
           resultSheetUrl: response.resultSheetUrl,
-        }
+        };
         if (cachedData === null) {
-          localStorage.setItem("data", JSON.stringify([{...form}]));
+          localStorage.setItem("data", JSON.stringify([{ ...form }]));
         } else {
           cachedData.push(form);
         }
@@ -203,7 +202,6 @@ class FormBuilder extends Component {
       alert("Check if formtitle is not empty");
       return false; // one of the required values is empty or undefined
     }
-
     // validation successful
     return true;
   };

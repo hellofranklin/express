@@ -16,7 +16,6 @@ function LoginBox(props) {
 
   const generateLoginCode = async () => {
     const responseJson = await generateLoginCodeApi(email, props.handleApiCall);
-    console.log(responseJson);
     setUrl(responseJson.LoginPageURL);
   };
 
