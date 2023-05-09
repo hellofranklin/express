@@ -127,6 +127,7 @@ export const formJsonToBuilderState = (franklinJson) => {
 export const builderStateToFormJson = (builderState, title, description) => {
   let data = builderState.map(({ Id, ...rest }) => {
     rest.Name = rest.Label;
+    rest.Options = rest.Options.join(",");
     return rest;
   });
 
