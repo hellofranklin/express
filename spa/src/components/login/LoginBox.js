@@ -32,48 +32,97 @@ function LoginBox(props) {
   };
 
   return (
-    <div className="login-box-container">
-      <div className="container login-box">
-        <h1 className="login-header">Forms Express</h1>
-        
-        <input
-          type="email"
-          placeholder="Enter your email"
-          value={email}
-          onChange={handleEmailChange}
-          className="email-input"
-        />
-        {url && (
-          <div className="url-container">
-            <p className="url-label">
-              Enter the code provided in{" "}
-              <a href={url} target="_blank">
-                URL
-              </a>
-            </p>
-
+    <>
+      <section
+        id="section_uname"
+        className={"section_uname " + (url === "" ? "d-show" : "d-none")}
+      >
+        <div className="auth-wrapper">
+          <img
+            src="/adobe_logo.png"
+            alt="Forms Express"
+            height={20}
+            width={20}
+          />
+          <span className="titlename"> Forms Express</span>
+          <h2 className="title mb-16 mt-16">Sign in</h2>
+          <div className="mb-16">
+            <p id="error_uname" className="error"></p>
             <input
-              type="text"
-              value={code}
-              onChange={(evt) => {
-                setCode(evt.target.value);
-              }}
-              className="code-input"
+              id="inp_uname"
+              type="email"
+              name="uname"
+              className="input"
+              placeholder="Enter your Gmail"
+              value={email}
+              onChange={handleEmailChange}
             />
-            <br />
-            <button onClick={handleSubmissionClick} className="submit-button">
-              {" "}
-              Submit
+          </div>
+
+          <div className="mt-16">
+            <button className="btn" id="btn_next" onClick={generateLoginCode}>
+              Next
             </button>
           </div>
-        )}
-        {!url && (
-          <button onClick={generateLoginCode} className="login-button">
-            Login
-          </button>
-        )}
-      </div>
-    </div>
+        </div>
+      </section>
+
+      <section
+        id="section_pwd"
+        className={"section_pwd " + (url === "" ? "d-none" : "d-show")}
+      >
+        <div className="auth-wrapper">
+          <img
+            src="/adobe_logo.png"
+            alt="Forms Express"
+            height={20}
+            width={20}
+          />
+          <span className="titlename"> Forms Express</span>
+          <div className="identity w-100 mt-16 mb-16">
+            <button className="back">
+              <img src="/back.png" />
+            </button>
+            <span id="user_identity">{email}</span>
+          </div>
+          <h2 className="title mb-16">Login Code</h2>
+          <form>
+            <div className="mb-16">
+              <p id="error_pwd" className="error"></p>
+              <input
+                id="inp_pwd"
+                type="text"
+                name="pass"
+                className="input code-input"
+                placeholder="Enter your code"
+                value={code}
+                onChange={(evt) => {
+                  setCode(evt.target.value);
+                }}
+              />
+            </div>
+          </form>
+          <div>
+            <p className="mb-16">
+              {" "}
+              Get your login code from{" "}
+              <a href={url} className="link fs-13" target="_blank">
+                here
+              </a>
+            </p>
+          </div>
+          <div>
+            <button
+              className="btn"
+              id="btn_sig"
+              onClick={handleSubmissionClick}
+            >
+              Sign in
+            </button>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
 
