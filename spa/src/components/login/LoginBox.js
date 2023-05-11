@@ -55,8 +55,8 @@ class LoginBox extends Component {
         >
           <div className="auth-wrapper">
             <img
-              src="/adobe_logo.png"
-              alt="Forms Express"
+              src="/spa/build/adobe_logo.png"
+              alt=""
               height={20}
               width={20}
             />
@@ -97,15 +97,15 @@ class LoginBox extends Component {
         >
           <div className="auth-wrapper">
             <img
-              src="/adobe_logo.png"
-              alt="Forms Express"
+              src="/spa/build/adobe_logo.png"
+              alt=""
               height={20}
               width={20}
             />
             <span className="titlename"> Forms Express</span>
             <div className="identity w-100 mt-16 mb-16">
               <button className="back" onClick={this.handleBackButton}>
-                <img src="/back.png" />
+                <img src="/spa/build/back.png" />
               </button>
               <span id="user_identity">{email}</span>
             </div>
