@@ -26,12 +26,13 @@ class LoginBox extends Component {
   };
 
   generateLoginCode = async () => {
-    this.state.setIsLoading(true);
+    this.updateState("loading", true);
     const responseJson = await generateLoginCodeApi(
       this.state.email,
       this.props.handleApiCall
     );
-    this.state.setUrl(responseJson.LoginPageURL);
+
+    this.updateState("url", responseJson.LoginPageURL);
     this.updateState("loading", false);
   };
 
@@ -49,7 +50,7 @@ class LoginBox extends Component {
   };
 
   handleBackButton = () => {
-    this.state.setUrl("");
+    this.updateState("url", "");
   };
 
   render() {
@@ -128,7 +129,7 @@ class LoginBox extends Component {
                 placeholder="Enter your code"
                 value={code}
                 onChange={(evt) => {
-                  this.state.setCode(evt.target.value);
+                  this.updateState("code", evt.target.value);
                 }}
               />
             </div>
