@@ -31,7 +31,7 @@ class LoginBox extends Component {
       this.state.email,
       this.props.handleApiCall
     );
-    this.updateState("docpage", encodeURIComponent(responseJson.LoginPageURL));
+    this.updateState("docpageUrl", encodeURIComponent(responseJson.LoginPageURL));
     this.updateState("loading", false);
   };
 
@@ -49,7 +49,7 @@ class LoginBox extends Component {
   };
 
   handleBackButton = () => {
-    this.updateState("docpage", "");
+    this.updateState("docpageUrl", "");
   };
 
   handleCodeChange = (evt) => {
