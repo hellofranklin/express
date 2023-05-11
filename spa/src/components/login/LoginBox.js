@@ -31,7 +31,7 @@ class LoginBox extends Component {
       this.state.email,
       this.props.handleApiCall
     );
-    this.updateState("docpageUrl", encodeURIComponent(responseJson.LoginPageURL));
+    this.updateState("docpageUrl", responseJson.LoginPageURL);
     this.updateState("loading", false);
   };
 
