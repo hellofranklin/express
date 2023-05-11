@@ -10,6 +10,7 @@ class FormElement extends Component {
       Name: props.elementState.Name,
       Type: props.elementState.Type,
       Label: props.elementState.Label,
+      Value: props.elementState.Value,
       Mandatory: props.elementState.Mandatory,
       Min: props.elementState.Min,
       Max: props.elementState.Max,

@@ -14,6 +14,7 @@ import {
   builderStateToFormJson,
   formJsonToBuilderState,
 } from "../../utils/AppUtils";
+import WithNavigate from "../WithNavigate";
 
 class FormBuilder extends Component {
   constructor(props) {
@@ -157,6 +158,7 @@ class FormBuilder extends Component {
       Max: "",
       Options: [],
       Fieldset: "datapanel",
+      Value: ""
     };
 
     this.updateFormBuilderState({
@@ -190,10 +192,10 @@ class FormBuilder extends Component {
           localStorage.setItem("data", JSON.stringify([{ ...form }]));
         } else {
           cachedData.push(form);
+          localStorage.setItem("data", JSON.stringify(cachedData));
         }
-        localStorage.setItem("data", JSON.stringify(cachedData));
       }
-      window.location.href = "/authoring/";
+      this.props.navigate("/home");
     }
   };
 
@@ -257,4 +259,4 @@ class FormBuilder extends Component {
   }
 }
 
-export default WithLoadingSpinner(FormBuilder);
+export default WithNavigate(WithLoadingSpinner(FormBuilder));

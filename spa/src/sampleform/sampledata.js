@@ -22,6 +22,7 @@ const Formtemplates = {
         Max: "",
         Options: [],
         Fieldset: "datapanel",
+        Value: "",
       },
       {
         Id: 2,
@@ -33,6 +34,7 @@ const Formtemplates = {
         Max: "",
         Options: [],
         Fieldset: "datapanel",
+        Value: "",
       },
       {
         Id: 3,
@@ -44,6 +46,7 @@ const Formtemplates = {
         Max: "",
         Options: [],
         Fieldset: "datapanel",
+        Value: "",
       },
       {
         Id: 4,
@@ -55,6 +58,7 @@ const Formtemplates = {
         Max: "",
         Options: ["Male", "Female"],
         Fieldset: "datapanel",
+        Value: "",
       },
       {
         Id: 5,
@@ -66,7 +70,8 @@ const Formtemplates = {
         Max: "",
         Options: [],
         Fieldset: "datapanel",
-      }
+        Value: "",
+      },
     ],
   },
   feedback: {
@@ -85,6 +90,7 @@ const Formtemplates = {
         Max: "",
         Options: [],
         Fieldset: "datapanel",
+        Value: "",
       },
       {
         Id: 2,
@@ -96,6 +102,7 @@ const Formtemplates = {
         Max: "",
         Options: [],
         Fieldset: "datapanel",
+        Value: "",
       },
     ],
   },

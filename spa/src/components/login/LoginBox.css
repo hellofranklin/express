@@ -2,9 +2,7 @@
   --error: #e81123;
 }
 
-* {
-  box-sizing: border-box;
-}
+
 
 .login-container {
   background-color: aliceblue;

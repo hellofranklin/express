@@ -13,6 +13,7 @@ export const getHeaderRows = (title, description) => {
       Max: "",
       Options: "",
       Fieldset: "",
+      Value: "",
     },
     {
       Name: "title",
@@ -23,6 +24,7 @@ export const getHeaderRows = (title, description) => {
       Max: "",
       Options: "",
       Fieldset: "titlepanel",
+      Value: "",
     },
     {
       Name: "description",
@@ -33,6 +35,7 @@ export const getHeaderRows = (title, description) => {
       Max: "",
       Options: "",
       Fieldset: "titlepanel",
+      Value: "",
     },
     {
       Name: "datapanel",
@@ -43,6 +46,7 @@ export const getHeaderRows = (title, description) => {
       Max: "",
       Options: "",
       Fieldset: "",
+      Value: "",
     },
   ];
 };
@@ -58,6 +62,7 @@ export const getFooterRows = () => {
       Max: "",
       Options: "",
       Fieldset: "",
+      Value: "",
     },
   ];
 };
@@ -98,6 +103,7 @@ export const formJsonToBuilderState = (franklinJson) => {
           Max: "",
           Options: [],
           Fieldset: `datapanel`,
+          Value: ""
         };
         while (
           i < franklinJson.length &&

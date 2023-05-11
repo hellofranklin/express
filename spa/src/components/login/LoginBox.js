@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { generateLoginCodeApi, login } from "../../api";
 import WithLoadingSpinner from "../spinner/WithLoadingSpinner";
-import { NavigateTo } from "../../utils/navigationUtils";
 import "./LoginBox.css";
+
+import WithNavigate from "../WithNavigate";
 
 class LoginBox extends Component {
   constructor(props) {
@@ -43,7 +44,7 @@ class LoginBox extends Component {
     if (loginStatus === "Success") {
       localStorage.setItem("email", email);
       localStorage.setItem("code", code);
-      this.props.history.push("/authoring/home");
+      this.props.navigate("/home");
     } else {
       alert("Unauthorized Acces");
     }
@@ -60,9 +61,9 @@ class LoginBox extends Component {
   componentDidMount() {
     const email = localStorage.getItem("email");
     if (email) {
-      window.location.href="/authoring/home";
+      this.props.navigate("/home");
     }
-   }
+  }
 
   render() {
     const { docpageUrl, email, code, loading } = this.state;
@@ -171,4 +172,4 @@ class LoginBox extends Component {
   }
 }
 
-export default WithLoadingSpinner(LoginBox);
+export default WithNavigate(WithLoadingSpinner(LoginBox));

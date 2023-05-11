@@ -8,7 +8,7 @@ const WithAuth = (WrappedComponent) => {
         redirecting: false, // add a state to track whether redirecting or not
       };
     }
-
+    
     componentDidMount() {
       const email = localStorage.getItem("email");
       const code = localStorage.getItem("code");
