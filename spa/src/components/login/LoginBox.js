@@ -8,17 +8,17 @@ class LoginBox extends Component {
     super(props);
     this.state = {
       email: "",
-      url: "",
+      docpageUrl: "",
       code: "",
       loading: false,
     };
   }
 
   updateState = (key, value) => {
-    this.setState({
-      ...this.state,
+    this.setState((prevState) => ({
+      ...prevState,
       [key]: value,
-    });
+    }));
   };
 
   handleEmailChange = (event) => {
@@ -31,8 +31,7 @@ class LoginBox extends Component {
       this.state.email,
       this.props.handleApiCall
     );
-
-    this.updateState("url", responseJson.LoginPageURL);
+    this.updateState("docpage", encodeURIComponent(responseJson.LoginPageURL));
     this.updateState("loading", false);
   };
 
@@ -50,16 +49,22 @@ class LoginBox extends Component {
   };
 
   handleBackButton = () => {
-    this.updateState("url", "");
+    this.updateState("docpage", "");
+  };
+
+  handleCodeChange = (evt) => {
+    this.updateState("code", evt.target.value);
   };
 
   render() {
-    const { url, email, code, loading } = this.state;
+    const { docpageUrl, email, code, loading } = this.state;
     return (
       <div className="login-container">
         <section
           id="section_uname"
-          className={"section_uname " + (url === "" ? "d-show" : "d-none")}
+          className={
+            "section_uname " + (docpageUrl === "" ? "d-show" : "d-none")
+          }
         >
           <div className="auth-wrapper">
             <img
@@ -79,7 +84,7 @@ class LoginBox extends Component {
                 className="input"
                 placeholder="Enter your Gmail"
                 value={email}
-                onChange={this.handleEmailChange}
+                onChange={(event) => this.handleEmailChange(event)}
               />
             </div>
             <div className={"loading-dots " + (loading ? "d-show" : "d-none")}>
@@ -91,7 +96,7 @@ class LoginBox extends Component {
               <button
                 className="btn"
                 id="btn_next"
-                onClick={this.generateLoginCode}
+                onClick={() => this.generateLoginCode()}
               >
                 Next
               </button>
@@ -101,7 +106,7 @@ class LoginBox extends Component {
 
         <section
           id="section_pwd"
-          className={"section_pwd " + (url === "" ? "d-none" : "d-show")}
+          className={"section_pwd " + (docpageUrl === "" ? "d-none" : "d-show")}
         >
           <div className="auth-wrapper">
             <img
@@ -112,7 +117,7 @@ class LoginBox extends Component {
             />
             <span className="titlename"> Forms Express</span>
             <div className="identity w-100 mt-16 mb-16">
-              <button className="back" onClick={this.handleBackButton}>
+              <button className="back" onClick={() => this.handleBackButton()}>
                 <img src="/spa/build/back.png" />
               </button>
               <span id="user_identity">{email}</span>
@@ -129,7 +134,7 @@ class LoginBox extends Component {
                 placeholder="Enter your code"
                 value={code}
                 onChange={(evt) => {
-                  this.updateState("code", evt.target.value);
+                  this.handleCodeChange(evt);
                 }}
               />
             </div>
@@ -137,7 +142,7 @@ class LoginBox extends Component {
             <div className="login-code-label">
               <p className="mb-16">
                 Get your login code from{"  "}
-                <a href={url} className="link fs-13" target="_blank">
+                <a href={docpageUrl} className="link fs-13" target="_blank">
                   here
                 </a>
               </p>
@@ -146,7 +151,7 @@ class LoginBox extends Component {
               <button
                 className="btn"
                 id="btn_sig"
-                onClick={this.handleSubmissionClick}
+                onClick={() => this.handleSubmissionClick()}
               >
                 Sign in
               </button>
