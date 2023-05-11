@@ -8,7 +8,9 @@ const WithLoadingSpinner = (WrappedComponent) => {
 
     const handleApiCall = async (apiCall, message) => {
       messagesRef.current = message;
-      setIsLoading(true);
+      if (message !== "no") {
+        setIsLoading(true);
+      } 
       const response = await apiCall();
       const responseJson = await response.json();
       setIsLoading(false);

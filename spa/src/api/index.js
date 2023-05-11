@@ -53,7 +53,7 @@ export const generateLoginCodeApi = async (email, handleApiCall) => {
     process.env.REACT_APP_BACKEND_URL +
     `?requestType=${requestType}&email=${email}`;
 
-  return handleApiCall(() => fetch(encodeURI(URL), requestOptions));
+  return handleApiCall(() => fetch(encodeURI(URL), requestOptions),"no");
 };
 
 export const login = async (email, code, handleApiCall) => {

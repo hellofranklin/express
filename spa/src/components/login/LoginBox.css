@@ -3,21 +3,11 @@
 }
 
 * {
-  padding: 0;
-  margin: 0;
   box-sizing: border-box;
-  font-family: "Segoe UI", "Helvetica Neue", "Lucida Grande", "Roboto", "Ebrima",
-    "Nirmala UI", "Gadugi", "Segoe Xbox Symbol", "Segoe UI Symbol", "Meiryo UI",
-    "Khmer UI", "Tunga", "Lao UI", "Raavi", "Iskoola Pota", "Latha",
-    "Leelawadee", "Microsoft YaHei UI", "Microsoft JhengHei UI", "Malgun Gothic",
-    "Estrangelo Edessa", "Microsoft Himalaya", "Microsoft New Tai Lue",
-    "Microsoft PhagsPa", "Microsoft Tai Le", "Microsoft Yi Baiti",
-    "Mongolian Baiti", "MV Boli", "Myanmar Text", "Cambria Math";
 }
 
-html,
-body {
-  background-color: #e2e5d3;
+.login-container {
+  background-color: aliceblue;
   color: #1b1b1b;
 }
 
@@ -95,6 +85,8 @@ input[type="email"].input {
   border-right-width: 0;
   padding-left: 0;
   width: calc(100% - 20px);
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  -webkit-text-fill-color: #000 !important;
 }
 
 input[type="email"].input:hover {
@@ -144,12 +136,14 @@ button.back {
   height: 24px;
   background-color: unset;
   cursor: pointer;
+  min-width: 24px;
+  padding: 0px;
+  margin: 0px;
 }
-
 
 button.back:hover {
   background-color: #e6e6e6;
-  background-color: rgba(0, 0, 0, .1);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 #user_identity {
@@ -157,3 +151,45 @@ button.back:hover {
   color: #1b1b1b;
 }
 
+.login-code-label {
+  font-size: 15px;
+}
+
+/**  Loading Dots css start*/
+
+@keyframes dotBounce {
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+.loading-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.loading-dot {
+  width: 12px;
+  height: 12px;
+  background-color: #000;
+  border-radius: 50%;
+  margin: 0 4px;
+  animation: dotBounce 1.4s infinite ease-in-out both;
+}
+
+.loading-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loading-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/**  Loading Dots css end*/
