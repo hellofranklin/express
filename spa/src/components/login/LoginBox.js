@@ -14,8 +14,15 @@ class LoginBox extends Component {
     };
   }
 
+  updateState = (key, value) => {
+    this.state = {
+      ...this.state,
+      [key]: value,
+    };
+  };
+
   handleEmailChange = (event) => {
-    this.state.setEmail(event.target.value);
+    this.updateState("email", event.target.value);
   };
 
   generateLoginCode = async () => {
@@ -25,7 +32,7 @@ class LoginBox extends Component {
       this.props.handleApiCall
     );
     this.state.setUrl(responseJson.LoginPageURL);
-    this.state.setIsLoading(false);
+    this.updateState("loading",false);
   };
 
   handleSubmissionClick = async () => {
