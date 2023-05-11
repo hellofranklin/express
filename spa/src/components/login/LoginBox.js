@@ -15,10 +15,10 @@ class LoginBox extends Component {
   }
 
   updateState = (key, value) => {
-    this.state = {
+    this.setState({
       ...this.state,
       [key]: value,
-    };
+    });
   };
 
   handleEmailChange = (event) => {
@@ -32,7 +32,7 @@ class LoginBox extends Component {
       this.props.handleApiCall
     );
     this.state.setUrl(responseJson.LoginPageURL);
-    this.updateState("loading",false);
+    this.updateState("loading", false);
   };
 
   handleSubmissionClick = async () => {
