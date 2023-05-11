@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { generateLoginCodeApi, login } from "../../api";
 import WithLoadingSpinner from "../spinner/WithLoadingSpinner";
+import { NavigateTo } from "../../utils/navigationUtils";
 import "./LoginBox.css";
 
 class LoginBox extends Component {
@@ -42,7 +43,7 @@ class LoginBox extends Component {
     if (loginStatus === "Success") {
       localStorage.setItem("email", email);
       localStorage.setItem("code", code);
-      window.location.href = "/home";
+      this.props.history.push("/authoring/home");
     } else {
       alert("Unauthorized Acces");
     }
@@ -55,6 +56,13 @@ class LoginBox extends Component {
   handleCodeChange = (evt) => {
     this.updateState("code", evt.target.value);
   };
+
+  componentDidMount() {
+    const email = localStorage.getItem("email");
+    if (email) {
+      window.location.href="/authoring/home";
+    }
+   }
 
   render() {
     const { docpageUrl, email, code, loading } = this.state;

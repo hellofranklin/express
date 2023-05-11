@@ -8,7 +8,7 @@ const Formtemplates = {
 
   contact: {
     id: 2,
-    title: "ContactForm",
+    title: "Contact Form",
     description: "A regular contact form for capturing basic details",
     svg: "contact",
     elements: [
@@ -53,7 +53,7 @@ const Formtemplates = {
         Mandatory: "TRUE",
         Min: "",
         Max: "",
-        Options: ["male", "female"],
+        Options: ["Male", "Female"],
         Fieldset: "datapanel",
       },
       {
