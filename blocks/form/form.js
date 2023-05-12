@@ -132,8 +132,8 @@ const createSelect = withFieldWrapper((fd) => {
   if (fd.Placeholder) {
     const ph = document.createElement("option");
     ph.textContent = fd.Placeholder;
-    ph.setAttribute("selected", "");
     ph.setAttribute("disabled", "");
+    ph.setAttribute("selected", "");
     select.append(ph);
   }
   fd.Options.split(",").forEach((o) => {
