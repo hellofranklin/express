@@ -108,7 +108,10 @@ export const getFranklinFormDataJson = async (title, email, handleApiCall) => {
     ? "https://main--express--hellofranklin.hlx.page"
     : window.location.host;
 
-  const URL = `${host}/forms/${gmailUserId}/${title}/form.json`;
+  const updatedTitle = title.replaceAll(" ", "-");  
+  const hostWithHttps = host.startsWith("https://") ? host : `https://${host}`;
+
+  const URL = `${hostWithHttps}/forms/${gmailUserId}/${updatedTitle}/form.json`;
 
   return handleApiCall(() => fetch(encodeURI(URL), requestOptions));
 };
