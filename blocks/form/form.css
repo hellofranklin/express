@@ -536,3 +536,9 @@ main .form form fieldset[name="titlepanel"] .form-title {
 main .form form fieldset[name="titlepanel"] .form-description {
   font-size: 1.2rem;
 }
+
+
+
+main .form form fieldset[name="datapanel"] .field-wrapper {
+  padding: 20px;
+}

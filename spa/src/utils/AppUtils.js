@@ -14,6 +14,7 @@ export const getHeaderRows = (title, description) => {
       Options: [],
       Fieldset: "",
       Value: "",
+      Placeholder: "",
     },
     {
       Name: "title",
@@ -25,6 +26,7 @@ export const getHeaderRows = (title, description) => {
       Options: [],
       Fieldset: "titlepanel",
       Value: "",
+      Placeholder: "",
     },
     {
       Name: "description",
@@ -36,6 +38,7 @@ export const getHeaderRows = (title, description) => {
       Options: [],
       Fieldset: "titlepanel",
       Value: "",
+      Placeholder: "",
     },
     {
       Name: "datapanel",
@@ -47,6 +50,7 @@ export const getHeaderRows = (title, description) => {
       Options: [],
       Fieldset: "",
       Value: "",
+      Placeholder: "",
     },
   ];
 };
@@ -63,6 +67,7 @@ export const getFooterRows = () => {
       Options: [],
       Fieldset: "",
       Value: "",
+      Placeholder: "",
     },
   ];
 };
@@ -104,6 +109,7 @@ export const formJsonToBuilderState = (franklinJson) => {
           Options: [],
           Fieldset: `datapanel`,
           Value: "",
+          Placeholder: "",
         };
         while (
           i < franklinJson.length &&
@@ -126,7 +132,21 @@ export const formJsonToBuilderState = (franklinJson) => {
     }
   }
 
-  updateStatePairs["formElements"] = formElements;
+  // Iterate over the array and update the Options field
+  const updatedJsonElements = formElements.map((jsonObj) => {
+    if (typeof jsonObj.Options === "string") {
+      const optionsArray = jsonObj.Options.split(",").map((option) =>
+        option.trim()
+      );
+      return {
+        ...jsonObj,
+        Options: optionsArray,
+      };
+    }
+    return jsonObj;
+  });
+
+  updateStatePairs["formElements"] = updatedJsonElements;
   return updateStatePairs;
 };
 

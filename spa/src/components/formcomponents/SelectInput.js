@@ -10,6 +10,7 @@ class SelectInput extends FormElement {
     const defaultState = { Type: "select" };
     if (this.state.Options.length == 0) {
       defaultState["Options"] = ["", ""];
+      defaultState["Placeholder"]="Select an Option";
     }
     this.updateState(defaultState);
   }

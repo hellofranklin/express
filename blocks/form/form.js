@@ -142,6 +142,7 @@ const createSelect = withFieldWrapper((fd) => {
     option.value = o.trim();
     select.append(option);
   });
+  select.selectedIndex = 0;
   return select;
 });
 

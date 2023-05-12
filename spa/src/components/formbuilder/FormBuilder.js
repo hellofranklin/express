@@ -158,7 +158,8 @@ class FormBuilder extends Component {
       Max: "",
       Options: [],
       Fieldset: "datapanel",
-      Value: ""
+      Value: "",
+      Placeholder: "",
     };
 
     this.updateFormBuilderState({
