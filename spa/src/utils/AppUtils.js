@@ -11,7 +11,7 @@ export const getHeaderRows = (title, description) => {
       Mandatory: "",
       Min: "",
       Max: "",
-      Options: "",
+      Options: [],
       Fieldset: "",
       Value: "",
     },
@@ -22,7 +22,7 @@ export const getHeaderRows = (title, description) => {
       Mandatory: "",
       Min: "",
       Max: "",
-      Options: "",
+      Options: [],
       Fieldset: "titlepanel",
       Value: "",
     },
@@ -33,7 +33,7 @@ export const getHeaderRows = (title, description) => {
       Mandatory: "",
       Min: "",
       Max: "",
-      Options: "",
+      Options: [],
       Fieldset: "titlepanel",
       Value: "",
     },
@@ -44,7 +44,7 @@ export const getHeaderRows = (title, description) => {
       Mandatory: "",
       Min: "",
       Max: "",
-      Options: "",
+      Options: [],
       Fieldset: "",
       Value: "",
     },
@@ -60,7 +60,7 @@ export const getFooterRows = () => {
       Mandatory: "",
       Min: "",
       Max: "",
-      Options: "",
+      Options: [],
       Fieldset: "",
       Value: "",
     },
@@ -103,7 +103,7 @@ export const formJsonToBuilderState = (franklinJson) => {
           Max: "",
           Options: [],
           Fieldset: `datapanel`,
-          Value: ""
+          Value: "",
         };
         while (
           i < franklinJson.length &&
@@ -133,7 +133,7 @@ export const formJsonToBuilderState = (franklinJson) => {
 export const builderStateToFormJson = (builderState, title, description) => {
   let data = builderState.map(({ Id, ...rest }) => {
     rest.Name = rest.Label;
-    rest.Options = rest.Options.join(",");
+    rest.Options = rest.Options === "" ? "" : rest.Options.join(",");
     return rest;
   });
 
@@ -148,7 +148,7 @@ export const builderStateToFormJson = (builderState, title, description) => {
         Mandatory: element.Mandatory,
         Min: "",
         Max: "",
-        Options: "",
+        Options: [],
         Fieldset: `datapanel`,
       };
       updatedData.push(fieldsetField);
@@ -160,7 +160,7 @@ export const builderStateToFormJson = (builderState, title, description) => {
           Mandatory: false,
           Min: "",
           Max: "",
-          Options: "",
+          Options: [],
           Fieldset: `Question-${counter}-fieldset`,
         };
         updatedData.push(newField);

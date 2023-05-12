@@ -53,7 +53,6 @@ class FormElement extends Component {
   };
 
   render() {
-    console.log(this.state);
     return (
       <div
         className={`form-component ${this.state.Type}-component`}
