@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import SVGUtils from "../../utils/SVGUtils";
@@ -9,9 +9,24 @@ function Header() {
   const navigate = useNavigate();
   const email = localStorage.getItem("email");
 
+  const headerRef = useRef(null);
+
   function toggleMenu() {
     setIsMenuOpen(!isMenuOpen);
   }
+
+  const handleClickOutside = (event) => {
+    if (headerRef.current && !headerRef.current.contains(event.target)) {
+      setIsMenuOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleLogout = () => {
     localStorage.clear();
@@ -36,7 +51,7 @@ function Header() {
         </div>
 
         <div className="right-navigation-container">
-          <div className="header-menu">
+          <div className="header-menu" ref={headerRef}>
             <div className="profile-icon-container" onClick={toggleMenu}>
               <button className="header-profile-btn">
                 <div id="profileImage"> {profileCharacter} </div>

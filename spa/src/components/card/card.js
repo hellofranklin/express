@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SVGUtils from "../../utils/SVGUtils";
 import "./card.css";
@@ -7,18 +7,30 @@ import { publishFranklinForm, stageFranklinForm } from "../../api";
 
 const Card = (props) => {
   const navigate = useNavigate();
-  const [openMenus, setOpenMenus] = useState({});
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const cardRef = useRef(null);
+
+  const handleClickOutside = (event) => {
+    if (cardRef.current && !cardRef.current.contains(event.target)) {
+      setIsMenuOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const clickchandler = (formdata) => {
     let urlParams = formdata.svg === "add" ? "" : `?sample=${formdata.svg}`;
     navigate(`/create${urlParams}`);
   };
 
-  const toggleMenu = (formId) => {
-    setOpenMenus((prevState) => ({
-      ...prevState,
-      [formId]: !prevState[formId],
-    }));
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   const handlPreviewFormAction = (formtitle) => {
@@ -39,93 +51,87 @@ const Card = (props) => {
 
   const handleEditButton = (formtitle) => {
     navigate(`/create?action=update&title=${formtitle}`);
-  }
+  };
 
   if (props.type === "userform") {
     return (
-      <div className="form-card" key={props.id}>
-        <div className="form-card-image">
+      <div className="form-card user-card" key={props.id} ref={cardRef}>
+        <div
+          className="form-card-image"
+          onClick={() => handleEditButton(props.formdata.title)}
+        >
           <SVGUtils name={props.formdata.svg ? props.formdata.svg : "myform"} />
         </div>
         <div className="form-card-header">{props.formdata.title}</div>
 
         <div className="form-card-footer">
           <div className="form-card-menu">
-            <div
-              className="form-card-menu-dots"
-              onClick={() => toggleMenu(props.id)}
-            >
+            <div className="form-card-menu-dots" onClick={() => toggleMenu()}>
               &#8942;
             </div>
-            {
-              <div
-                className={`form-card-menu-items ${
-                  openMenus[props.id] ? "show" : ""
-                }`}
-              >
-                <a
-                  className="form-card-menu-item"
-                  href="#"
-                  onClick={() => handleEditButton(props.formdata.title)}
-                >
-                  Edit Form
-                </a>
+            {isMenuOpen && (
+              <div className={`form-card-menu-items`}>
                 <a
                   className="form-card-menu-item"
                   href={props.formdata.publishUrl.replace("live", "page")}
                   target="_blank"
                 >
-                  Open Preview Page
+                  <SVGUtils name="openpage" />
+                  <span>Preview Page</span>
                 </a>
                 <a
                   className="form-card-menu-item"
                   href={props.formdata.publishUrl}
                   target="_blank"
                 >
-                  Open Live Page
+                  <SVGUtils name="openpage" />
+                  <span>Live Page</span>
                 </a>
                 <a
                   className="form-card-menu-item"
                   href={props.formdata.resultSheetUrl}
                   target="_blank"
                 >
-                  Result Sheet
+                  <SVGUtils name="resultsheet" />
+                  <span>Result Sheet</span>
                 </a>
                 <a
                   className="form-card-menu-item"
                   href={props.formdata.folderUrl}
                   target="_blank"
                 >
-                  Forms Folder
+                  <SVGUtils name="folder" />
+                  <span>Forms Folder</span>
                 </a>
                 <a
                   className="form-card-menu-item"
                   href="#"
                   onClick={() => handlPreviewFormAction(props.formdata.title)}
                 >
-                  Preview Form data
+                  <SVGUtils name="previewform" />
+                  <span>Preview Form</span>
                 </a>
                 <a
                   className="form-card-menu-item"
                   href="#"
                   onClick={() => handlPublishFormAction(props.formdata.title)}
                 >
-                  Publish Form data
+                  <SVGUtils name="publishform" />
+                  <span>Publish Form</span>
                 </a>
               </div>
-            }
+            )}
           </div>
         </div>
       </div>
     );
   } else {
     return (
-      <div
-        className="form-card sample-card"
-        key={props.id}
-        onClick={() => clickchandler(props.formdata)}
-      >
-        <div className="form-card-image">
+      <div className="form-card sample-card" key={props.id}>
+        <div
+          className="form-card-image"
+          onClick={() => clickchandler(props.formdata)}
+        >
           <SVGUtils name={props.formdata.svg ? props.formdata.svg : "myform"} />
         </div>
         <div className="form-card-header">{props.formdata.title}</div>

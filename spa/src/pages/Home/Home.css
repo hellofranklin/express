@@ -75,7 +75,7 @@ input[type="text"]:focus {
     display: none;
   }
   
-  .mobile-view {
+  .bottom-view {
     display: block;
   }
 }
@@ -92,7 +92,7 @@ input[type="text"]:focus {
     display: block;
   }
   
-  .mobile-view {
+  .bottom-view {
     display: none;
   }
 }
