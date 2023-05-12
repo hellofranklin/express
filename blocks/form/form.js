@@ -347,7 +347,7 @@ function validateFormElements(form) {
     }
   });
 
-  return true;
+  return validate;
 }
 
 export default async function decorate(block) {
