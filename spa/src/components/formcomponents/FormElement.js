@@ -10,12 +10,12 @@ class FormElement extends Component {
       Name: props.elementState.Name,
       Type: props.elementState.Type,
       Label: props.elementState.Label,
-      Value: props.elementState.Value,
       Mandatory: props.elementState.Mandatory,
       Min: props.elementState.Min,
       Max: props.elementState.Max,
       Options: props.elementState.Options,
-      Fieldset: 'datapanel'
+      Fieldset: 'datapanel',
+      Value: props.elementState.Value,
     };
   }
 
@@ -53,6 +53,7 @@ class FormElement extends Component {
   };
 
   render() {
+    console.log(this.state);
     return (
       <div
         className={`form-component ${this.state.Type}-component`}
@@ -85,7 +86,7 @@ class FormElement extends Component {
               <label className="switch" title="Required">
                 <input
                   type="checkbox"
-                  checked={this.state.Mandatory === 'true'}
+                  checked={this.state.Mandatory === true}
                   onChange={(event) =>
                     this.handleChange({ Mandatory: event.target.checked })
                   }

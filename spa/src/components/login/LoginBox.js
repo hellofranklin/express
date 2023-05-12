@@ -90,7 +90,7 @@ class LoginBox extends Component {
                 id="inp_uname"
                 type="email"
                 name="uname"
-                className="input"
+                className="loginemail"
                 placeholder="Enter your Gmail"
                 value={email}
                 onChange={(event) => this.handleEmailChange(event)}
