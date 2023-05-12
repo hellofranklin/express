@@ -65,10 +65,35 @@ input[type="text"]:focus {
   }
 }
 
+@media screen and (max-width: 767px) {
+    /* CSS styles for mobile view */
+  .formbuilder-container {
+    max-width: 540px;
+  }
+
+  .sidebar-view {
+    display: none;
+  }
+  
+  .mobile-view {
+    display: block;
+  }
+}
+
 @media screen and (min-width: 768px) {
+  /* CSS styles for desktop view */
+
   .formbuilder-container {
     max-width: 740px;
     margin: 0 auto 10px;
+  }
+
+  .sidebar-view {
+    display: block;
+  }
+  
+  .mobile-view {
+    display: none;
   }
 }
 

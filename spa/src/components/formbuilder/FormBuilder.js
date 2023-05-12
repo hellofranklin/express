@@ -15,6 +15,7 @@ import {
   formJsonToBuilderState,
 } from "../../utils/AppUtils";
 import WithNavigate from "../WithNavigate";
+import BottomNavigation from "../bottombar/BottomNavigation";
 
 class FormBuilder extends Component {
   constructor(props) {
@@ -253,8 +254,13 @@ class FormBuilder extends Component {
             )}
           </div>
         </div>
-
-        <SideBar onAddElement={this.addElement} />
+        {/* on basis of css handling which one to display */}
+        <div className="sidebar-view">
+          <SideBar onAddElement={this.addElement} />
+        </div>
+        <div className="bottom-view">
+          <BottomNavigation onAddElement={this.addElement} />
+        </div>
       </div>
     );
   }
