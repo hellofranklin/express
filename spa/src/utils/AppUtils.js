@@ -153,7 +153,12 @@ export const formJsonToBuilderState = (franklinJson) => {
 export const builderStateToFormJson = (builderState, title, description) => {
   let data = builderState.map(({ Id, ...rest }) => {
     rest.Name = rest.Label;
-    rest.Options = rest.Options === "" ? "" : rest.Options.join(",");
+    if (typeof rest.Options === "string") {
+      rest.Options = rest.Options.split(",");
+    } 
+    if ( rest.Type === 'text') {
+      rest.Placeholder = "Your answer"
+    }
     return rest;
   });
 
@@ -170,6 +175,8 @@ export const builderStateToFormJson = (builderState, title, description) => {
         Max: "",
         Options: [],
         Fieldset: `datapanel`,
+        Value: '',
+        Placeholder: "",
       };
       updatedData.push(fieldsetField);
       for (const option of element.Options) {
@@ -182,6 +189,8 @@ export const builderStateToFormJson = (builderState, title, description) => {
           Max: "",
           Options: [],
           Fieldset: `Question-${counter}-fieldset`,
+          Value: '',
+          Placeholder: "",
         };
         updatedData.push(newField);
       }
@@ -194,7 +203,6 @@ export const builderStateToFormJson = (builderState, title, description) => {
   const headerRows = getHeaderRows(title, description);
   const footerRows = getFooterRows();
   const helixDefaultJson = headerRows.concat(updatedData).concat(footerRows);
-
 
   // Iterate over the array and update the Options field
   const udpatedHelixJson = helixDefaultJson.map((jsonObj) => {

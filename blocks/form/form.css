@@ -19,7 +19,7 @@
   --form-paragraph-font-size: var(--form-font-size-xs);
   --form-label-color: var(--mt-global-color-dove-gray);
   --form-label-font-size: var(--form-font-size-xs);
-  --form-label-font-weight: bold;
+  --form-label-font-weight: light;
   --form-fieldset-border: 0;
   --form-fieldset-marign: 0;
   --form-fieldset-legend-color: var(--form-label-color);
@@ -120,6 +120,7 @@ main .form label {
   font-size: var(--form-label-font-size);
   color: var(--form-label-color);
   margin: 1rem 0;
+  margin-bottom: 16px;
 }
 
 main .form label.required::after {
@@ -160,13 +161,30 @@ main
     .form-radio-wrapper:first-of-type,
     .form-checkbox-wrapper:first-of-type
   ) {
-  margin: var(--form-field-gap);
+  padding-top: 30px;
+  margin-top: var(--form-field-gap);
+}
+
+main
+  .form
+  form
+  fieldset
+  > :is(.form-radio-wrapper:last-of-type, .form-checkbox-wrapper:last-of-type) {
+  margin-bottom: 30px;
 }
 
 main .form form :is(.form-checkbox-wrapper, .form-radio-wrapper) {
   display: flex;
   align-items: baseline;
-  margin: 0;
+  width: 80%;
+  padding: 0px;
+  margin: 5px;
+  margin-left: 20px;
+  font-family: "docs-Roboto";
+  font-weight: 400;
+  font-size: 11pt;
+  line-height: 2;
+  letter-spacing: 0;
 }
 
 main .form .form-radio-wrapper label,
@@ -509,7 +527,7 @@ header {
 
 main form fieldset.form-fieldset-wrapper > label:first-child {
   position: relative;
-  left: 15px;
+  left: 26px;
   top: 15px;
   font-weight: var(--form-label-font-weight);
   font-size: var(--form-label-font-size);
@@ -527,6 +545,13 @@ main form fieldset.form-fieldset-wrapper > label:first-child {
 main .form form fieldset[name="titlepanel"] {
   background-color: white;
   margin: auto;
+  width: 95%;
+  position: relative;
+  left: 17px;
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0 1px 1px 0 rgba(0, 0, 0, 0.141), 0 1px 3px 0 rgba(0, 0, 0, 0.122);
+  border-radius: 8px;
+  border-top: 5px #9e6060 solid;
 }
 
 main .form form fieldset[name="titlepanel"] .form-title {
@@ -537,8 +562,25 @@ main .form form fieldset[name="titlepanel"] .form-description {
   font-size: 1.2rem;
 }
 
+main .form form fieldset[name="datapanel"] > .field-wrapper {
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0 1px 1px 0 rgba(0, 0, 0, 0.141), 0 1px 3px 0 rgba(0, 0, 0, 0.122);
+  border-radius: 8px;
+}
 
+main .form form fieldset[name="datapanel"] > .form-text-wrapper {
+  padding: 30px;
+}
 
-main .form form fieldset[name="datapanel"] .field-wrapper {
-  padding: 20px;
+main .form .field-wrapper input[type="text"] {
+  border: 0;
+  border-bottom: 0.8px solid #d0bdbd;
+  font-weight: 400;
+  transition: border-color 0.2s ease-in-out;
+}
+
+main .form .field-wrapper input[type="text"]:focus {
+  border: 0;
+  border-bottom: 0.8px solid #d0bdbd;
+  outline: none;
 }
