@@ -385,7 +385,11 @@ main .form form .form-message {
 
 @media (max-width: 750px) {
   .form-container {
-    max-width: 90%
+    max-width: 100%
+  }
+
+  .form-fieldset-wrapper {
+    padding: 2px;
   }
 }
 
