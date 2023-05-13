@@ -143,9 +143,19 @@ header .nav-brand {
   grid-area: brand;
   flex-basis: 128px;
   font-size: var(--heading-font-size-s);
-  font-weight: 700;
+  font-weight: 550;
   line-height: 1;
+  background-image: url('../../icons/adobe_logo.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding-left: 45px; /* Adjust padding as needed */
+  cursor: pointer;
+  font-size: 18px;
 }
+
+/* header .nav-brand::before {
+  content: url('../../icons/adobe_logo.png');
+} */
 
 header nav .nav-brand img {
   width: 128px;
