@@ -195,5 +195,18 @@ export const builderStateToFormJson = (builderState, title, description) => {
   const footerRows = getFooterRows();
   const helixDefaultJson = headerRows.concat(updatedData).concat(footerRows);
 
-  return helixDefaultJson;
+
+  // Iterate over the array and update the Options field
+  const udpatedHelixJson = helixDefaultJson.map((jsonObj) => {
+    if (typeof jsonObj.Options !== "string") {
+      const options = jsonObj.Options.join(",");
+      return {
+        ...jsonObj,
+        Options: options,
+      };
+    }
+    return jsonObj;
+  });
+
+  return udpatedHelixJson;
 };

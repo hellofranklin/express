@@ -38,7 +38,9 @@ const Card = (props) => {
       formtitle,
       localStorage.getItem("email"),
       props.handleApiCall
-    );
+    ).then((value) => {
+      window.open(props.formdata.publishUrl.replace("live", "page"), "_blank");
+    });
   };
 
   const handlPublishFormAction = (formtitle) => {
@@ -46,7 +48,9 @@ const Card = (props) => {
       formtitle,
       localStorage.getItem("email"),
       props.handleApiCall
-    );
+    ).then((value) => {
+      window.open(props.formdata.publishUrl, "_blank");
+    });
   };
 
   const handleEditButton = (formtitle) => {

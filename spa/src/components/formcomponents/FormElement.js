@@ -16,6 +16,7 @@ class FormElement extends Component {
       Options: props.elementState.Options,
       Fieldset: 'datapanel',
       Value: props.elementState.Value,
+      Placeholder: props.elementState.Placeholder
     };
   }
 
