@@ -211,21 +211,21 @@ main .form button {
   padding: 0 25px;
   background-color: #fff;
   border-radius: 0.25rem;
-  border: 1px solid #dd4343;
-  color: #dd4343;
+  border: 1px solid #01759f;
+  color: #01759f;
   font-size: 13px;
   line-height: 40px;
   font-weight: 400;
   text-align: center;
 }
 main .form button:hover {
-  background-color: #dd4343;
+  background-color: #01759f;
   color: #ffffff;
   
 }
 
 main .form button:hover {
-  background-color: #dd4343;
+  background-color: #01759f;
 }
 
 main .form-submit-wrapper {
@@ -563,7 +563,7 @@ main .form form fieldset[name="titlepanel"] {
   box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2),
     0 1px 1px 0 rgba(0, 0, 0, 0.141), 0 1px 3px 0 rgba(0, 0, 0, 0.122);
   border-radius: 8px;
-  border-top: 5px #dd4343 solid;
+  border-top: 5px #01759f solid;
   width: 95%;
   margin: auto;
 }
