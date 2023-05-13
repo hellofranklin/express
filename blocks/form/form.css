@@ -41,10 +41,10 @@
 
 * {
   box-sizing: border-box;
-}
+  font-family:"Adobe Clean", "Open Sans",Arial, Helvetica, sans-serif}
 
 body {
-  background-color: rgb(250, 227, 225);
+  background-color: rgb(247, 247, 247);
 }
 
 main .form-container {
@@ -184,7 +184,7 @@ main .form form :is(.form-checkbox-wrapper, .form-radio-wrapper) {
   padding: 0px;
   margin: 5px;
   margin-left: 20px;
-  font-family: "docs-Roboto";
+
   font-weight: 400;
   font-size: 11pt;
   line-height: 2;
@@ -211,19 +211,21 @@ main .form button {
   padding: 0 25px;
   background-color: #fff;
   border-radius: 0.25rem;
-  border: 1px solid #0070d2;
-  color: #0070d2;
+  border: 1px solid #dd4343;
+  color: #dd4343;
   font-size: 13px;
   line-height: 40px;
   font-weight: 400;
   text-align: center;
 }
 main .form button:hover {
-  background-color: #f4f6f9;
+  background-color: #dd4343;
+  color: #ffffff;
+  
 }
 
 main .form button:hover {
-  background: var(--form-button-background-hover-color);
+  background-color: #dd4343;
 }
 
 main .form-submit-wrapper {
@@ -515,7 +517,7 @@ main .form form .form-message {
 
 .form-title {
   font-size: 24pt;
-  font-family: "docs-Roboto", Helvetica, Arial, sans-serif;
+
   letter-spacing: 0;
 }
 
