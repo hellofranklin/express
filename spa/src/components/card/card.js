@@ -70,11 +70,22 @@ const Card = (props) => {
 
         <div className="form-card-footer">
           <div className="form-card-menu">
+
+
             <div className="form-card-menu-dots" onClick={() => toggleMenu()}>
               &#8942;
             </div>
             {isMenuOpen && (
               <div className={`form-card-menu-items`}>
+               
+                <a
+                  className="form-card-menu-item"
+                  href="#"
+                  onClick={() => handlPreviewFormAction(props.formdata.title)}
+                >
+                  <SVGUtils name="previewform" />
+                  <span>Preview Form</span>
+                </a>
                 <a
                   className="form-card-menu-item"
                   href={props.formdata.publishUrl.replace("live", "page")}
@@ -82,6 +93,14 @@ const Card = (props) => {
                 >
                   <SVGUtils name="openpage" />
                   <span>Preview Page</span>
+                </a>
+                <a
+                  className="form-card-menu-item"
+                  href="#"
+                  onClick={() => handlPublishFormAction(props.formdata.title)}
+                >
+                  <SVGUtils name="publishform" />
+                  <span>Publish Form</span>
                 </a>
                 <a
                   className="form-card-menu-item"
@@ -107,22 +126,7 @@ const Card = (props) => {
                   <SVGUtils name="folder" />
                   <span>Forms Folder</span>
                 </a>
-                <a
-                  className="form-card-menu-item"
-                  href="#"
-                  onClick={() => handlPreviewFormAction(props.formdata.title)}
-                >
-                  <SVGUtils name="previewform" />
-                  <span>Preview Form</span>
-                </a>
-                <a
-                  className="form-card-menu-item"
-                  href="#"
-                  onClick={() => handlPublishFormAction(props.formdata.title)}
-                >
-                  <SVGUtils name="publishform" />
-                  <span>Publish Form</span>
-                </a>
+
               </div>
             )}
           </div>
