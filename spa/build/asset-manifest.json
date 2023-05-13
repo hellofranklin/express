@@ -1,30 +1,30 @@
 {
   "files": {
-    "main.css": "/spa/build/static/css/main.efb2166b.css",
-    "main.js": "/spa/build/static/js/main.753feb9b.js",
+    "main.css": "/spa/build/static/css/main.e27c3ae2.css",
+    "main.js": "/spa/build/static/js/main.6500506c.js",
     "static/js/787.bc9ecdee.chunk.js": "/spa/build/static/js/787.bc9ecdee.chunk.js",
     "static/media/card.svg": "/spa/build/static/media/card.867c5b225d91edeff92ce0f0f2c545ff.svg",
     "static/media/delete.svg": "/spa/build/static/media/delete.77be13394f847f44f07780d4377b9416.svg",
-    "static/media/contact.svg": "/spa/build/static/media/contact.c3c35f610ebfe6b9ea167cc4fbcd0db8.svg",
-    "static/media/myform.svg": "/spa/build/static/media/myform.8ac1c43fd3bb50e98a4032b4eb73c199.svg",
-    "static/media/homeMobile.svg": "/spa/build/static/media/homeMobile.65ce2afb4d9826f0a33a24e5f62dc290.svg",
-    "static/media/myformsMobile.svg": "/spa/build/static/media/myformsMobile.ee56f572129e8ebc5205f5df1c3727e6.svg",
-    "static/media/feedback.svg": "/spa/build/static/media/feedback.794c6536481efd9045155092cdac8a00.svg",
-    "static/media/addMobile.svg": "/spa/build/static/media/addMobile.fdaa41e18a052f84f2f1eab04f5e228a.svg",
+    "static/media/contact.svg": "/spa/build/static/media/contact.99ab1e4f5935efcda6e7a24629585558.svg",
+    "static/media/myform.svg": "/spa/build/static/media/myform.f76cbf6bcdc3d792eff81abeb886c3c7.svg",
+    "static/media/homeMobile.svg": "/spa/build/static/media/homeMobile.2aab7cc745e30f1dfe2bd76487e04b7c.svg",
+    "static/media/myformsMobile.svg": "/spa/build/static/media/myformsMobile.3159f46d5d6b7ee1cf47e57fe92eac1e.svg",
+    "static/media/feedback.svg": "/spa/build/static/media/feedback.f1a59fa69cebd11e9700d6e07543ac42.svg",
+    "static/media/addMobile.svg": "/spa/build/static/media/addMobile.7778674fd1eaa5a78402500bdabf6a8c.svg",
     "index.html": "/spa/build/index.html",
-    "static/media/add.svg": "/spa/build/static/media/add.26640e88c224c0792e786ce64bc67436.svg",
+    "static/media/add.svg": "/spa/build/static/media/add.006bd567597d4ea92fed48a6a68471c8.svg",
     "static/media/logo.svg": "/spa/build/static/media/logo.fc7c0a45d5caa6fda0626bec19ddc0c6.svg",
     "static/media/open_link.svg": "/spa/build/static/media/open_link.99886695cba97e71f77f7f0e63b7f076.svg",
     "static/media/publish_form.svg": "/spa/build/static/media/publish_form.8727a3dac0a47f3c4fd2269163bd592a.svg",
     "static/media/preview_page.svg": "/spa/build/static/media/preview_page.f77a0d928a08c068455a9f5671176d6c.svg",
     "static/media/result_sheet.svg": "/spa/build/static/media/result_sheet.584b5d3966c314df148b5e66cffc4093.svg",
     "static/media/folder.svg": "/spa/build/static/media/folder.b85e639d92d4e045ca91abd587c081b1.svg",
-    "main.efb2166b.css.map": "/spa/build/static/css/main.efb2166b.css.map",
-    "main.753feb9b.js.map": "/spa/build/static/js/main.753feb9b.js.map",
+    "main.e27c3ae2.css.map": "/spa/build/static/css/main.e27c3ae2.css.map",
+    "main.6500506c.js.map": "/spa/build/static/js/main.6500506c.js.map",
     "787.bc9ecdee.chunk.js.map": "/spa/build/static/js/787.bc9ecdee.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.efb2166b.css",
-    "static/js/main.753feb9b.js"
+    "static/css/main.e27c3ae2.css",
+    "static/js/main.6500506c.js"
   ]
 }
