@@ -383,6 +383,12 @@ main .form form .form-message {
   width: calc(100% - 16px);
 }
 
+@media (max-width: 750px) {
+  .form-container {
+    max-width: 90%
+  }
+}
+
 @media (min-width: 576px) {
   .form-container {
     max-width: 540px;
