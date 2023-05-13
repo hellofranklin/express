@@ -9,7 +9,7 @@
 }
 
 .form-component[focused="true"] {
-  border-left: 10px solid rgb(120, 108, 151);
+  border-left: 10px solid #01759f;
 }
 
 input[type="text"],

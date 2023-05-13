@@ -40,7 +40,7 @@
 }
 
 .dropdown-content button:hover {
-  background-color: #eae0e0;
+  color: #01759f;
 }
 
 .dropdown:hover .dropdown-content {
@@ -53,16 +53,16 @@
 .button-17 {
   align-items: center;
   appearance: none;
-  background-color: #fff;
+  background-color: #01759f;;
   border-radius: 24px;
   border-style: none;
   box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
   box-sizing: border-box;
-  color: #3c4043;
+  color: #ffffff;
   cursor: pointer;
   display: inline-flex;
   fill: currentcolor;
-  font-family: "Google Sans",Roboto,Arial,sans-serif;
+
   font-size: 14px;
   font-weight: 700;
   height: 48px;
@@ -86,7 +86,7 @@
 
 .button-17:hover {
   background: #F6F9FE;
-  color: #174ea6;
+  color: #01759f;;
 }
 
 .button-17:active {
@@ -96,7 +96,7 @@
 
 .button-17:focus {
   outline: none;
-  border: 2px solid #4285f4;
+ 
 }
 
 .button-17:not(:disabled) {

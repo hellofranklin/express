@@ -72,7 +72,7 @@ a.form-card-menu-item {
 }
 
 a.form-card-menu-item:hover {
-  color: #3eabff;
+  color: #01759f;
   background-color: #eee;
 }
 
@@ -83,23 +83,25 @@ a.form-card-menu-item svg {
 }
 
 .createButton {
-  display: inline-block;
+
   outline: none;
   cursor: pointer;
-  font-weight: 600;
-  border-radius: 3px;
+  font-weight: bold;
+  text-transform: capitalize;
   padding: 12px 24px;
-  border: 0;
-  color: #3a4149;
-  background: #e7ebee;
-  line-height: 1.15;
+  color: #ffffff;
+  background: #01759f;
+
   font-size: 16px;
   transition: all 0.1s ease;
-  box-shadow: 0 0 0 0 #fff, 0 0 0 1px #babebe;
+  box-shadow: 0 0 0 0 #fff, 0 0 0 1px #eaeeee;
+
 }
 
 .createButton:hover {
-  transition: all 0.1s ease;
-  box-shadow: 0 0 0 0 #d0c5c5, 0 0 0 3px #a8aaaa;
+  background-color: #ffffff;
+  color:#01759f;
+
+  
 }
 
