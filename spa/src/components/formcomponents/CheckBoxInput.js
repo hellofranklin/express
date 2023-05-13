@@ -30,10 +30,7 @@ class CheckboxInput extends FormElement {
 
   addOption = () => {
     let options = this.state.Options;
-    options[this.state.Options.length] = `Option ${
-      this.state.Options.length + 1
-    }`;
-
+    options[this.state.Options.length] = "";
     this.handleChange({ Options: options });
   };
 

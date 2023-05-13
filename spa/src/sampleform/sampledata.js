@@ -82,14 +82,29 @@ const Formtemplates = {
   feedback: {
     id: 3,
     title: "Feedback Form",
-    description: "A regular feedback form for capturing event details",
+    description: `Thank you for participating in our event. We hope you had as much fun attending as we did organizing it. 
+
+    We want to hear your feedback so we can keep improving our logistics and content. Please fill this quick survey and let us know your thoughts (your answers will be anonymous).`,
     svg: "feedback",
     elements: [
       {
         Id: 1,
-        Name: "",
+        Name: "How Satisfied You are with event",
+        Type: "radio",
+        Label: "How Satisfied You are with event",
+        Mandatory: "",
+        Min: "",
+        Max: "",
+        Options: ["Very Much", "Not Much", "Just Good"],
+        Fieldset: "datapanel",
+        Value: "",
+        Placeholder: "",
+      },
+      {
+        Id: 2,
+        Name: "What were your key take aways from this event?",
         Type: "text",
-        Label: "",
+        Label: "What were your key take aways from this event?",
         Mandatory: "",
         Min: "",
         Max: "",
@@ -98,11 +113,12 @@ const Formtemplates = {
         Value: "",
         Placeholder: "",
       },
+
       {
-        Id: 2,
-        Name: "",
-        Type: "text",
-        Label: "",
+        Id: 3,
+        Name: "Additional Feedback ?",
+        Type: "textarea",
+        Label: "Additional Feedback ?",
         Mandatory: "",
         Min: "",
         Max: "",

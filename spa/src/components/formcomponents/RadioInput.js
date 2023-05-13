@@ -26,13 +26,9 @@ class RadioInput extends FormElement {
     options[index] = event.target.value;
     this.handleChange({ Options: options });
   };
-
   addOption = () => {
     let options = this.state.Options;
-    options[this.state.Options.length] = `Option ${
-      this.state.Options.length + 1
-    }`;
-
+    options[this.state.Options.length] = "";
     this.handleChange({ Options: options });
   };
 

@@ -2,15 +2,11 @@ import React from "react";
 import FormElement from "./FormElement";
 
 class SelectInput extends FormElement {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     const defaultState = { Type: "select" };
     if (this.state.Options.length == 0) {
       defaultState["Options"] = ["", ""];
-      defaultState["Placeholder"]="Select an Option";
+      defaultState["Placeholder"] = "Select an Option";
     }
     this.updateState(defaultState);
   }
@@ -31,10 +27,7 @@ class SelectInput extends FormElement {
 
   addOption = () => {
     let options = this.state.Options;
-    options[this.state.Options.length] = `Option ${
-      this.state.Options.length + 1
-    }`;
-
+    options[this.state.Options.length] = "";
     this.handleChange({ Options: options });
   };
 
