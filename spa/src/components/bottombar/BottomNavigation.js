@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./BottomNavigation.css";
+import SVGUtils from "../../utils/SVGUtils";
 
 const BottomNavigation = ({ onAddElement }) => {
   const [showOptions, setShowOptions] = useState(false);
@@ -33,13 +34,15 @@ const BottomNavigation = ({ onAddElement }) => {
       {/* Bottom Navigation */}
       <div className="bottom-navigation">
         <button className="nav-item">
-          <span>Home</span>
+          
+          <SVGUtils name="MobileHome"/>
         </button>
         <button className="nav-item create-plus-button" onClick={toggleOptions}>
-          <span className="create-plus-span">+</span>
+         
+          <SVGUtils name="MobileAdd"/>
         </button>
         <button className="nav-item">
-          <span>My Forms</span>
+        <SVGUtils name="MobileForms"/>
         </button>
       </div>
 

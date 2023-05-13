@@ -1,6 +1,7 @@
 .formbuilder-container {
   display: flex;
   justify-content: space-evenly;
+  margin-bottom: 200px;
 }
 .form-panel {
   flex-grow: 0.6;
