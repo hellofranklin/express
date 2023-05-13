@@ -6,8 +6,7 @@ import {
   USER_FORMS_API_CALL_SPINNER_MSG,
   USER_LOGIN_API_CALL_SPINNER_MSG,
 } from "../constants/Constants";
-import { getFooterRows, getGmailUserId } from "../utils/AppUtils";
-import { getHeaderRows } from "../utils/AppUtils";
+import { getGmailUserId } from "../utils/AppUtils";
 
 export const createForm = async (
   data,
@@ -53,7 +52,7 @@ export const generateLoginCodeApi = async (email, handleApiCall) => {
     process.env.REACT_APP_BACKEND_URL +
     `?requestType=${requestType}&email=${email}`;
 
-  return handleApiCall(() => fetch(encodeURI(URL), requestOptions),"no");
+  return handleApiCall(() => fetch(encodeURI(URL), requestOptions), "no");
 };
 
 export const login = async (email, code, handleApiCall) => {
@@ -108,7 +107,7 @@ export const getFranklinFormDataJson = async (title, email, handleApiCall) => {
     ? "https://main--express--hellofranklin.hlx.page"
     : window.location.host;
 
-  const updatedTitle = title.replaceAll(" ", "-");  
+  const updatedTitle = title.replaceAll(" ", "-");
   const hostWithHttps = host.startsWith("https://") ? host : `https://${host}`;
 
   const URL = `${hostWithHttps}/forms/${gmailUserId}/${updatedTitle}/form.json`;
@@ -116,7 +115,12 @@ export const getFranklinFormDataJson = async (title, email, handleApiCall) => {
   return handleApiCall(() => fetch(encodeURI(URL), requestOptions));
 };
 
-export const stageFranklinForm = async (title, email, handleApiCall) => {
+export const stageFranklinForm = async (
+  title,
+  email,
+  handleApiCall,
+  message
+) => {
   const requestType = "stageform";
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "text/plain;charset=utf-8");
@@ -131,7 +135,7 @@ export const stageFranklinForm = async (title, email, handleApiCall) => {
 
   return handleApiCall(
     () => fetch(encodeURI(URL), requestOptions),
-    STAGE_API_CALL_SPINNER_MSG
+    message === "no" ? message : STAGE_API_CALL_SPINNER_MSG
   );
 };
 

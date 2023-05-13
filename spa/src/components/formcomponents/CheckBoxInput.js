@@ -2,14 +2,10 @@ import React from "react";
 import FormElement from "./FormElement";
 
 class CheckboxInput extends FormElement {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     const defaultState = { Type: "checkbox" };
-    if ( this.state.Options.length == 0) {
-      defaultState["Options"] = ["",""];
+    if (this.state.Options.length === 0) {
+      defaultState["Options"] = ["", ""];
     }
     this.updateState(defaultState);
   }

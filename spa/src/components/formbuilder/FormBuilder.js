@@ -7,7 +7,7 @@ import RadioInput from "../formcomponents/RadioInput";
 import SideBar from "../sidebar/SideBar";
 import WithLoadingSpinner from "../spinner/WithLoadingSpinner";
 import TitlePanel from "../titlepanel/TitlePanel";
-import { createForm, getFranklinFormDataJson } from "../../api/index";
+import { createForm, getFranklinFormDataJson, stageFranklinForm } from "../../api/index";
 
 import Formtemplates from "../../sampleform/sampledata";
 import {
@@ -170,19 +170,19 @@ class FormBuilder extends Component {
   };
 
   formCreatorBtnHandler = async () => {
-    const { formTitle, formDesc, formElements } = this.state;
+    const { formTitle, formDesc, formElements , email, formAction} = this.state;
     if (
       this.validateData(formElements, this.state.email, formTitle, formDesc)
     ) {
       const data = builderStateToFormJson(formElements, formTitle, formDesc);
       const response = await createForm(
         data,
-        this.state.email,
+        email,
         formTitle,
         this.props.handleApiCall,
-        this.state.formAction
+        formAction
       );
-      if (this.state.formAction === "create") {
+      if (formAction === "create") {
         const cachedData = JSON.parse(localStorage.getItem("data"));
         const form = {
           title: formTitle,
@@ -197,6 +197,8 @@ class FormBuilder extends Component {
           localStorage.setItem("data", JSON.stringify(cachedData));
         }
       }
+
+      stageFranklinForm(formTitle, email, this.props.handleApiCall , "no");
       this.props.navigate("/home");
     }
   };
