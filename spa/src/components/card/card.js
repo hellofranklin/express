@@ -57,6 +57,13 @@ const Card = (props) => {
     navigate(`/create?action=update&title=${formtitle}`);
   };
 
+  const cardHeaderTitle = (formTitle) => {
+    if (formTitle.length > 18) {
+      return formTitle.substring(0, 18) + "...";
+    }
+    return formTitle;
+  };
+
   if (props.type === "userform") {
     return (
       <div className="form-card user-card" key={props.id} ref={cardRef}>
@@ -66,18 +73,15 @@ const Card = (props) => {
         >
           <SVGUtils name={props.formdata.svg ? props.formdata.svg : "myform"} />
         </div>
-        <div className="form-card-header">{props.formdata.title}</div>
+        <div className="form-card-header">{cardHeaderTitle()}</div>
 
         <div className="form-card-footer">
           <div className="form-card-menu">
-
-
             <div className="form-card-menu-dots" onClick={() => toggleMenu()}>
               &#8942;
             </div>
             {isMenuOpen && (
               <div className={`form-card-menu-items`}>
-               
                 <a
                   className="form-card-menu-item"
                   href="#"
@@ -126,7 +130,6 @@ const Card = (props) => {
                   <SVGUtils name="folder" />
                   <span>Forms Folder</span>
                 </a>
-
               </div>
             )}
           </div>
