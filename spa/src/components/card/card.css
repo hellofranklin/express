@@ -83,7 +83,6 @@ a.form-card-menu-item svg {
 }
 
 .createButton {
-
   outline: none;
   cursor: pointer;
   font-weight: bold;
@@ -95,13 +94,35 @@ a.form-card-menu-item svg {
   font-size: 16px;
   transition: all 0.1s ease;
   box-shadow: 0 0 0 0 #fff, 0 0 0 1px #eaeeee;
-
 }
 
 .createButton:hover {
   background-color: #ffffff;
-  color:#01759f;
-
-  
+  color: #01759f;
 }
 
+@media screen and (max-width: 767px) {
+  .form-card {
+    width: 100%;
+    margin: auto;
+    margin-bottom: 20px;
+  }
+
+  .container.sample-forms {
+    margin: auto;
+    padding: 0;
+  }
+
+  .container.my-forms {
+    margin: auto;
+    padding: 0;
+  }
+
+  .form-card-image svg {
+    width: 50%;
+  }
+
+  .form-card-menu-items {
+    left: -75px;
+  }
+}

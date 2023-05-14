@@ -75,7 +75,7 @@ export const login = async (email, code, handleApiCall) => {
   );
 };
 
-export const getUserForms = async (email, handleApiCall) => {
+export const getUserForms = async (email, handleApiCall , message) => {
   const requestType = "userforms";
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "text/plain;charset=utf-8");
@@ -90,7 +90,7 @@ export const getUserForms = async (email, handleApiCall) => {
 
   return handleApiCall(
     () => fetch(encodeURI(URL), requestOptions),
-    USER_FORMS_API_CALL_SPINNER_MSG
+    message === "no" ? message: USER_FORMS_API_CALL_SPINNER_MSG
   );
 };
 

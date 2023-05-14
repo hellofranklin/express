@@ -11,10 +11,15 @@ import { ReactComponent as FolderIcon } from "../static/folder.svg";
 import { ReactComponent as PreviewFormIcon } from "../static/preview_page.svg";
 import { ReactComponent as PublishFormIcon } from "../static/publish_form.svg";
 import { ReactComponent as ResultSheetIcon } from "../static/result_sheet.svg";
-import { ReactComponent as MobileHome} from "../static/homeMobile.svg";
-import { ReactComponent as MobileAdd} from "../static/addMobile.svg";
-import { ReactComponent as MobileForms} from "../static/myformsMobile.svg";
-
+import { ReactComponent as MobileHome } from "../static/homeMobile.svg";
+import { ReactComponent as MobileAdd } from "../static/addMobile.svg";
+import { ReactComponent as MobileForms } from "../static/myformsMobile.svg";
+import { ReactComponent as TextIcon } from "../static/text.svg";
+import { ReactComponent as CheckBoxIcon } from "../static/checkbox.svg";
+import { ReactComponent as RadioIcon } from "../static/radio.svg";
+import { ReactComponent as EmailIcon } from "../static/email.svg";
+import { ReactComponent as SelectIcon } from "../static/select.svg";
+import { ReactComponent as TextareaIcon } from "../static/textarea.svg";
 
 const SVGUtils = (props) => {
   switch (props.name) {
@@ -42,12 +47,24 @@ const SVGUtils = (props) => {
       return <PublishFormIcon />;
     case "resultsheet":
       return <ResultSheetIcon />;
-      case "MobileHome":
-        return <MobileHome />;
-      case "MobileAdd":
-        return <MobileAdd />;   
-      case "MobileForms":
-        return <MobileForms />;
+    case "MobileHome":
+      return <MobileHome />;
+    case "MobileAdd":
+      return <MobileAdd />;
+    case "MobileForms":
+      return <MobileForms />;
+    case "Email":
+      return <EmailIcon />;
+    case "Text":
+      return <TextIcon />;
+    case "Radio":
+      return <RadioIcon />;
+    case "Checkbox":
+      return <CheckBoxIcon />;
+    case "Select":
+      return <SelectIcon />;
+    case "Textarea":
+      return <TextareaIcon />;
     default:
       return <></>;
   }

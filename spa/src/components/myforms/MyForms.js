@@ -6,8 +6,12 @@ import Card from "../card/card";
 import Header from "../header/Header";
 import WithLoadingSpinner from "../spinner/WithLoadingSpinner";
 
+import './MyForms.css'
+
 const MyForms = (props) => {
   const [forms, setForms] = useState([]);
+
+  const [loadingMyForms, isLoadingMyForms] = useState(false);
 
   useEffect(() => {
     window.onbeforeunload = () => {
@@ -22,13 +26,27 @@ const MyForms = (props) => {
       setForms(JSON.parse(cachedData));
     } else {
       const userEmail = localStorage.getItem("email");
-      getUserForms(userEmail, props.handleApiCall).then((responseData) => {
-        localStorage.setItem("data", JSON.stringify(responseData.forms));
-        setForms(responseData.forms);
-      });
+      isLoadingMyForms(true);
+      getUserForms(userEmail, props.handleApiCall, "no").then(
+        (responseData) => {
+          localStorage.setItem("data", JSON.stringify(responseData.forms));
+          setForms(responseData.forms);
+          isLoadingMyForms(false);
+        }
+      );
     }
   }, []);
 
+  const loadingDots = () => {
+    return (
+      <div className="loading-dots">
+        Loading
+        <div className="loading-dot"></div>
+        <div className="loading-dot"></div>
+        <div className="loading-dot"></div>
+      </div>
+    );
+  };
   return (
     <div>
       <Header />
@@ -52,7 +70,9 @@ const MyForms = (props) => {
             <h3> My Forms</h3>
           </div>
           <div className="form-cards">
-            {forms.length <= 0 ? (
+            {loadingMyForms ? (
+              loadingDots()
+            ) : forms.length <= 0 ? (
               <p> No Forms Found </p>
             ) : (
               forms.map((form, index) => (

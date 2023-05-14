@@ -14,9 +14,9 @@ class FormElement extends Component {
       Min: props.elementState.Min,
       Max: props.elementState.Max,
       Options: props.elementState.Options,
-      Fieldset: 'datapanel',
+      Fieldset: "datapanel",
       Value: props.elementState.Value,
-      Placeholder: props.elementState.Placeholder
+      Placeholder: props.elementState.Placeholder,
     };
   }
 
@@ -37,8 +37,12 @@ class FormElement extends Component {
   };
 
   handleDragStart = (e, index) => {
-
     e.dataTransfer.setData("index", index);
+  };
+
+  handleDragEnter = (e, index) => {
+    const targetIndex = index;
+  
   };
 
   handleDragOver = (e) => {
@@ -48,9 +52,15 @@ class FormElement extends Component {
 
   handleDrop = (e, index) => {
     e.preventDefault();
+
     const dragIndex = e.dataTransfer.getData("index");
     const targetIndex = e.target.closest(".form-component").dataset.index;
-    this.props.rearrangeFormElements(parseInt(dragIndex), parseInt(targetIndex));
+
+    console.log("dragIndex  " + dragIndex + " " + "targetIndex " + targetIndex);
+    this.props.rearrangeFormElements(
+      parseInt(dragIndex),
+      parseInt(targetIndex)
+    );
   };
 
   render() {
@@ -64,6 +74,7 @@ class FormElement extends Component {
         onDragStart={(e) => this.handleDragStart(e, this.state.Id)}
         onDragOver={this.handleDragOver}
         onDrop={this.handleDrop}
+        onDragEnter={(event) =>  this.handleDragEnter(event, this.state.Id)}
       >
         <input
           type="text"

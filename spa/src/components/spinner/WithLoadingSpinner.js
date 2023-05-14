@@ -10,11 +10,20 @@ const WithLoadingSpinner = (WrappedComponent) => {
       messagesRef.current = message;
       if (message !== "no") {
         setIsLoading(true);
-      } 
+      }
       const response = await apiCall();
-      const responseJson = await response.json();
-      setIsLoading(false);
-      return await responseJson;
+      console.log(response);
+
+      if (response.ok) {
+        const responseJson = await response.json();
+        setIsLoading(false);
+        return await responseJson;
+      } else {
+        setIsLoading(false);
+        return {
+          ok: false
+        };
+      }
     };
 
     return (

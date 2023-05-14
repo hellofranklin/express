@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./BottomNavigation.css";
 import SVGUtils from "../../utils/SVGUtils";
+import { useNavigate } from "react-router-dom";
 
 const BottomNavigation = ({ onAddElement }) => {
+  const navigate = useNavigate();
   const [showOptions, setShowOptions] = useState(false);
   const optionsRef = useRef(null);
   const elements = ["Text", "Email", "Select", "Textarea", "Radio", "Checkbox"];
@@ -11,7 +13,7 @@ const BottomNavigation = ({ onAddElement }) => {
     setShowOptions(!showOptions);
   };
 
-  const handleOptionClick = ( elementOption ) => {
+  const handleOptionClick = (elementOption) => {
     setShowOptions(false);
     onAddElement(elementOption.toLowerCase());
   };
@@ -29,20 +31,26 @@ const BottomNavigation = ({ onAddElement }) => {
     };
   }, []);
 
+  const handleHomeButtonClick = () => {
+    navigate("/home");
+  };
+
+  const myFormsButtonClick = () => {
+    navigate("/home");
+  };
+
   return (
     <div className="bottom-navigation-container">
       {/* Bottom Navigation */}
       <div className="bottom-navigation">
-        <button className="nav-item">
-          
-          <SVGUtils name="MobileHome"/>
+        <button className="nav-item" onClick={handleHomeButtonClick}>
+          <SVGUtils name="MobileHome" />
         </button>
         <button className="nav-item create-plus-button" onClick={toggleOptions}>
-         
-          <SVGUtils name="MobileAdd"/>
+          <SVGUtils name="MobileAdd" />
         </button>
-        <button className="nav-item">
-        <SVGUtils name="MobileForms"/>
+        <button className="nav-item" onClick={toggleOptions}>
+          <SVGUtils name="MobileForms" />
         </button>
       </div>
 
@@ -56,7 +64,7 @@ const BottomNavigation = ({ onAddElement }) => {
                 className="option-item"
                 onClick={() => handleOptionClick(element)}
               >
-                {element}
+                <SVGUtils name={element} /> {element}
               </button>
             );
           })}
