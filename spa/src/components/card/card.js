@@ -73,7 +73,7 @@ const Card = (props) => {
         >
           <SVGUtils name={props.formdata.svg ? props.formdata.svg : "myform"} />
         </div>
-        <div className="form-card-header">{cardHeaderTitle()}</div>
+        <div className="form-card-header">{cardHeaderTitle(props.formdata.title)}</div>
 
         <div className="form-card-footer">
           <div className="form-card-menu">
