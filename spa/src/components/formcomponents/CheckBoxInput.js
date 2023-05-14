@@ -64,6 +64,7 @@ class CheckboxInput extends FormElement {
 
           {this.state.Options.length < 4 && (
             <div key={this.state.Options.length} className="option">
+              <input type={"checkbox"} readOnly={true}></input>
               <input
                 type="text"
                 placeholder="Add Option"
