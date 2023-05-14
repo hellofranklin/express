@@ -238,3 +238,8 @@ main .section[data-section-status='initialized'] {
 main .section.highlight {
   background: var(--highlight-gradient);
 }
+
+.default-content-wrapper, .quote-wrapper {
+  max-width: 900px;
+  margin: auto;
+}
