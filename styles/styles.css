@@ -52,6 +52,7 @@ body {
   color: var(--text-color);
   background-color: var(--background-color);
   display: none;
+  font-family: 'Adobe Clean', adobe-clean, 'Trebuchet MS', sans-serif;
 }
 
 body.appear {
@@ -235,5 +236,5 @@ main .section[data-section-status='initialized'] {
 }
 
 main .section.highlight {
-  background-color: var(--highlight-gradient);
+  background: var(--highlight-gradient);
 }
