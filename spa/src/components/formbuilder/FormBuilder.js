@@ -61,22 +61,8 @@ class FormBuilder extends Component {
     email: TextInput,
   };
 
-  componentWillUnmount() {
-    localStorage.removeItem("formElements");
-  }
-
-  componentDidUpdate() {
-    localStorage.setItem(
-      "formElements",
-      JSON.stringify(this.state.formElements)
-    );
-  }
-
   componentDidMount = () => {
-    if (localStorage.getItem("formElements") !== null) {
-      const formElements = JSON.parse(localStorage.getItem("formElements"));
-      this.updateFormBuilderState({ formElements: formElements });
-    } else if (
+    if (
       this.state.formAction === "update" &&
       this.state.formTitle !== undefined
     ) {
