@@ -176,7 +176,7 @@ class FormBuilder extends Component {
         const cachedData = JSON.parse(localStorage.getItem("data"));
         const form = {
           title: formTitle,
-          folderURL: response.folderURL,
+          folderUrl: response.folderURL,
           publishUrl: response.formPublishURL,
           resultSheetUrl: response.resultSheetUrl,
         };
