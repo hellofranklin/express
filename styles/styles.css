@@ -282,3 +282,12 @@ main .section.highlight {
   color: black;
   font-size: var(--body-font-size-s);
 }
+
+
+.columns-content-wrapper .button-container a.button {
+  background-color: transparent;
+  border-color: black;
+  color: black;
+  font-size: var(--body-font-size-s);
+}
+
