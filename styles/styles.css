@@ -19,13 +19,13 @@
   --highlight-background-color: #ccc;
   --text-color: #000;
 
-  --highlight-gradient: linear-gradient(75deg, #db3278, #ee732f);
+  --highlight-gradient: linear-gradient(75deg,#04bcff, #02759f );
 
   /* fonts */
-  --body-font-family: "helvetica neue", helvetica, ubuntu, roboto, noto,
+  --body-font-family: "Adobe Clean","helvetica neue", helvetica, ubuntu, roboto, noto,
     sans-serif;
   --heading-font-family: var(--body-font-family);
-  --fixed-font-family: "Roboto Mono", menlo, consolas, "Liberation Mono",
+  --fixed-font-family: "Adobe Clean","Roboto Mono", menlo, consolas, "Liberation Mono",
     monospace;
 
   /* body sizes */
@@ -273,7 +273,7 @@ main .section.highlight {
 .quote-wrapper {
   max-width: 900px;
   margin: auto;
-  text-align: center;
+ 
 }
 
 .default-content-wrapper .button-container a.button {
