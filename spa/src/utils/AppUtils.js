@@ -189,7 +189,7 @@ export const builderStateToFormJson = (builderState, title, description) => {
           Max: "",
           Options: [],
           Fieldset: `Question-${counter}-fieldset`,
-          Value: '',
+          Value: option,
           Placeholder: "",
         };
         updatedData.push(newField);
