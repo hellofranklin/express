@@ -132,8 +132,9 @@ export const formJsonToBuilderState = (franklinJson) => {
     }
   }
 
-  // Iterate over the array and update the Options field
+  // Iterate over the array and update the Options field and mandatory field
   const updatedJsonElements = formElements.map((jsonObj) => {
+    
     if (typeof jsonObj.Options === "string") {
       const optionsArray = jsonObj.Options.split(",").map((option) =>
         option.trim()

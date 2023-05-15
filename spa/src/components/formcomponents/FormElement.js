@@ -42,7 +42,6 @@ class FormElement extends Component {
 
   handleDragEnter = (e, index) => {
     const targetIndex = index;
-  
   };
 
   handleDragOver = (e) => {
@@ -74,7 +73,7 @@ class FormElement extends Component {
         onDragStart={(e) => this.handleDragStart(e, this.state.Id)}
         onDragOver={this.handleDragOver}
         onDrop={this.handleDrop}
-        onDragEnter={(event) =>  this.handleDragEnter(event, this.state.Id)}
+        onDragEnter={(event) => this.handleDragEnter(event, this.state.Id)}
       >
         <input
           type="text"
@@ -97,7 +96,10 @@ class FormElement extends Component {
               <label className="switch" title="Required">
                 <input
                   type="checkbox"
-                  checked={this.state.Mandatory === true}
+                  checked={
+                    this.state.Mandatory === "true" ||
+                    this.state.Mandatory === true
+                  } // check for both string and booolean
                   onChange={(event) =>
                     this.handleChange({ Mandatory: event.target.checked })
                   }

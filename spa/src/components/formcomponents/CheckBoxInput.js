@@ -48,8 +48,8 @@ class CheckboxInput extends FormElement {
               <input
                 type="text"
                 placeholder={`Option ${index + 1}`}
+                value={Options[index]}
                 data-index={index}
-                value={Option[index]}
                 onChange={this.handleOptionChange}
               />
               {Options.length > 2 && (

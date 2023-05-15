@@ -2,12 +2,9 @@ import React, { Component } from "react";
 import FormElement from "./FormElement";
 
 class RadioInput extends FormElement {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
     const defaultState = { Type: "radio" };
-    if (this.state.Options.length == 0) {
+    if (this.state.Options.length === 0) {
       defaultState["Options"] = ["", ""];
     }
     this.updateState(defaultState);
