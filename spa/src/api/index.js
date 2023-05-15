@@ -75,7 +75,7 @@ export const login = async (email, code, handleApiCall) => {
   );
 };
 
-export const getUserForms = async (email, handleApiCall , message) => {
+export const getUserForms = async (email, handleApiCall, message) => {
   const requestType = "userforms";
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "text/plain;charset=utf-8");
@@ -90,27 +90,43 @@ export const getUserForms = async (email, handleApiCall , message) => {
 
   return handleApiCall(
     () => fetch(encodeURI(URL), requestOptions),
-    message === "no" ? message: USER_FORMS_API_CALL_SPINNER_MSG
+    message === "no" ? message : USER_FORMS_API_CALL_SPINNER_MSG
   );
 };
 
+// export const getFranklinFormDataJson = async (title, email, handleApiCall) => {
+//   const myHeaders = new Headers();
+//   const requestOptions = {
+//     method: "GET",
+//     headers: myHeaders,
+//   };
+
+//   const gmailUserId = getGmailUserId(email);
+
+//   const host = window.location.host.includes("localhost")
+//     ? "https://main--express--hellofranklin.hlx.page"
+//     : window.location.host;
+
+//   const updatedTitle = title.replaceAll(" ", "-");
+//   const hostWithHttps = host.startsWith("https://") ? host : `https://${host}`;
+
+//   const URL = `https://main--express--hellofranklin.hlx.page/forms/${gmailUserId}/${updatedTitle}/form.json`;
+
+//   return handleApiCall(() => fetch(encodeURI(URL), requestOptions));
+// };
+
 export const getFranklinFormDataJson = async (title, email, handleApiCall) => {
+  const requestType = "getformjson";
   const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "text/plain;charset=utf-8");
   const requestOptions = {
-    method: "GET",
+    method: "POST",
     headers: myHeaders,
   };
 
-  const gmailUserId = getGmailUserId(email);
-
-  const host = window.location.host.includes("localhost")
-    ? "https://main--express--hellofranklin.hlx.page"
-    : window.location.host;
-
-  const updatedTitle = title.replaceAll(" ", "-");
-  const hostWithHttps = host.startsWith("https://") ? host : `https://${host}`;
-
-  const URL = `https://main--express--hellofranklin.hlx.page/forms/${gmailUserId}/${updatedTitle}/form.json`;
+  const URL =
+    process.env.REACT_APP_BACKEND_URL +
+    `?requestType=${requestType}&email=${email}&formTitle=${title}`;
 
   return handleApiCall(() => fetch(encodeURI(URL), requestOptions));
 };

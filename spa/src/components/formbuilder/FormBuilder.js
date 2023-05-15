@@ -71,7 +71,8 @@ class FormBuilder extends Component {
         this.state.email,
         this.props.handleApiCall
       ).then((responseJson) => {
-        const updateStatePairs = formJsonToBuilderState(responseJson.data);
+        let formJson = JSON.parse(responseJson.forms);
+        const updateStatePairs = formJsonToBuilderState(formJson.data);
         this.updateFormBuilderState(updateStatePairs);
       });
     }
