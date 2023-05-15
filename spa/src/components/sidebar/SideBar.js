@@ -7,7 +7,7 @@ function SideBar({ onAddElement }) {
   return (
     <div className="sidebar-container">
       <div className="dropdown">
-        <button className="dropbtn button-17">Add Element</button>
+        <button className="dropbtn button-17">Add Question</button>
         <div className="dropdown-content">
           {elements.map((element, index) => {
             return (
