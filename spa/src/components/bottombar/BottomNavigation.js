@@ -49,7 +49,7 @@ const BottomNavigation = ({ onAddElement }) => {
         <button className="nav-item create-plus-button" onClick={toggleOptions}>
           <SVGUtils name="MobileAdd" />
         </button>
-        <button className="nav-item" onClick={toggleOptions}>
+        <button className="nav-item" onClick={handleHomeButtonClick}>
           <SVGUtils name="MobileForms" />
         </button>
       </div>
