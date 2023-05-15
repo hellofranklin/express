@@ -96,7 +96,7 @@ const Card = (props) => {
                   target="_blank"
                 >
                   <SVGUtils name="openpage" />
-                  <span>Preview Page</span>
+                  <span>Open Preview Page</span>
                 </a>
                 <a
                   className="form-card-menu-item"
@@ -112,7 +112,7 @@ const Card = (props) => {
                   target="_blank"
                 >
                   <SVGUtils name="openpage" />
-                  <span>Live Page</span>
+                  <span>Open Live Page</span>
                 </a>
                 <a
                   className="form-card-menu-item"

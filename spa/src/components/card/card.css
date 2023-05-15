@@ -55,6 +55,7 @@
   z-index: 1;
   transform: translateY(-10px);
   transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+  width: 155px;
 }
 
 a.form-card-menu-item {
