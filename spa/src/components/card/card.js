@@ -25,8 +25,10 @@ const Card = (props) => {
   }, []);
 
   const clickchandler = (formdata) => {
-    let urlParams = formdata.svg === "add" ? "" : `?sample=${formdata.svg}`;
-    navigate(`/create${urlParams}`);
+    window.open(
+      "https://main--forms-spa--nit23uec.hlx.page/dist/index.html",
+      "_blank"
+    );
   };
 
   const toggleMenu = () => {
@@ -73,7 +75,9 @@ const Card = (props) => {
         >
           <SVGUtils name={props.formdata.svg ? props.formdata.svg : "myform"} />
         </div>
-        <div className="form-card-header">{cardHeaderTitle(props.formdata.title)}</div>
+        <div className="form-card-header">
+          {cardHeaderTitle(props.formdata.title)}
+        </div>
 
         <div className="form-card-footer">
           <div className="form-card-menu">
