@@ -61,6 +61,10 @@ function createLabel(fd, tagName = "label") {
   label.setAttribute("for", fd.Id);
   label.className = "field-label";
   label.textContent = fd.Label || "";
+  if (fd.Type !== 'radio') {
+    label.setAttribute('itemprop', 'Label');
+    label.setAttribute('itemtype', 'text');
+  }
   if (fd.Tooltip) {
     label.title = fd.Tooltip;
   }
@@ -78,6 +82,8 @@ function createHelpText(fd) {
   const div = document.createElement("div");
   div.className = "field-description";
   div.setAttribute("aria-live", "polite");
+  div.setAttribute('itemtype', 'text');
+  div.setAttribute('itemprop', 'Description');
   div.innerText = fd.Description;
   div.id = `${fd.Id}-description`;
   return div;
@@ -85,6 +91,11 @@ function createHelpText(fd) {
 
 function createFieldWrapper(fd, tagName = "div") {
   const fieldWrapper = document.createElement(tagName);
+  if (fd.Type !== 'radio') {
+    fieldWrapper.setAttribute('itemtype', 'urn:fnk:type/component');
+    fieldWrapper.setAttribute('itemid', generateItemId(fd.Name));
+    fieldWrapper.setAttribute('itemscope', '');
+  }
   const nameStyle = fd.Name ? ` form-${fd.Name}` : "";
   const fieldId = `form-${fd.Type}-wrapper${nameStyle}`;
   fieldWrapper.className = fieldId;
@@ -269,6 +280,7 @@ async function fetchForm(pathname) {
 
 async function createForm(formURL) {
   const { pathname } = new URL(formURL);
+  window.formPath = pathname;
   const data = await fetchForm(pathname);
   const form = document.createElement("form");
   form.noValidate = true;
@@ -357,10 +369,20 @@ function topFormExpressBox() {
   return formExpressBoxDiv;
 }
 
+function generateItemId(name) {
+  if (name) {
+    return `urn:fnkconnection:${window.formPath}:default:Name:${name}`;
+  } else {
+    return `urn:fnkconnection:${window.formPath}:default`;
+  }
+}
+
 export default async function decorate(block) {
+  block.setAttribute('itemtype', 'urn:fnk:type/form');
   const formLink = block.querySelector('a[href$=".json"]');
   if (formLink) {
     const form = await createForm(formLink.href);
+    block.setAttribute('itemid', generateItemId());
     formLink.replaceWith(form);
   }
 }
