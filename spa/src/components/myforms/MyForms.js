@@ -45,8 +45,10 @@ const MyForms = (props) => {
         ".live",
         ".page"
       ).substring(8);
-
-       let len =  responsedata.folderURL.split("/").length;
+     
+      formPreviewUrl  = formPreviewUrl.replace("main--","demo--")
+     
+      let len =  responsedata.folderURL.split("/").length;
       let driveFolderId = responsedata.folderURL.split("/")[len - 1];
       stageFranklinForm(title, userEmail, props.handleApiCall, "no");
       let UE_URL = `https://main--forms-spa-sheets--nit23uec.hlx.page/dist/index.html?formUrl=${formPreviewUrl}&folder=${driveFolderId}`;
