@@ -567,7 +567,7 @@ export function setup() {
  * auto init
  */
 function init() {
-  const formUrl = window.location.hostname + window.location.pathname;
+  const formUrl = `fnk:${window.location.origin}${window.location.pathname}`;
   document.querySelector('meta[name="urn:auecon:fnkconnection"]').setAttribute("content", formUrl);
   setup();
   sampleRUM('top');
