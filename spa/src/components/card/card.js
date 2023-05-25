@@ -25,10 +25,7 @@ const Card = (props) => {
   }, []);
 
   const clickchandler = (formdata) => {
-    window.open(
-      "https://main--forms-spa--nit23uec.hlx.page/dist/index.html",
-      "_blank"
-    );
+    props.openModal(formdata.elements === undefined ? []: formdata.elements);
   };
 
   const toggleMenu = () => {

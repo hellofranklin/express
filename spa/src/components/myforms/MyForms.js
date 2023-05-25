@@ -1,17 +1,58 @@
 import React, { useEffect, useState } from "react";
-import { getUserForms } from "../../api";
+import { getUserForms, stageFranklinForm } from "../../api";
 import Formtemplates from "../../sampleform/sampledata";
 import WithAuth from "../../WithAuth";
 import Card from "../card/card";
 import Header from "../header/Header";
 import WithLoadingSpinner from "../spinner/WithLoadingSpinner";
 
-import './MyForms.css'
+import "./MyForms.css";
+import Modal from "../modal/modal";
+import { createFormForDemo } from "../../api/demoapi";
+import { builderStateToFormJson } from "../../utils/AppUtils";
 
 const MyForms = (props) => {
   const [forms, setForms] = useState([]);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalFormData, setModalData] = useState({});
+
+  const openModal = (formdata) => {
+    setModalData(formdata);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   const [loadingMyForms, isLoadingMyForms] = useState(false);
+
+  const launchEditorClickHandler = (title) => {
+    const userEmail = localStorage.getItem("email");
+    console.log(modalFormData);
+    const data = builderStateToFormJson(modalFormData, title, "");
+
+    createFormForDemo(
+      data,
+      userEmail,
+      title,
+      props.handleApiCall,
+      "create"
+    ).then((responsedata) => {
+      console.log(responsedata);
+      let formPreviewUrl = responsedata.formPublishURL.replace(
+        ".live",
+        ".page"
+      ).substring(8);
+
+       let len =  responsedata.folderURL.split("/").length;
+      let driveFolderId = responsedata.folderURL.split("/")[len - 1];
+      stageFranklinForm(title, userEmail, props.handleApiCall, "no");
+      let UE_URL = `https://main--forms-spa--nit23uec.hlx.page/dist/index.html?formurl=${formPreviewUrl}&folder=${driveFolderId}`;
+      window.open(UE_URL, "_blank");
+    });
+  };
 
   useEffect(() => {
     window.onbeforeunload = () => {
@@ -59,7 +100,13 @@ const MyForms = (props) => {
           <div className="form-list">
             {Object.values(Formtemplates).map((form, index) => {
               return (
-                <Card formdata={form} type="sample" id={index} key={index} />
+                <Card
+                  formdata={form}
+                  type="sample"
+                  id={index}
+                  key={index}
+                  openModal={openModal}
+                />
               );
             })}
           </div>
@@ -82,6 +129,13 @@ const MyForms = (props) => {
           </div>
         </div>
       </div>
+
+      {isModalOpen && (
+        <Modal
+          closeModal={closeModal}
+          launchEditorClickHandler={launchEditorClickHandler}
+        />
+      )}
     </div>
   );
 };
