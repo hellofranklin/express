@@ -15,6 +15,9 @@ const Modal = ({ closeModal , launchEditorClickHandler}) => {
   return (
     <div className="modal-container">
       <div className="modal">
+      <button className="modal-close" onClick={closeModal}>
+        &times;
+      </button>
         <form onSubmit={handleSubmit}>
           <label htmlFor="title">Enter Form Title</label>
           <input
@@ -23,7 +26,7 @@ const Modal = ({ closeModal , launchEditorClickHandler}) => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-          <button type="submit">Launch Editor</button>
+          <button type="submit" className="launchbutton">Launch Editor</button>
         </form>
       </div>
     </div>
