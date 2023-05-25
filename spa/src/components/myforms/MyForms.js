@@ -49,7 +49,7 @@ const MyForms = (props) => {
        let len =  responsedata.folderURL.split("/").length;
       let driveFolderId = responsedata.folderURL.split("/")[len - 1];
       stageFranklinForm(title, userEmail, props.handleApiCall, "no");
-      let UE_URL = `https://main--forms-spa--nit23uec.hlx.page/dist/index.html?formurl=${formPreviewUrl}&folder=${driveFolderId}`;
+      let UE_URL = `https://main--forms-spa-sheets--nit23uec.hlx.page/dist/index.html?formUrl=${formPreviewUrl}&folder=${driveFolderId}`;
       window.open(UE_URL, "_blank");
     });
   };
