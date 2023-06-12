@@ -568,7 +568,10 @@ export function setup() {
  */
 function init() {
   const formUrl = `fnk:${window.location.origin}${window.location.pathname}`;
-  document.querySelector('meta[name="urn:auecon:fnkconnection"]').setAttribute("content", formUrl);
+  let fnkconmeta = document.querySelector('meta[name="urn:auecon:fnkconnection"]');
+  if (fnkconmeta) {
+    fnkconmeta.setAttribute("content", formUrl);
+  }
   setup();
   sampleRUM('top');
 
