@@ -93,7 +93,7 @@ function createFieldWrapper(fd, tagName = "div") {
   const fieldWrapper = document.createElement(tagName);
   if (fd.Type !== 'radio') {
     fieldWrapper.setAttribute('itemtype', 'urn:fnk:type/component');
-    fieldWrapper.setAttribute('itemid', generateItemId(fd.Name));
+    fieldWrapper.setAttribute('itemid', generateItemId(fd.Id));
     fieldWrapper.setAttribute('itemscope', '');
   }
   const nameStyle = fd.Name ? ` form-${fd.Name}` : "";
@@ -369,9 +369,9 @@ function topFormExpressBox() {
   return formExpressBoxDiv;
 }
 
-function generateItemId(name) {
+function generateItemId(id) {
   if (name) {
-    return `urn:fnkconnection:${window.formPath}:default:Name:${name}`;
+    return `urn:fnkconnection:${window.formPath}:default:Id:${id}`;
   } else {
     return `urn:fnkconnection:${window.formPath}:default`;
   }
