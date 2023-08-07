@@ -370,7 +370,7 @@ function topFormExpressBox() {
 }
 
 function generateItemId(id) {
-  if (name) {
+  if (id) {
     return `urn:fnkconnection:${window.formPath}:default:Id:${id}`;
   } else {
     return `urn:fnkconnection:${window.formPath}:default`;
