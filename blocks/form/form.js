@@ -92,9 +92,10 @@ function createHelpText(fd) {
 function createFieldWrapper(fd, tagName = "div") {
   const fieldWrapper = document.createElement(tagName);
   if (fd.Type !== 'radio') {
-    fieldWrapper.setAttribute('itemtype', 'urn:fnk:type/component');
+    fieldWrapper.setAttribute('itemtype', 'component');
     fieldWrapper.setAttribute('itemid', generateItemId(fd.Id));
     fieldWrapper.setAttribute('itemscope', '');
+    fieldWrapper.setAttribute('data-editor-itemlabel', fd.Label || fd.Name);
     fieldWrapper.setAttribute('data-editor-itemmodel', fd.Type);
   }
   const nameStyle = fd.Name ? ` form-${fd.Name}` : "";
@@ -188,6 +189,7 @@ function createLegend(fd) {
 function createFieldSet(fd) {
   const wrapper = createFieldWrapper(fd, "fieldset");
   wrapper.name = fd.Name;
+  wrapper.setAttribute('itemtype', 'container');
   //   wrapper.replaceChildren(createLegend(fd));
   return wrapper;
 }
@@ -379,11 +381,13 @@ function generateItemId(id) {
 }
 
 export default async function decorate(block) {
-  block.setAttribute('itemtype', 'urn:fnk:type/form');
   const formLink = block.querySelector('a[href$=".json"]');
   if (formLink) {
     const form = await createForm(formLink.href);
-    block.setAttribute('itemid', generateItemId());
+    form.setAttribute('itemid', generateItemId());
+    form.setAttribute('itemtype', 'container');
+    form.setAttribute('itemscope', '');
+    form.setAttribute('data-editor-itemlabel', "Form Container");
     formLink.replaceWith(form);
   }
 }
